@@ -1,6 +1,27 @@
-import React, { useState } from 'react';
-import { X, Building2, Users, Search, Plus, CheckCircle, Clock, ShieldCheck, DollarSign, Filter, RefreshCw, ShoppingBag, Lock, User, KeyRound, Eye, EyeOff, ShieldAlert, LogOut } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Building2, Users, ShoppingBag, Lock, User, KeyRound, Eye, EyeOff, ShieldAlert, LogOut, Sparkles, UtensilsCrossed, CalendarDays, Package, FileCheck, ShieldCheck } from 'lucide-react';
 import { RoomRecord, CustomerRecord, FoodOrder } from '../data/websiteData';
+import { Room, Guest, HousekeepingTask, DiningOrder, BanquetBooking, StaffMember, InventoryItem, Invoice } from '../types';
+
+import { FrontDeskView } from './FrontDeskView';
+import { HousekeepingView } from './HousekeepingView';
+import { DiningPOSView } from './DiningPOSView';
+import { BanquetsView } from './BanquetsView';
+import { StaffRosterView } from './StaffRosterView';
+import { InventoryView } from './InventoryView';
+import { GSTBillingView } from './GSTBillingView';
+
+import {
+  INITIAL_ROOMS,
+  INITIAL_GUESTS,
+  INITIAL_TASKS,
+  MENU_ITEMS,
+  INITIAL_ORDERS,
+  INITIAL_BANQUETS,
+  INITIAL_STAFF,
+  INITIAL_INVENTORY,
+  INITIAL_INVOICES,
+} from '../data/mockData';
 
 interface ManagementModalProps {
   isOpen: boolean;
@@ -18,14 +39,6 @@ interface ManagementModalProps {
 export const ManagementModal: React.FC<ManagementModalProps> = ({
   isOpen,
   onClose,
-  rooms,
-  customers,
-  orders,
-  onUpdateRoomStatus,
-  onAddRoom,
-  onUpdateCustomerPayment,
-  onAddCustomer,
-  onUpdateOrderStatus,
 }) => {
   // Staff Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,26 +47,81 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
   const [loginError, setLoginError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const [activeTab, setActiveTab] = useState<'rooms' | 'customers' | 'orders'>('rooms');
+  // Active Tab State
+  const [activeTab, setActiveTab] = useState<
+    'frontdesk' | 'housekeeping' | 'pos' | 'banquets' | 'staff' | 'inventory' | 'invoices'
+  >('frontdesk');
 
-  // Room filters & form
-  const [roomFilter, setRoomFilter] = useState<string>('All');
-  const [showAddRoom, setShowAddRoom] = useState(false);
-  const [newRoomNumber, setNewRoomNumber] = useState('');
-  const [newSuiteName, setNewSuiteName] = useState('Maharaja Suite');
-  const [newFloor, setNewFloor] = useState('1st Floor');
-  const [newTariff, setNewTariff] = useState(25000);
+  // DB Data States
+  const [dbRooms, setDbRooms] = useState<Room[]>(INITIAL_ROOMS);
+  const [dbGuests, setDbGuests] = useState<Guest[]>(INITIAL_GUESTS);
+  const [dbTasks, setDbTasks] = useState<HousekeepingTask[]>(INITIAL_TASKS);
+  const [dbOrders, setDbOrders] = useState<DiningOrder[]>(INITIAL_ORDERS);
+  const [dbBanquets, setDbBanquets] = useState<BanquetBooking[]>(INITIAL_BANQUETS);
+  const [dbStaff, setDbStaff] = useState<StaffMember[]>(INITIAL_STAFF);
+  const [dbInventory, setDbInventory] = useState<InventoryItem[]>(INITIAL_INVENTORY);
+  const [dbInvoices, setDbInvoices] = useState<Invoice[]>(INITIAL_INVOICES);
 
-  // Customer filters & form
-  const [customerSearch, setCustomerSearch] = useState('');
-  const [showAddCustomer, setShowAddCustomer] = useState(false);
-  const [newCustName, setNewCustName] = useState('');
-  const [newCustPhone, setNewCustPhone] = useState('');
-  const [newCustEmail, setNewCustEmail] = useState('');
-  const [newCustType, setNewCustType] = useState<CustomerRecord['bookingType']>('Room Stay');
-  const [newCustDetails, setNewCustDetails] = useState('');
-  const [newCustAmount, setNewCustAmount] = useState(15000);
-  const [newCustPaymentMethod, setNewCustPaymentMethod] = useState<'Online Payment (UPI/Card)' | 'Cash Payment'>('Online Payment (UPI/Card)');
+  // Fetch all ERP datasets from MongoDB API endpoints on load
+  const loadAllErpData = async () => {
+    try {
+      const resRooms = await fetch('/api/rooms');
+      if (resRooms.ok) {
+        const data = await resRooms.json();
+        if (Array.isArray(data) && data.length > 0) setDbRooms(data);
+      }
+
+      const resGuests = await fetch('/api/guests');
+      if (resGuests.ok) {
+        const data = await resGuests.json();
+        if (Array.isArray(data) && data.length > 0) setDbGuests(data);
+      }
+
+      const resTasks = await fetch('/api/tasks');
+      if (resTasks.ok) {
+        const data = await resTasks.json();
+        if (Array.isArray(data) && data.length > 0) setDbTasks(data);
+      }
+
+      const resOrders = await fetch('/api/orders');
+      if (resOrders.ok) {
+        const data = await resOrders.json();
+        if (Array.isArray(data) && data.length > 0) setDbOrders(data);
+      }
+
+      const resBanquets = await fetch('/api/banquets');
+      if (resBanquets.ok) {
+        const data = await resBanquets.json();
+        if (Array.isArray(data) && data.length > 0) setDbBanquets(data);
+      }
+
+      const resStaff = await fetch('/api/staff');
+      if (resStaff.ok) {
+        const data = await resStaff.json();
+        if (Array.isArray(data) && data.length > 0) setDbStaff(data);
+      }
+
+      const resInv = await fetch('/api/inventory');
+      if (resInv.ok) {
+        const data = await resInv.json();
+        if (Array.isArray(data) && data.length > 0) setDbInventory(data);
+      }
+
+      const resInvcs = await fetch('/api/invoices');
+      if (resInvcs.ok) {
+        const data = await resInvcs.json();
+        if (Array.isArray(data) && data.length > 0) setDbInvoices(data);
+      }
+    } catch (e) {
+      console.warn('API Data sync warning:', e);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen && isAuthenticated) {
+      loadAllErpData();
+    }
+  }, [isOpen, isAuthenticated]);
 
   if (!isOpen) return null;
 
@@ -82,11 +150,158 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
     setLoginError('');
   };
 
-  // If not authenticated, render Login Form for Hotel Staff
+  // ERP Operations Handlers synced with MongoDB API
+  const handleUpdateRoomStatus = async (roomId: string, newStatus: Room['status']) => {
+    setDbRooms((prev) => prev.map((r) => (r.id === roomId ? { ...r, status: newStatus } : r)));
+    try {
+      await fetch(`/api/rooms/${roomId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (e) {
+      console.warn('Room status API error:', e);
+    }
+  };
+
+  const handleCheckInGuest = async (newGuest: Omit<Guest, 'id'>) => {
+    try {
+      const res = await fetch('/api/guests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newGuest),
+      });
+      if (res.ok) {
+        const saved = await res.json();
+        setDbGuests((prev) => [saved, ...prev]);
+        loadAllErpData();
+      }
+    } catch (e) {
+      console.warn('Check in API error:', e);
+    }
+  };
+
+  const handleAddTask = async (task: Omit<HousekeepingTask, 'id'>) => {
+    try {
+      const res = await fetch('/api/tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(task),
+      });
+      if (res.ok) {
+        const saved = await res.json();
+        setDbTasks((prev) => [saved, ...prev]);
+      }
+    } catch (e) {
+      console.warn('Add task API error:', e);
+    }
+  };
+
+  const handleUpdateTaskStatus = async (taskId: string, newStatus: HousekeepingTask['status']) => {
+    setDbTasks((prev) => prev.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t)));
+    try {
+      await fetch(`/api/tasks/${taskId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (e) {
+      console.warn('Task status API error:', e);
+    }
+  };
+
+  const handleCreateDiningOrder = async (order: Omit<DiningOrder, 'id' | 'createdAt'>) => {
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(order),
+      });
+      if (res.ok) {
+        const saved = await res.json();
+        setDbOrders((prev) => [saved, ...prev]);
+      }
+    } catch (e) {
+      console.warn('Create order API error:', e);
+    }
+  };
+
+  const handleUpdateDiningOrderStatus = async (orderId: string, newStatus: DiningOrder['status']) => {
+    setDbOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o)));
+    try {
+      await fetch(`/api/orders/${orderId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (e) {
+      console.warn('Order status API error:', e);
+    }
+  };
+
+  const handleAddBanquetBooking = async (booking: Omit<BanquetBooking, 'id'>) => {
+    try {
+      const res = await fetch('/api/banquets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(booking),
+      });
+      if (res.ok) {
+        const saved = await res.json();
+        setDbBanquets((prev) => [...prev, saved]);
+      }
+    } catch (e) {
+      console.warn('Add banquet API error:', e);
+    }
+  };
+
+  const handleAddStock = async (itemId: string, qty: number) => {
+    setDbInventory((prev) =>
+      prev.map((i) => (i.id === itemId ? { ...i, stockLevel: i.stockLevel + qty } : i))
+    );
+    try {
+      const item = dbInventory.find((i) => i.id === itemId);
+      if (item) {
+        await fetch(`/api/inventory/${itemId}/stock`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ stockLevel: item.stockLevel + qty }),
+        });
+      }
+    } catch (e) {
+      console.warn('Stock update API error:', e);
+    }
+  };
+
+  const handleAddInvoice = async (inv: Omit<Invoice, 'id' | 'invoiceNo' | 'cgst' | 'sgst' | 'grandTotal'>) => {
+    const subtotal = inv.items.reduce((s, i) => s + i.amount, 0);
+    const cgst = (subtotal * 9) / 100;
+    const sgst = (subtotal * 9) / 100;
+    const grandTotal = subtotal + cgst + sgst;
+    const invoiceNo = `HKP/${new Date().getFullYear()}/${Math.floor(1000 + Math.random() * 9000)}`;
+
+    const fullInvoice = { ...inv, invoiceNo, subtotal, cgst, sgst, grandTotal, paymentStatus: 'Paid' as const };
+
+    try {
+      const res = await fetch('/api/invoices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fullInvoice),
+      });
+      if (res.ok) {
+        const saved = await res.json();
+        setDbInvoices((prev) => [saved, ...prev]);
+      }
+    } catch (e) {
+      console.warn('Add invoice API error:', e);
+    }
+  };
+
+  // Render Login Form if unauthenticated
   if (!isAuthenticated) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-md">
-        <div className="relative w-full max-w-md bg-stone-900 border border-amber-800/60 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6 animate-in zoom-in-95">
+        <div className="relative w-full max-w-md bg-stone-900 border border-amber-800/60 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-stone-400 hover:text-amber-300 p-2 rounded-full hover:bg-stone-800 transition-colors cursor-pointer"
@@ -98,57 +313,43 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
             <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 mx-auto shadow-inner">
               <Lock className="w-7 h-7 text-amber-400" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-serif font-bold text-amber-100">
-              Hotel Staff Portal
-            </h3>
-            <p className="text-xs text-stone-400 leading-relaxed">
-              Restricted management portal for authorized Four's Way Hotel staff & management only.
-            </p>
+            <h3 className="font-serif font-bold text-xl text-amber-100">Heritage Palace Staff Portal</h3>
+            <p className="text-xs text-stone-400">Enter your credentials to access live ERP modules</p>
           </div>
 
-          <form onSubmit={handleStaffLogin} className="space-y-4">
-            {loginError && (
-              <div className="bg-red-950/80 border border-red-500/50 text-red-300 text-xs p-3 rounded-xl flex items-center gap-2">
-                <ShieldAlert className="w-4 h-4 text-red-400 shrink-0" />
-                <span>{loginError}</span>
-              </div>
-            )}
+          {loginError && (
+            <div className="p-3 rounded-xl bg-red-950/60 border border-red-500/50 text-red-300 text-xs text-center flex items-center justify-center gap-2">
+              <ShieldAlert className="w-4 h-4 text-red-400 shrink-0" />
+              <span>{loginError}</span>
+            </div>
+          )}
 
-            <div className="space-y-1.5">
-              <label className="text-xs font-serif text-amber-200 block font-medium">
-                Staff Username
-              </label>
+          <form onSubmit={handleStaffLogin} className="space-y-4">
+            <div className="space-y-1 text-left">
+              <label className="text-[11px] font-serif text-stone-300 uppercase tracking-wider block">Staff Username</label>
               <div className="relative">
-                <User className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <User className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-stone-500" />
                 <input
                   type="text"
                   required
-                  placeholder="Enter staff username"
+                  placeholder="e.g. admin or staff"
                   value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    setLoginError('');
-                  }}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="w-full bg-stone-950 border border-stone-800 rounded-xl pl-9 pr-3 py-2.5 text-xs text-stone-100 focus:border-amber-500 outline-none"
                 />
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <label className="text-xs font-serif text-amber-200 block font-medium">
-                Staff Password
-              </label>
+            <div className="space-y-1 text-left">
+              <label className="text-[11px] font-serif text-stone-300 uppercase tracking-wider block">Staff Password</label>
               <div className="relative">
-                <KeyRound className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <KeyRound className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-stone-500" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
-                  placeholder="Enter staff password"
+                  placeholder="••••••••"
                   value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setLoginError('');
-                  }}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-stone-950 border border-stone-800 rounded-xl pl-9 pr-9 py-2.5 text-xs text-stone-100 focus:border-amber-500 outline-none"
                 />
                 <button
@@ -170,7 +371,6 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
             </button>
           </form>
 
-          {/* Demo Login Instructions for Hotel Team */}
           <div className="bg-stone-950 p-3.5 rounded-xl border border-stone-800 text-[11px] text-stone-400 space-y-1.5">
             <span className="font-serif text-amber-400 font-bold block">🔑 Staff Login Passwords:</span>
             <div className="flex items-center justify-between font-mono text-stone-300">
@@ -187,522 +387,180 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
     );
   }
 
-  // Stats calculation
-  const totalRooms = rooms.length;
-  const occupiedRooms = rooms.filter(r => r.status === 'Occupied').length;
-  const availableRooms = rooms.filter(r => r.status === 'Available').length;
-  const cleaningRooms = rooms.filter(r => r.status === 'Cleaning').length;
-
-  const totalRevenue = customers.reduce((sum, c) => sum + (c.paymentStatus === 'Paid' ? c.amount : 0), 0);
-  const pendingCashRevenue = customers.reduce((sum, c) => sum + (c.paymentStatus === 'Pending' ? c.amount : 0), 0);
-
-  const filteredRooms = rooms.filter(r => roomFilter === 'All' || r.status === roomFilter);
-
-  const filteredCustomers = customers.filter(c =>
-    c.name.toLowerCase().includes(customerSearch.toLowerCase()) ||
-    c.phone.includes(customerSearch) ||
-    c.bookingType.toLowerCase().includes(customerSearch.toLowerCase())
-  );
-
-  const handleCreateRoom = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newRoomNumber) return;
-    const room: RoomRecord = {
-      id: newRoomNumber,
-      roomNumber: newRoomNumber,
-      suiteName: newSuiteName,
-      floor: newFloor,
-      status: 'Available',
-      tariffPerNight: Number(newTariff),
-    };
-    onAddRoom(room);
-    setNewRoomNumber('');
-    setShowAddRoom(false);
-  };
-
-  const handleCreateCustomer = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newCustName || !newCustPhone) return;
-    const cust: CustomerRecord = {
-      id: 'cust-' + Date.now(),
-      name: newCustName,
-      phone: newCustPhone,
-      email: newCustEmail || `${newCustName.toLowerCase().replace(/\s+/g, '')}@khirasarapalace.in`,
-      bookingType: newCustType,
-      details: newCustDetails || 'Palace Reservation',
-      amount: Number(newCustAmount),
-      paymentMethod: newCustPaymentMethod,
-      paymentStatus: newCustPaymentMethod.includes('Online') ? 'Paid' : 'Pending',
-      date: new Date().toISOString().split('T')[0],
-    };
-    onAddCustomer(cust);
-    setNewCustName('');
-    setNewCustPhone('');
-    setNewCustDetails('');
-    setShowAddCustomer(false);
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-stone-950/85 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-6xl bg-stone-900 border border-amber-800/40 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
-        {/* Top Header */}
-        <div className="bg-linear-to-r from-stone-950 via-amber-950/70 to-stone-950 p-5 border-b border-amber-800/40 flex flex-wrap items-center justify-between gap-4 shrink-0">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-stone-950/85 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-7xl bg-stone-900 border border-amber-800/40 rounded-2xl shadow-2xl overflow-hidden my-auto h-[94vh] flex flex-col">
+        {/* Top Bar Header */}
+        <div className="bg-linear-to-r from-stone-950 via-amber-950/70 to-stone-950 p-4 border-b border-amber-800/40 flex flex-wrap items-center justify-between gap-3 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-serif font-bold text-lg sm:text-xl text-amber-100 flex items-center gap-2">
-                Palace Management Portal
+              <h2 className="font-serif font-bold text-base sm:text-lg text-amber-100 flex items-center gap-2">
+                Heritage Khirasara Palace ERP
+                <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-mono font-normal">
+                  MongoDB Connected
+                </span>
               </h2>
-              <p className="text-xs text-stone-400">
-                Live Room Status Management • Guest & Payment Ledger • Food Orders Tracker
+              <p className="text-[11px] text-stone-400">
+                Integrated Front Office, Housekeeping, POS, Banquets, Roster, Inventory & GST Billing
               </p>
             </div>
-          </div>
-
-          {/* Tabs */}
-          <div className="flex bg-stone-950 p-1 rounded-xl border border-stone-800 text-xs font-serif font-medium">
-            <button
-              onClick={() => setActiveTab('rooms')}
-              className={`px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === 'rooms'
-                ? 'bg-amber-500 text-stone-950 font-bold shadow'
-                : 'text-stone-400 hover:text-amber-300'
-                }`}
-            >
-              <Building2 className="w-4 h-4" /> Room Management ({rooms.length})
-            </button>
-            <button
-              onClick={() => setActiveTab('customers')}
-              className={`px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === 'customers'
-                ? 'bg-amber-500 text-stone-950 font-bold shadow'
-                : 'text-stone-400 hover:text-amber-300'
-                }`}
-            >
-              <Users className="w-4 h-4" /> Customer Records ({customers.length})
-            </button>
-            <button
-              onClick={() => setActiveTab('orders')}
-              className={`px-4 py-2 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === 'orders'
-                ? 'bg-amber-500 text-stone-950 font-bold shadow'
-                : 'text-stone-400 hover:text-amber-300'
-                }`}
-            >
-              <ShoppingBag className="w-4 h-4" /> Food Orders ({orders.length})
-            </button>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handleLogout}
-              className="bg-stone-950 hover:bg-red-950/80 text-stone-300 hover:text-red-300 border border-stone-800 hover:border-red-500/40 text-xs font-serif px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
-              title="Staff Logout"
+              className="bg-stone-950 hover:bg-red-950/80 text-stone-300 hover:text-red-300 border border-stone-800 hover:border-red-500/40 text-xs font-serif px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
             >
               <LogOut className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline">Staff Logout</span>
+              <span className="hidden sm:inline">Logout</span>
             </button>
 
             <button
               onClick={onClose}
-              className="text-stone-400 hover:text-amber-300 p-2 rounded-full hover:bg-stone-800 transition-colors cursor-pointer"
+              className="text-stone-400 hover:text-amber-300 p-1.5 rounded-full hover:bg-stone-800 transition-colors cursor-pointer"
             >
               <X className="w-6 h-6" />
             </button>
           </div>
         </div>
 
-        {/* Tab 1: ROOM MANAGEMENT */}
-        {activeTab === 'rooms' && (
-          <div className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1">
-            {/* KPI Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <div className="bg-stone-950 p-4 rounded-xl border border-stone-800">
-                <span className="text-[11px] font-serif text-stone-400 block uppercase">Total Suites</span>
-                <span className="text-2xl font-bold font-serif text-amber-100">{totalRooms}</span>
-              </div>
-              <div className="bg-stone-950 p-4 rounded-xl border border-emerald-900/40">
-                <span className="text-[11px] font-serif text-emerald-400 block uppercase">Available</span>
-                <span className="text-2xl font-bold font-serif text-emerald-400">{availableRooms}</span>
-              </div>
-              <div className="bg-stone-950 p-4 rounded-xl border border-amber-900/40">
-                <span className="text-[11px] font-serif text-amber-400 block uppercase">Occupied</span>
-                <span className="text-2xl font-bold font-serif text-amber-400">{occupiedRooms}</span>
-              </div>
-              <div className="bg-stone-950 p-4 rounded-xl border border-blue-900/40">
-                <span className="text-[11px] font-serif text-blue-400 block uppercase">In Cleaning / Maint</span>
-                <span className="text-2xl font-bold font-serif text-blue-400">{cleaningRooms}</span>
-              </div>
-            </div>
+        {/* ERP Navigation Sub-Header Tabs */}
+        <div className="bg-stone-950 border-b border-stone-800 px-4 py-2 flex items-center gap-1.5 overflow-x-auto text-xs font-serif shrink-0">
+          <button
+            onClick={() => setActiveTab('frontdesk')}
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'frontdesk' ? 'bg-amber-500 text-stone-950 font-bold shadow' : 'text-stone-400 hover:text-amber-300'
+            }`}
+          >
+            <Building2 className="w-4 h-4" /> Front Desk & Check-In
+          </button>
 
-            {/* Controls */}
-            <div className="flex flex-wrap items-center justify-between gap-3 bg-stone-950 p-3 rounded-xl border border-stone-800">
-              <div className="flex items-center gap-2">
-                <Filter className="w-4 h-4 text-amber-400" />
-                <span className="text-xs text-stone-300 font-serif">Filter by Status:</span>
-                <select
-                  value={roomFilter}
-                  onChange={(e) => setRoomFilter(e.target.value)}
-                  className="bg-stone-900 border border-stone-800 rounded px-3 py-1.5 text-xs text-amber-200 outline-none focus:border-amber-500 cursor-pointer"
-                >
-                  <option value="All">All Statuses</option>
-                  <option value="Available">Available</option>
-                  <option value="Occupied">Occupied</option>
-                  <option value="Cleaning">Cleaning</option>
-                  <option value="Reserved">Reserved</option>
-                </select>
-              </div>
+          <button
+            onClick={() => setActiveTab('housekeeping')}
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'housekeeping' ? 'bg-amber-500 text-stone-950 font-bold shadow' : 'text-stone-400 hover:text-amber-300'
+            }`}
+          >
+            <Sparkles className="w-4 h-4" /> Housekeeping & Tasks
+          </button>
 
-              <button
-                onClick={() => setShowAddRoom(!showAddRoom)}
-                className="bg-amber-500/20 hover:bg-amber-500 hover:text-stone-950 text-amber-300 border border-amber-500/40 text-xs font-serif font-bold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer"
-              >
-                <Plus className="w-4 h-4" /> Add New Suite / Room
-              </button>
-            </div>
+          <button
+            onClick={() => setActiveTab('pos')}
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'pos' ? 'bg-amber-500 text-stone-950 font-bold shadow' : 'text-stone-400 hover:text-amber-300'
+            }`}
+          >
+            <UtensilsCrossed className="w-4 h-4" /> Dining POS
+          </button>
 
-            {/* Add Room Modal Inline */}
-            {showAddRoom && (
-              <form onSubmit={handleCreateRoom} className="bg-stone-950 p-4 rounded-xl border border-amber-800/40 space-y-4 animate-in fade-in">
-                <h4 className="font-serif font-bold text-amber-200 text-sm">Register New Palace Room</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
-                  <input
-                    type="text"
-                    required
-                    placeholder="Room Number (e.g. 103)"
-                    value={newRoomNumber}
-                    onChange={(e) => setNewRoomNumber(e.target.value)}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                  <input
-                    type="text"
-                    required
-                    placeholder="Suite Name (e.g. Maharaja Suite)"
-                    value={newSuiteName}
-                    onChange={(e) => setNewSuiteName(e.target.value)}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                  <input
-                    type="text"
-                    required
-                    placeholder="Floor / Wing"
-                    value={newFloor}
-                    onChange={(e) => setNewFloor(e.target.value)}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                  <input
-                    type="number"
-                    required
-                    placeholder="Tariff per night (₹)"
-                    value={newTariff}
-                    onChange={(e) => setNewTariff(Number(e.target.value))}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                </div>
-                <div className="flex justify-end gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setShowAddRoom(false)}
-                    className="px-3 py-1.5 text-xs text-stone-400 hover:text-stone-200"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="bg-amber-500 text-stone-950 text-xs font-serif font-bold px-4 py-1.5 rounded"
-                  >
-                    Save Room
-                  </button>
-                </div>
-              </form>
-            )}
+          <button
+            onClick={() => setActiveTab('banquets')}
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'banquets' ? 'bg-amber-500 text-stone-950 font-bold shadow' : 'text-stone-400 hover:text-amber-300'
+            }`}
+          >
+            <CalendarDays className="w-4 h-4" /> Banquets & Weddings
+          </button>
 
-            {/* Rooms Table */}
-            <div className="overflow-x-auto border border-stone-800 rounded-xl">
-              <table className="w-full text-left text-xs text-stone-300">
-                <thead className="bg-stone-950 font-serif text-amber-300 border-b border-stone-800">
-                  <tr>
-                    <th className="p-3">Room #</th>
-                    <th className="p-3">Suite Type</th>
-                    <th className="p-3">Floor / Wing</th>
-                    <th className="p-3">Current Status</th>
-                    <th className="p-3">Guest Details</th>
-                    <th className="p-3">Tariff / Night</th>
-                    <th className="p-3">Update Status</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-stone-800/60 bg-stone-900/40">
-                  {filteredRooms.map((room) => (
-                    <tr key={room.id} className="hover:bg-stone-800/40 transition-colors">
-                      <td className="p-3 font-mono font-bold text-amber-200">{room.roomNumber}</td>
-                      <td className="p-3 font-serif font-semibold text-stone-200">{room.suiteName}</td>
-                      <td className="p-3 text-stone-400">{room.floor}</td>
-                      <td className="p-3">
-                        <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${room.status === 'Available' ? 'bg-emerald-950 text-emerald-400 border-emerald-700/40' :
-                          room.status === 'Occupied' ? 'bg-amber-950 text-amber-400 border-amber-700/40' :
-                            room.status === 'Cleaning' ? 'bg-blue-950 text-blue-400 border-blue-700/40' :
-                              'bg-purple-950 text-purple-400 border-purple-700/40'
-                          }`}>
-                          {room.status}
-                        </span>
-                      </td>
-                      <td className="p-3">
-                        {room.guestName ? (
-                          <div>
-                            <span className="font-medium text-stone-200 block">{room.guestName}</span>
-                            <span className="text-[10px] text-stone-400 block font-mono">{room.guestPhone}</span>
-                          </div>
-                        ) : (
-                          <span className="text-stone-500 italic">Unoccupied</span>
-                        )}
-                      </td>
-                      <td className="p-3 font-mono font-bold text-amber-400">₹{room.tariffPerNight}</td>
-                      <td className="p-3">
-                        <select
-                          value={room.status}
-                          onChange={(e) => onUpdateRoomStatus(room.id, e.target.value as RoomRecord['status'])}
-                          className="bg-stone-950 border border-stone-800 rounded px-2 py-1 text-[11px] text-amber-200 outline-none focus:border-amber-500 cursor-pointer"
-                        >
-                          <option value="Available">Available</option>
-                          <option value="Occupied">Occupied</option>
-                          <option value="Cleaning">Cleaning</option>
-                          <option value="Reserved">Reserved</option>
-                          <option value="Maintenance">Maintenance</option>
-                        </select>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+          <button
+            onClick={() => setActiveTab('staff')}
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'staff' ? 'bg-amber-500 text-stone-950 font-bold shadow' : 'text-stone-400 hover:text-amber-300'
+            }`}
+          >
+            <Users className="w-4 h-4" /> Staff Roster
+          </button>
 
-        {/* Tab 2: CUSTOMER RECORDS */}
-        {activeTab === 'customers' && (
-          <div className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1">
-            {/* KPI Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div className="bg-stone-950 p-4 rounded-xl border border-stone-800">
-                <span className="text-[11px] font-serif text-stone-400 block uppercase">Total Revenue Collected</span>
-                <span className="text-2xl font-bold font-serif text-emerald-400">₹{totalRevenue.toLocaleString('en-IN')}</span>
-              </div>
-              <div className="bg-stone-950 p-4 rounded-xl border border-amber-900/40">
-                <span className="text-[11px] font-serif text-amber-400 block uppercase">Pending Cash Payments</span>
-                <span className="text-2xl font-bold font-serif text-amber-300">₹{pendingCashRevenue.toLocaleString('en-IN')}</span>
-              </div>
-              <div className="bg-stone-950 p-4 rounded-xl border border-stone-800">
-                <span className="text-[11px] font-serif text-stone-400 block uppercase">Total Guests Registered</span>
-                <span className="text-2xl font-bold font-serif text-amber-100">{customers.length} Guests</span>
-              </div>
-            </div>
+          <button
+            onClick={() => setActiveTab('inventory')}
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'inventory' ? 'bg-amber-500 text-stone-950 font-bold shadow' : 'text-stone-400 hover:text-amber-300'
+            }`}
+          >
+            <Package className="w-4 h-4" /> Inventory & Spares
+          </button>
 
-            {/* Controls */}
-            <div className="flex flex-wrap items-center justify-between gap-3 bg-stone-950 p-3 rounded-xl border border-stone-800">
-              <div className="relative flex-1 min-w-60">
-                <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="text"
-                  placeholder="Search guest name, phone, or booking type..."
-                  value={customerSearch}
-                  onChange={(e) => setCustomerSearch(e.target.value)}
-                  className="w-full bg-stone-900 border border-stone-800 rounded-lg pl-9 pr-3 py-1.5 text-xs text-stone-100 focus:border-amber-500 outline-none"
-                />
-              </div>
+          <button
+            onClick={() => setActiveTab('invoices')}
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'invoices' ? 'bg-amber-500 text-stone-950 font-bold shadow' : 'text-stone-400 hover:text-amber-300'
+            }`}
+          >
+            <FileCheck className="w-4 h-4" /> GST Billing
+          </button>
+        </div>
 
-              <button
-                onClick={() => setShowAddCustomer(!showAddCustomer)}
-                className="bg-amber-500/20 hover:bg-amber-500 hover:text-stone-950 text-amber-300 border border-amber-500/40 text-xs font-serif font-bold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer"
-              >
-                <Plus className="w-4 h-4" /> Add Guest / Customer Record
-              </button>
-            </div>
+        {/* Tab Content Display Area */}
+        <div className="flex-1 overflow-y-auto bg-stone-950 p-4 sm:p-6">
+          {activeTab === 'frontdesk' && (
+            <FrontDeskView
+              rooms={dbRooms}
+              guests={dbGuests}
+              onUpdateRoomStatus={handleUpdateRoomStatus}
+              onCheckInGuest={handleCheckInGuest}
+              onCheckOutGuest={() => {}}
+              onOpenNewInvoiceForGuest={() => setActiveTab('invoices')}
+            />
+          )}
 
-            {/* Add Customer Form Inline */}
-            {showAddCustomer && (
-              <form onSubmit={handleCreateCustomer} className="bg-stone-950 p-4 rounded-xl border border-amber-800/40 space-y-4 animate-in fade-in">
-                <h4 className="font-serif font-bold text-amber-200 text-sm">Add Customer / Reservation Entry</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <input
-                    type="text"
-                    required
-                    placeholder="Guest Name *"
-                    value={newCustName}
-                    onChange={(e) => setNewCustName(e.target.value)}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Phone Number *"
-                    value={newCustPhone}
-                    onChange={(e) => setNewCustPhone(e.target.value)}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={newCustEmail}
-                    onChange={(e) => setNewCustEmail(e.target.value)}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                  <select
-                    value={newCustType}
-                    onChange={(e) => setNewCustType(e.target.value as CustomerRecord['bookingType'])}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-amber-200 outline-none"
-                  >
-                    <option value="Room Stay">Room Stay</option>
-                    <option value="Table Reservation">Table Reservation</option>
-                    <option value="Food Order">Food Order</option>
-                    <option value="Wedding Venue">Wedding Venue</option>
-                  </select>
-                  <input
-                    type="text"
-                    placeholder="Details (e.g. Maharaja Suite 2 Nights)"
-                    value={newCustDetails}
-                    onChange={(e) => setNewCustDetails(e.target.value)}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Amount (₹)"
-                    value={newCustAmount}
-                    onChange={(e) => setNewCustAmount(Number(e.target.value))}
-                    className="bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-100 outline-none"
-                  />
-                </div>
-                <div className="flex justify-end gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setShowAddCustomer(false)}
-                    className="px-3 py-1.5 text-xs text-stone-400 hover:text-stone-200"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="bg-amber-500 text-stone-950 text-xs font-serif font-bold px-4 py-1.5 rounded"
-                  >
-                    Save Customer Record
-                  </button>
-                </div>
-              </form>
-            )}
+          {activeTab === 'housekeeping' && (
+            <HousekeepingView
+              tasks={dbTasks}
+              rooms={dbRooms}
+              onAddTask={handleAddTask}
+              onUpdateTaskStatus={handleUpdateTaskStatus}
+              onMarkRoomCleaned={(rNum) => {
+                const room = dbRooms.find((r) => r.number === rNum);
+                if (room) handleUpdateRoomStatus(room.id, 'Available');
+              }}
+            />
+          )}
 
-            {/* Customers Table */}
-            <div className="overflow-x-auto border border-stone-800 rounded-xl">
-              <table className="w-full text-left text-xs text-stone-300">
-                <thead className="bg-stone-950 font-serif text-amber-300 border-b border-stone-800">
-                  <tr>
-                    <th className="p-3">Guest Name</th>
-                    <th className="p-3">Contact</th>
-                    <th className="p-3">Category</th>
-                    <th className="p-3">Booking Details</th>
-                    <th className="p-3">Amount</th>
-                    <th className="p-3">Payment Method</th>
-                    <th className="p-3">Payment Status</th>
-                    <th className="p-3">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-stone-800/60 bg-stone-900/40">
-                  {filteredCustomers.map((c) => (
-                    <tr key={c.id} className="hover:bg-stone-800/40 transition-colors">
-                      <td className="p-3 font-serif font-semibold text-stone-200">{c.name}</td>
-                      <td className="p-3 font-mono text-stone-400 text-[11px]">{c.phone}</td>
-                      <td className="p-3">
-                        <span className="bg-stone-950 text-amber-300 border border-amber-800/40 px-2 py-0.5 rounded text-[10px] font-mono">
-                          {c.bookingType}
-                        </span>
-                      </td>
-                      <td className="p-3 text-stone-300 max-w-xs truncate">{c.details}</td>
-                      <td className="p-3 font-mono font-bold text-amber-400">₹{c.amount.toLocaleString('en-IN')}</td>
-                      <td className="p-3 text-[11px] text-stone-300">
-                        {c.paymentMethod}
-                      </td>
-                      <td className="p-3">
-                        <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${c.paymentStatus === 'Paid'
-                          ? 'bg-emerald-950 text-emerald-400 border-emerald-700/40'
-                          : 'bg-amber-950 text-amber-400 border-amber-700/40'
-                          }`}>
-                          {c.paymentStatus}
-                        </span>
-                      </td>
-                      <td className="p-3">
-                        {c.paymentStatus === 'Pending' ? (
-                          <button
-                            onClick={() => onUpdateCustomerPayment(c.id, 'Paid')}
-                            className="bg-emerald-500/20 hover:bg-emerald-500 hover:text-stone-950 text-emerald-400 border border-emerald-500/40 text-[10px] font-serif font-bold px-2.5 py-1 rounded transition-all cursor-pointer"
-                          >
-                            Mark Paid
-                          </button>
-                        ) : (
-                          <span className="text-[10px] text-emerald-400 flex items-center gap-1 font-mono">
-                            <ShieldCheck className="w-3 h-3" /> Settled
-                          </span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+          {activeTab === 'pos' && (
+            <DiningPOSView
+              menuItems={MENU_ITEMS}
+              orders={dbOrders}
+              rooms={dbRooms}
+              onCreateOrder={handleCreateDiningOrder}
+              onUpdateOrderStatus={handleUpdateDiningOrderStatus}
+            />
+          )}
 
-        {/* Tab 3: LIVE FOOD ORDERS MONITOR */}
-        {activeTab === 'orders' && (
-          <div className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1">
-            <div className="flex items-center justify-between border-b border-stone-800 pb-3">
-              <h3 className="font-serif font-bold text-amber-200 text-base">
-                Active Kitchen & Dining Room Orders
-              </h3>
-              <span className="text-xs text-amber-400 font-mono">
-                {orders.length} Total Orders Received
-              </span>
-            </div>
+          {activeTab === 'banquets' && (
+            <BanquetsView
+              bookings={dbBanquets}
+              onAddBooking={handleAddBanquetBooking}
+            />
+          )}
 
-            {orders.length === 0 ? (
-              <div className="text-center py-12 text-stone-500 font-serif">
-                No food orders placed yet today. Use the "Food Ordering" menu to place royal food orders.
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {orders.map((order) => (
-                  <div key={order.id} className="bg-stone-950 p-4 rounded-xl border border-stone-800 flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-amber-400 text-xs">#{order.id}</span>
-                        <span className="text-stone-300 font-serif font-bold text-sm">{order.guestName}</span>
-                        <span className="bg-amber-950 text-amber-300 border border-amber-800/40 px-2 py-0.5 rounded text-[10px] font-mono">
-                          {order.deliveryType} ({order.roomOrTableNo})
-                        </span>
-                      </div>
-                      <p className="text-xs text-stone-400 mt-1">
-                        Items: {order.items.map(i => `${i.quantity}x ${i.menuItem.name}`).join(', ')}
-                      </p>
-                      <p className="text-[11px] text-stone-500 font-mono mt-1">
-                        Time: {order.timestamp} • Payment: <span className="text-amber-300">{order.paymentMethod}</span> ({order.paymentStatus})
-                      </p>
-                    </div>
+          {activeTab === 'staff' && (
+            <StaffRosterView
+              staff={dbStaff}
+              onToggleStaffStatus={(id) => {
+                setDbStaff((prev) =>
+                  prev.map((s) => (s.id === id ? { ...s, status: s.status === 'On Duty' ? 'Off Duty' : 'On Duty' } : s))
+                );
+              }}
+            />
+          )}
 
-                    <div className="flex items-center gap-3">
-                      <span className="font-serif font-bold text-amber-400 text-sm">₹{order.totalAmount}</span>
-                      <select
-                        value={order.orderStatus}
-                        onChange={(e) => onUpdateOrderStatus(order.id, e.target.value as FoodOrder['orderStatus'])}
-                        className="bg-stone-900 border border-stone-800 rounded px-2.5 py-1 text-xs text-amber-200 outline-none focus:border-amber-500 cursor-pointer"
-                      >
-                        <option value="Received">Received</option>
-                        <option value="Preparing">Preparing</option>
-                        <option value="Out for Delivery">Out for Delivery</option>
-                        <option value="Delivered">Delivered</option>
-                      </select>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+          {activeTab === 'inventory' && (
+            <InventoryView
+              inventory={dbInventory}
+              onAddStock={handleAddStock}
+            />
+          )}
+
+          {activeTab === 'invoices' && (
+            <GSTBillingView
+              invoices={dbInvoices}
+              onAddInvoice={handleAddInvoice}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

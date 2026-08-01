@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Menu, X, ShieldCheck, Utensils, Building2 } from 'lucide-react';
+import { Calendar, Menu, X, Building2, Sparkles } from 'lucide-react';
 import logoImg from '../assets/images/fours_way_royal_logo_1785217821041.jpg';
 
 interface NavbarProps {
   onOpenBookNowSelector: () => void;
   onOpenManagement: () => void;
   onOpenFoodOrdering: () => void;
+  onOpenAIAssistant: () => void;
   currentView: 'home' | 'rooms' | 'dining' | 'weddings' | 'contact';
   onSelectView: (view: 'home' | 'rooms' | 'dining' | 'weddings' | 'contact') => void;
 }
@@ -13,7 +14,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenBookNowSelector,
   onOpenManagement,
-  onOpenFoodOrdering,
+  onOpenAIAssistant,
   currentView,
   onSelectView,
 }) => {
@@ -104,43 +105,48 @@ export const Navbar: React.FC<NavbarProps> = ({
             </>
           ) : (
             <>
-              {homeNavLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={'view' in link ? '#' : link.href}
-                  onClick={(e) => {
-                    if ('view' in link && link.view) {
-                      e.preventDefault();
-                      onSelectView(link.view);
-                    } else if (currentView !== 'home') {
-                      onSelectView('home');
-                    }
-                  }}
-                  className={`transition-colors py-1 relative group cursor-pointer whitespace-nowrap ${('view' in link && link.view === currentView) || link.isWeddings
-                    ? 'text-amber-400 hover:text-amber-300 font-bold bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/40'
-                    : 'text-stone-300 hover:text-amber-300'
-                    }`}
-                >
-                  {link.name}
-                  {!('view' in link) && !link.isWeddings && (
+              {homeNavLinks.map((link) => {
+                if ('view' in link) {
+                  return (
+                    <button
+                      key={link.name}
+                      onClick={() => onSelectView(link.view)}
+                      className={`${currentView === link.view
+                        ? 'text-amber-400 font-bold border-b border-amber-400'
+                        : link.isWeddings
+                          ? 'text-amber-300 hover:text-amber-200 font-bold bg-amber-950/40 border border-amber-500/30 px-2.5 py-0.5 rounded-full'
+                          : 'text-stone-300 hover:text-amber-300'
+                        } transition-all py-1 relative group cursor-pointer whitespace-nowrap`}
+                    >
+                      {link.name}
+                    </button>
+                  );
+                }
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-stone-300 hover:text-amber-300 transition-colors py-1 relative group whitespace-nowrap"
+                  >
+                    {link.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full" />
-                  )}
-                </a>
-              ))}
+                  </a>
+                );
+              })}
             </>
           )}
-
-          <button
-            onClick={onOpenFoodOrdering}
-            className="text-stone-300 hover:text-amber-300 transition-colors py-1 relative group cursor-pointer whitespace-nowrap"
-          >
-            Food Menu
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full" />
-          </button>
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden sm:flex items-center gap-2.5">
+          <button
+            onClick={onOpenAIAssistant}
+            className="bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/50 text-xs font-serif font-semibold px-3 py-2 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 shadow ring-1 ring-amber-500/30 animate-pulse"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span>Royal AI</span>
+          </button>
+
           <button
             onClick={onOpenManagement}
             className="bg-stone-900/90 hover:bg-stone-800 text-amber-300 border border-amber-500/40 text-xs font-serif font-semibold px-3 py-2 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 shadow"
@@ -199,49 +205,51 @@ export const Navbar: React.FC<NavbarProps> = ({
               </>
             ) : (
               <>
-                {homeNavLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={'view' in link ? '#' : link.href}
-                    onClick={(e) => {
-                      setMobileMenuOpen(false);
-                      if ('view' in link && link.view) {
-                        e.preventDefault();
-                        onSelectView(link.view);
-                      } else if (currentView !== 'home') {
-                        onSelectView('home');
-                      }
-                    }}
-                    className={`py-1 border-b border-stone-800/60 ${('view' in link && link.view === currentView) || link.isWeddings
-                      ? 'text-amber-400 font-bold flex items-center gap-2'
-                      : 'text-stone-200 hover:text-amber-300'
-                      }`}
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                {homeNavLinks.map((link) => {
+                  if ('view' in link) {
+                    return (
+                      <button
+                        key={link.name}
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          onSelectView(link.view);
+                        }}
+                        className={`text-left py-1 border-b border-stone-800/60 ${currentView === link.view
+                          ? 'text-amber-400 font-bold'
+                          : link.isWeddings
+                            ? 'text-amber-300 font-bold'
+                            : 'text-stone-200 hover:text-amber-300'
+                          }`}
+                      >
+                        {link.name}
+                      </button>
+                    );
+                  }
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-stone-200 hover:text-amber-300 py-1 border-b border-stone-800/60"
+                    >
+                      {link.name}
+                    </a>
+                  );
+                })}
               </>
             )}
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenFoodOrdering();
-              }}
-              className="text-left text-stone-200 hover:text-amber-300 py-1 border-b border-stone-800/60"
-            >
-              Food Menu
-            </button>
           </nav>
 
-          <div className="pt-2 flex flex-col gap-2.5">
+          <div className="pt-2 flex flex-col space-y-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenBookNowSelector();
+                onOpenAIAssistant();
               }}
-              className="w-full bg-linear-to-r from-amber-600 to-amber-500 text-stone-950 font-serif font-bold text-xs py-3 rounded-lg shadow cursor-pointer text-center"
+              className="w-full bg-amber-500/10 text-amber-300 border border-amber-500/50 text-xs font-serif font-semibold px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
             >
-              Book Now (Rooms, Tables, Food)
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>Royal AI Assistant</span>
             </button>
 
             <button
@@ -249,9 +257,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenManagement();
               }}
-              className="w-full bg-linear-to-r from-stone-900 to-stone-800 text-amber-300 border border-amber-500/40 font-serif font-bold text-xs py-2.5 rounded-lg shadow cursor-pointer text-center flex items-center justify-center gap-1.5"
+              className="w-full bg-stone-900 text-amber-300 border border-amber-500/40 text-xs font-serif font-semibold px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
             >
-              <Building2 className="w-4 h-4 text-amber-400" /> Room & Customer Management
+              <Building2 className="w-4 h-4 text-amber-400" />
+              <span>Management Portal</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenBookNowSelector();
+              }}
+              className="w-full bg-amber-500 text-stone-950 font-serif font-bold text-xs px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Book Now</span>
             </button>
           </div>
         </div>
@@ -259,4 +279,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
-
