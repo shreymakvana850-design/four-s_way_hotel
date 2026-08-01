@@ -135,7 +135,11 @@ export const WelcomeSection: React.FC<{ onOpenBookNow?: () => void }> = ({ onOpe
         </div>
 
         {/* Closing Highlight Banner */}
+<<<<<<< HEAD
         <div className="bg-gradient-to-r from-amber-950/80 via-amber-900/40 to-amber-950/80 border border-amber-500/40 p-8 rounded-2xl text-center space-y-4 shadow-2xl backdrop-blur-sm">
+=======
+        <div className="bg-linear-to-r from-amber-950/80 via-amber-900/40 to-amber-950/80 border border-amber-500/40 p-8 rounded-2xl text-center space-y-4 shadow-2xl backdrop-blur-sm">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <Crown className="w-8 h-8 text-amber-400 mx-auto animate-pulse" />
           <p className="text-lg sm:text-2xl font-serif font-bold text-amber-100 max-w-2xl mx-auto leading-relaxed">
             Experience comfort, elegance, and hospitality like never before at Four's Way Hotel.
@@ -143,7 +147,11 @@ export const WelcomeSection: React.FC<{ onOpenBookNow?: () => void }> = ({ onOpe
           {onOpenBookNow && (
             <button
               onClick={onOpenBookNow}
+<<<<<<< HEAD
               className="mt-2 inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-serif font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-amber-500/20 transition-all cursor-pointer"
+=======
+              className="mt-2 inline-flex items-center gap-2 bg-linear-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-serif font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-amber-500/20 transition-all cursor-pointer"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               <span>Book Your Stay Today</span>
             </button>

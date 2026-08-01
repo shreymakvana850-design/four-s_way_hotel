@@ -33,11 +33,18 @@ export const InventoryView: React.FC<InventoryViewProps> = ({ inventory, onAddSt
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+<<<<<<< HEAD
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 activeCategory === cat
                   ? 'bg-amber-700 text-amber-100 border border-amber-400/50 shadow'
                   : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
               }`}
+=======
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${activeCategory === cat
+                ? 'bg-amber-700 text-amber-100 border border-amber-400/50 shadow'
+                : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
+                }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               {cat}
             </button>

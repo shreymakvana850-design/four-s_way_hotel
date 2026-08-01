@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SUITES_DATA, Suite } from '../data/websiteData';
+<<<<<<< HEAD
 import { Crown, Check, Sparkles, ArrowRight, BedDouble, Users } from 'lucide-react';
 
 interface SuitesSectionProps {
@@ -7,6 +8,21 @@ interface SuitesSectionProps {
 }
 
 export const SuitesSection: React.FC<SuitesSectionProps> = ({ onSelectSuite }) => {
+=======
+import { Crown, Check, ArrowRight, BedDouble, Users, ArrowLeft } from 'lucide-react';
+
+interface SuitesSectionProps {
+  onSelectSuite: (suite: Suite) => void;
+  onGoBack?: () => void;
+  isStandalonePage?: boolean;
+}
+
+export const SuitesSection: React.FC<SuitesSectionProps> = ({
+  onSelectSuite,
+  onGoBack,
+  isStandalonePage = false,
+}) => {
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   const [filter, setFilter] = useState<string>('All');
 
   const categories = ['All', 'Royal Presidential Suite', 'Heritage Luxury Suite', 'Panoramic Sun Suite'];
@@ -17,9 +33,29 @@ export const SuitesSection: React.FC<SuitesSectionProps> = ({ onSelectSuite }) =
   });
 
   return (
+<<<<<<< HEAD
     <section id="suites" className="py-20 bg-stone-900 text-stone-100 relative border-t border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
         
+=======
+    <section
+      id="suites"
+      className={`${isStandalonePage ? 'pt-28 pb-20' : 'py-20'
+        } bg-stone-900 text-stone-100 relative border-t border-amber-900/30`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
+        {onGoBack && (
+          <div className="flex justify-start">
+            <button
+              onClick={onGoBack}
+              className="inline-flex items-center gap-1.5 text-xs font-serif font-bold text-amber-300 hover:text-amber-100 bg-amber-950/60 border border-amber-800/40 px-3.5 py-1.5 rounded-full hover:bg-amber-900/60 transition-all cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" /> Back to Hotel Overview
+            </button>
+          </div>
+        )}
+
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-serif uppercase tracking-widest bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
@@ -29,7 +65,11 @@ export const SuitesSection: React.FC<SuitesSectionProps> = ({ onSelectSuite }) =
             Bespoke Suites Fit For Royalty
           </h2>
           <p className="text-stone-300 text-sm">
+<<<<<<< HEAD
             Each suite at Heritage Khirasara Palace is individually designed with antique Kathiawadi brasswork, four-poster beds, and modern luxury amenities.
+=======
+            Each suite at Four's Way Hotel is individually designed with antique Kathiawadi brasswork, four-poster beds, and modern luxury amenities.
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           </p>
 
           {/* Category Filter Pills */}
@@ -38,11 +78,18 @@ export const SuitesSection: React.FC<SuitesSectionProps> = ({ onSelectSuite }) =
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
+<<<<<<< HEAD
                 className={`px-4 py-2 rounded-lg text-xs font-serif font-semibold transition-all cursor-pointer ${
                   filter === cat
                     ? 'bg-amber-700 text-amber-100 border border-amber-400/60 shadow-lg'
                     : 'bg-stone-950 text-stone-300 hover:bg-stone-800 border border-stone-800'
                 }`}
+=======
+                className={`px-4 py-2 rounded-lg text-xs font-serif font-semibold transition-all cursor-pointer ${filter === cat
+                  ? 'bg-amber-700 text-amber-100 border border-amber-400/60 shadow-lg'
+                  : 'bg-stone-950 text-stone-300 hover:bg-stone-800 border border-stone-800'
+                  }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 {cat}
               </button>
@@ -65,7 +112,11 @@ export const SuitesSection: React.FC<SuitesSectionProps> = ({ onSelectSuite }) =
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
                 {suite.featured && (
                   <span className="absolute top-3 right-3 bg-amber-500 text-stone-950 text-[10px] uppercase font-bold font-serif px-2.5 py-1 rounded-full shadow">
@@ -115,7 +166,11 @@ export const SuitesSection: React.FC<SuitesSectionProps> = ({ onSelectSuite }) =
                 {/* CTA */}
                 <button
                   onClick={() => onSelectSuite(suite)}
+<<<<<<< HEAD
                   className="w-full bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-stone-950 font-serif font-bold text-xs py-2.5 rounded-xl shadow cursor-pointer flex items-center justify-center gap-1.5 transition-all mt-2"
+=======
+                  className="w-full bg-linear-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-stone-950 font-serif font-bold text-xs py-2.5 rounded-xl shadow cursor-pointer flex items-center justify-center gap-1.5 transition-all mt-2"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   <span>Reserve {suite.name}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

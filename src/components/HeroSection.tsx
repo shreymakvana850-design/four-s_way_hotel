@@ -17,7 +17,11 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center scale-105 filter brightness-75 transition-all duration-1000"
         />
+<<<<<<< HEAD
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-stone-950/40" />
+=======
+        <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/60 to-stone-950/40" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
       </div>
 
       {/* Hero Content */}
@@ -29,7 +33,11 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
 
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-amber-100 leading-tight tracking-wide drop-shadow-md">
           Step Into 50 Years of <br className="hidden sm:inline" />
+<<<<<<< HEAD
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200">
+=======
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-200 via-amber-400 to-amber-200">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             Royal Splendor & Luxury
           </span>
         </h1>

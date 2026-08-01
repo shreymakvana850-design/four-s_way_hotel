@@ -1,6 +1,7 @@
 import React from 'react';
 import { Hotel, BedDouble, UtensilsCrossed, CalendarDays, Users, Package, FileCheck, Sparkles } from 'lucide-react';
 
+<<<<<<< HEAD
 export type TabType = 
   | 'frontdesk' 
   | 'housekeeping' 
@@ -9,6 +10,16 @@ export type TabType =
   | 'staff' 
   | 'inventory' 
   | 'billing' 
+=======
+export type TabType =
+  | 'frontdesk'
+  | 'housekeeping'
+  | 'dining'
+  | 'banquets'
+  | 'staff'
+  | 'inventory'
+  | 'billing'
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   | 'ai_tools';
 
 interface NavigationProps {
@@ -30,7 +41,11 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab,
   ];
 
   return (
+<<<<<<< HEAD
     <nav className="bg-stone-900/90 border-b border-amber-900/30 sticky top-[77px] z-20 backdrop-blur-md">
+=======
+    <nav className="bg-stone-900/90 border-b border-amber-900/30 sticky top-19.25 z-20 backdrop-blur-md">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
       <div className="max-w-7xl mx-auto px-2 md:px-4 flex items-center overflow-x-auto no-scrollbar gap-1 py-1">
         {navItems.map((item) => {
           const isActive = activeTab === item.id;
@@ -38,11 +53,18 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab,
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
+<<<<<<< HEAD
               className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-all cursor-pointer ${
                 isActive
                   ? 'bg-amber-800/80 text-amber-100 shadow-inner border border-amber-500/40 font-semibold'
                   : 'text-stone-300 hover:text-amber-200 hover:bg-stone-800/60'
               }`}
+=======
+              className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-all cursor-pointer ${isActive
+                ? 'bg-amber-800/80 text-amber-100 shadow-inner border border-amber-500/40 font-semibold'
+                : 'text-stone-300 hover:text-amber-200 hover:bg-stone-800/60'
+                }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               <span className={isActive ? 'text-amber-300' : 'text-amber-500/70'}>
                 {item.icon}

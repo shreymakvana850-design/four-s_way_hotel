@@ -120,31 +120,52 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({ isOpen, onCl
         <div className="flex items-center gap-2 border-b border-stone-800 pb-3 mb-4">
           <button
             onClick={() => setActiveTab('concierge')}
+<<<<<<< HEAD
             className={`px-3.5 py-1.5 rounded-lg text-xs font-serif font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
               activeTab === 'concierge'
                 ? 'bg-amber-800 text-amber-100 border border-amber-500/50'
                 : 'bg-stone-950 text-stone-400 hover:text-amber-200'
             }`}
+=======
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-serif font-bold flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === 'concierge'
+              ? 'bg-amber-800 text-amber-100 border border-amber-500/50'
+              : 'bg-stone-950 text-stone-400 hover:text-amber-200'
+              }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           >
             <Crown className="w-4 h-4 text-amber-400" /> Royal Concierge
           </button>
           <button
             onClick={() => setActiveTab('pricing')}
+<<<<<<< HEAD
             className={`px-3.5 py-1.5 rounded-lg text-xs font-serif font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
               activeTab === 'pricing'
                 ? 'bg-amber-800 text-amber-100 border border-amber-500/50'
                 : 'bg-stone-950 text-stone-400 hover:text-amber-200'
             }`}
+=======
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-serif font-bold flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === 'pricing'
+              ? 'bg-amber-800 text-amber-100 border border-amber-500/50'
+              : 'bg-stone-950 text-stone-400 hover:text-amber-200'
+              }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           >
             <TrendingUp className="w-4 h-4 text-amber-400" /> Dynamic Yield AI
           </button>
           <button
             onClick={() => setActiveTab('sentiment')}
+<<<<<<< HEAD
             className={`px-3.5 py-1.5 rounded-lg text-xs font-serif font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
               activeTab === 'sentiment'
                 ? 'bg-amber-800 text-amber-100 border border-amber-500/50'
                 : 'bg-stone-950 text-stone-400 hover:text-amber-200'
             }`}
+=======
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-serif font-bold flex items-center gap-1.5 transition-all cursor-pointer ${activeTab === 'sentiment'
+              ? 'bg-amber-800 text-amber-100 border border-amber-500/50'
+              : 'bg-stone-950 text-stone-400 hover:text-amber-200'
+              }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           >
             <MessageSquare className="w-4 h-4 text-amber-400" /> Sentiment Analyzer
           </button>
@@ -194,7 +215,11 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({ isOpen, onCl
               <button
                 type="submit"
                 disabled={loading}
+<<<<<<< HEAD
                 className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50"
+=======
+                className="w-full bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                 <span>Generate Royal Concierge Protocol</span>
@@ -268,7 +293,11 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({ isOpen, onCl
               <button
                 type="submit"
                 disabled={loading}
+<<<<<<< HEAD
                 className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50"
+=======
+                className="w-full bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <TrendingUp className="w-4 h-4" />}
                 <span>Calculate Optimized Suite & Wedding Rates</span>
@@ -325,7 +354,11 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({ isOpen, onCl
               <button
                 type="submit"
                 disabled={loading}
+<<<<<<< HEAD
                 className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50"
+=======
+                className="w-full bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <MessageSquare className="w-4 h-4" />}
                 <span>Analyze Sentiment & Dispatch Staff Tasks</span>

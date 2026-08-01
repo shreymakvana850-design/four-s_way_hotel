@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import React, { useState, useEffect } from 'react';
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { WelcomeSection } from './components/WelcomeSection';
@@ -16,6 +20,10 @@ import { TableReservationModal } from './components/TableReservationModal';
 import { FoodOrderingModal } from './components/FoodOrderingModal';
 import { ManagementModal } from './components/ManagementModal';
 import { BookNowSelectorModal } from './components/BookNowSelectorModal';
+<<<<<<< HEAD
+=======
+import { AIAssistantModal } from './components/AIAssistantModal';
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
 import {
   Suite,
@@ -27,9 +35,17 @@ import {
   INITIAL_CUSTOMERS_DATA,
 } from './data/websiteData';
 
+<<<<<<< HEAD
 export default function App() {
   // Navigation View State ('home' active by default)
   const [currentView, setCurrentView] = useState<'home' | 'weddings'>('home');
+=======
+type AppView = 'home' | 'rooms' | 'dining' | 'weddings' | 'contact';
+
+export default function App() {
+  // Navigation View State ('home' active by default)
+  const [currentView, setCurrentView] = useState<AppView>('home');
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
   // Modals Visibility
   const [isBookNowSelectorOpen, setIsBookNowSelectorOpen] = useState(false);
@@ -37,6 +53,10 @@ export default function App() {
   const [isTableModalOpen, setIsTableModalOpen] = useState(false);
   const [isFoodOrderingOpen, setIsFoodOrderingOpen] = useState(false);
   const [isManagementOpen, setIsManagementOpen] = useState(false);
+<<<<<<< HEAD
+=======
+  const [isAIAssistantOpen, setIsAIAssistantOpen] = useState(false);
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
   // Selections & Parameters
   const [selectedSuite, setSelectedSuite] = useState<Suite | null>(null);
@@ -77,6 +97,60 @@ export default function App() {
     },
   ]);
 
+<<<<<<< HEAD
+=======
+  // Fetch live database records on mount
+  useEffect(() => {
+    async function loadDbData() {
+      try {
+        const resRooms = await fetch('/api/rooms');
+        if (resRooms.ok) {
+          const dataRooms = await resRooms.json();
+          if (Array.isArray(dataRooms) && dataRooms.length > 0) {
+            setRooms(dataRooms.map((r: any) => ({
+              id: r.id || r._id,
+              roomNumber: r.number || r.roomNumber,
+              suiteName: r.category || r.suiteName || 'Maharaja Suite',
+              floor: r.floor || '1st Floor',
+              status: r.status || 'Available',
+              tariffPerNight: r.pricePerNight || r.tariffPerNight || 25000,
+            })));
+          }
+        }
+      } catch (err) {
+        console.warn('API /api/rooms fallback to local state:', err);
+      }
+
+      try {
+        const resGuests = await fetch('/api/guests');
+        if (resGuests.ok) {
+          const dataGuests = await resGuests.json();
+          if (Array.isArray(dataGuests) && dataGuests.length > 0) {
+            setCustomers(dataGuests.map((g: any) => ({
+              id: g.id || g._id,
+              name: g.name || g.guestName || 'Royal Guest',
+              guestName: g.name || g.guestName || 'Royal Guest',
+              phone: g.phone,
+              email: g.email,
+              bookingType: 'Room Stay',
+              details: `Room ${g.roomNumber} (${g.checkIn} to ${g.checkOut})`,
+              amount: g.totalAmount || 25000,
+              paymentStatus: g.status === 'CheckedIn' ? 'Paid' : 'Pending',
+              paymentMethod: 'Online Payment (UPI/Card)',
+              date: g.checkIn || new Date().toISOString().split('T')[0],
+              timestamp: g.checkIn || new Date().toISOString(),
+            })));
+          }
+        }
+      } catch (err) {
+        console.warn('API /api/guests fallback to local state:', err);
+      }
+    }
+
+    loadDbData();
+  }, []);
+
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // Handlers for Navbar & Book Now
   const handleOpenBookNowSelector = () => {
     setIsBookNowSelectorOpen(true);
@@ -107,11 +181,19 @@ export default function App() {
     setIsBookingOpen(true);
   };
 
+<<<<<<< HEAD
+=======
+  const handleSelectView = (view: AppView) => {
+    setCurrentView(view);
+  };
+
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   const handleOpenTableReservation = (venue: DiningVenue) => {
     setSelectedDiningVenue(venue);
     setIsTableModalOpen(true);
   };
 
+<<<<<<< HEAD
   // State Updates from Modals
   const handleBookingConfirmed = (customer: CustomerRecord) => {
     setCustomers((prev) => [customer, ...prev]);
@@ -135,6 +217,102 @@ export default function App() {
 
   const handleAddRoom = (newRoom: RoomRecord) => {
     setRooms((prev) => [...prev, newRoom]);
+=======
+  // State Updates from Modals & API Sync
+  const handleBookingConfirmed = async (customer: CustomerRecord) => {
+    setCustomers((prev) => [customer, ...prev]);
+    try {
+      await fetch('/api/guests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: customer.name,
+          phone: customer.phone,
+          email: customer.email || 'guest@khirasarapalace.in',
+          idType: 'Aadhaar Card',
+          idNumber: 'AUTO-GEN-ID',
+          roomNumber: '101',
+          checkIn: new Date().toISOString().split('T')[0],
+          checkOut: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
+          totalAmount: customer.amount,
+          status: 'CheckedIn',
+          vipTier: 'Royal VIP',
+          notes: customer.details,
+        }),
+      });
+    } catch (e) {
+      console.warn('Could not post guest to DB:', e);
+    }
+  };
+
+  const handleTableReserved = async (customer: CustomerRecord) => {
+    setCustomers((prev) => [customer, ...prev]);
+  };
+
+  const handleFoodOrderPlaced = async (order: FoodOrder, customer: CustomerRecord) => {
+    setFoodOrders((prev) => [order, ...prev]);
+    setCustomers((prev) => [customer, ...prev]);
+    try {
+      await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          outlet: 'In-Room Royal Dining',
+          tableNumber: order.roomOrTableNo,
+          guestName: order.guestName,
+          totalAmount: order.totalAmount,
+          status: 'Received',
+          paymentMethod: 'Room Charge',
+          items: order.items.map((i) => ({
+            id: i.menuItem.id,
+            name: i.menuItem.name,
+            price: i.menuItem.price,
+            qty: i.quantity,
+            category: i.menuItem.category,
+          })),
+        }),
+      });
+    } catch (e) {
+      console.warn('Could not post food order to DB:', e);
+    }
+  };
+
+  // Management State Handlers
+  const handleUpdateRoomStatus = async (roomId: string, newStatus: RoomRecord['status']) => {
+    setRooms((prev) =>
+      prev.map((r) => (r.id === roomId ? { ...r, status: newStatus } : r))
+    );
+    try {
+      await fetch(`/api/rooms/${roomId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (e) {
+      console.warn('Could not sync room status to DB:', e);
+    }
+  };
+
+  const handleAddRoom = async (newRoom: RoomRecord) => {
+    setRooms((prev) => [...prev, newRoom]);
+    try {
+      await fetch('/api/rooms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          number: newRoom.roomNumber,
+          category: newRoom.suiteName,
+          floor: newRoom.floor,
+          status: newRoom.status,
+          pricePerNight: newRoom.tariffPerNight,
+          capacity: 2,
+          features: ['Heritage Royal Terrace', 'Antique Teakwood Furniture'],
+        }),
+      });
+    } catch (e) {
+      console.warn('Could not add room to DB:', e);
+    }
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   };
 
   const handleUpdateCustomerPayment = (customerId: string, newStatus: 'Paid' | 'Pending') => {
@@ -147,10 +325,26 @@ export default function App() {
     setCustomers((prev) => [newCust, ...prev]);
   };
 
+<<<<<<< HEAD
   const handleUpdateOrderStatus = (orderId: string, newStatus: FoodOrder['orderStatus']) => {
     setFoodOrders((prev) =>
       prev.map((o) => (o.id === orderId ? { ...o, orderStatus: newStatus } : o))
     );
+=======
+  const handleUpdateOrderStatus = async (orderId: string, newStatus: FoodOrder['orderStatus']) => {
+    setFoodOrders((prev) =>
+      prev.map((o) => (o.id === orderId ? { ...o, orderStatus: newStatus } : o))
+    );
+    try {
+      await fetch(`/api/orders/${orderId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (e) {
+      console.warn('Could not sync order status to DB:', e);
+    }
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   };
 
   return (
@@ -160,6 +354,7 @@ export default function App() {
         onOpenBookNowSelector={handleOpenBookNowSelector}
         onOpenManagement={() => setIsManagementOpen(true)}
         onOpenFoodOrdering={() => setIsFoodOrderingOpen(true)}
+<<<<<<< HEAD
         currentView={currentView}
         onSelectView={(view) => setCurrentView(view)}
       />
@@ -168,6 +363,43 @@ export default function App() {
         <>
           <WeddingsPage onOpenBookNow={handleOpenBookNowSelector} />
           <Footer />
+=======
+        onOpenAIAssistant={() => setIsAIAssistantOpen(true)}
+        currentView={currentView}
+        onSelectView={handleSelectView}
+      />
+
+      {currentView === 'rooms' ? (
+        <>
+          <SuitesSection
+            onSelectSuite={handleSelectSuite}
+            onGoBack={() => setCurrentView('home')}
+            isStandalonePage={true}
+          />
+          <Footer onSelectView={setCurrentView} />
+        </>
+      ) : currentView === 'dining' ? (
+        <>
+          <DiningSection
+            onOpenTableReservation={handleOpenTableReservation}
+            onGoBack={() => setCurrentView('home')}
+            onOpenFoodOrdering={() => setIsFoodOrderingOpen(true)}
+            isStandalonePage={true}
+          />
+          <Footer onSelectView={setCurrentView} />
+        </>
+      ) : currentView === 'weddings' ? (
+        <>
+          <WeddingsPage onOpenBookNow={handleOpenBookNowSelector} onGoBack={() => setCurrentView('home')} />
+          <Footer onSelectView={setCurrentView} />
+        </>
+      ) : currentView === 'contact' ? (
+        <>
+          <div className="pt-20 sm:pt-24 bg-stone-950">
+            <ContactSection isStandalonePage={true} onGoBack={() => setCurrentView('home')} />
+          </div>
+          <Footer onSelectView={setCurrentView} />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         </>
       ) : (
         <>
@@ -177,6 +409,7 @@ export default function App() {
           {/* Welcome & Overview Section with Services & Why Choose Us */}
           <WelcomeSection onOpenBookNow={handleOpenBookNowSelector} />
 
+<<<<<<< HEAD
           {/* Suites & Rooms Showcase */}
           <SuitesSection onSelectSuite={handleSelectSuite} />
 
@@ -186,17 +419,24 @@ export default function App() {
           {/* Royal Weddings Teaser */}
           <WeddingsSection onInquireWedding={() => setCurrentView('weddings')} />
 
+=======
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           {/* Royal Experiences & Amenities */}
           <ExperienceSection />
 
           {/* Guest Reviews & Testimonials */}
           <TestimonialsSection />
 
+<<<<<<< HEAD
           {/* Direct Contact & Location */}
           <ContactSection />
 
           {/* Footer */}
           <Footer />
+=======
+          {/* Footer */}
+          <Footer onSelectView={setCurrentView} />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         </>
       )}
 
@@ -224,7 +464,11 @@ export default function App() {
         onTableReserved={handleTableReserved}
       />
 
+<<<<<<< HEAD
       {/* Food Ordering Modal (Rajasthani, Punjabi, Gujarati, South Indian, Chinese, Foreign) */}
+=======
+      {/* Food Ordering Modal */}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
       <FoodOrderingModal
         isOpen={isFoodOrderingOpen}
         onClose={() => setIsFoodOrderingOpen(false)}
@@ -244,7 +488,19 @@ export default function App() {
         onAddCustomer={handleAddCustomer}
         onUpdateOrderStatus={handleUpdateOrderStatus}
       />
+<<<<<<< HEAD
     </div>
   );
 }
 
+=======
+
+      {/* Royal Gemini AI Concierge & Rate Optimizer Assistant */}
+      <AIAssistantModal
+        isOpen={isAIAssistantOpen}
+        onClose={() => setIsAIAssistantOpen(false)}
+      />
+    </div>
+  );
+}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99

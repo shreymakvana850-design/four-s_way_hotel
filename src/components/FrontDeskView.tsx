@@ -108,11 +108,18 @@ export const FrontDeskView: React.FC<FrontDeskViewProps> = ({
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
+<<<<<<< HEAD
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 statusFilter === st
                   ? 'bg-amber-700 text-amber-100 font-semibold border border-amber-400/50 shadow'
                   : 'bg-stone-800 text-stone-300 hover:bg-stone-700 hover:text-amber-200'
               }`}
+=======
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${statusFilter === st
+                ? 'bg-amber-700 text-amber-100 font-semibold border border-amber-400/50 shadow'
+                : 'bg-stone-800 text-stone-300 hover:bg-stone-700 hover:text-amber-200'
+                }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               {st}
             </button>
@@ -120,7 +127,11 @@ export const FrontDeskView: React.FC<FrontDeskViewProps> = ({
 
           <button
             onClick={() => setIsCheckInOpen(true)}
+<<<<<<< HEAD
             className="ml-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center gap-1.5 shadow transition-all cursor-pointer whitespace-nowrap"
+=======
+            className="ml-2 bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center gap-1.5 shadow transition-all cursor-pointer whitespace-nowrap"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           >
             <UserPlus className="w-4 h-4" />
             <span>New Check-In</span>
@@ -135,6 +146,7 @@ export const FrontDeskView: React.FC<FrontDeskViewProps> = ({
           return (
             <div
               key={room.id}
+<<<<<<< HEAD
               className={`rounded-xl border transition-all p-4 flex flex-col justify-between relative bg-stone-900/80 hover:border-amber-500/60 shadow-lg ${
                 room.status === 'Occupied'
                   ? 'border-amber-700/50'
@@ -144,6 +156,16 @@ export const FrontDeskView: React.FC<FrontDeskViewProps> = ({
                   ? 'border-purple-800/40'
                   : 'border-stone-800'
               }`}
+=======
+              className={`rounded-xl border transition-all p-4 flex flex-col justify-between relative bg-stone-900/80 hover:border-amber-500/60 shadow-lg ${room.status === 'Occupied'
+                ? 'border-amber-700/50'
+                : room.status === 'Available'
+                  ? 'border-emerald-800/40'
+                  : room.status === 'Housekeeping'
+                    ? 'border-purple-800/40'
+                    : 'border-stone-800'
+                }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               {/* Room Header */}
               <div>
@@ -430,7 +452,11 @@ export const FrontDeskView: React.FC<FrontDeskViewProps> = ({
                 </button>
                 <button
                   type="submit"
+<<<<<<< HEAD
                   className="px-5 py-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold rounded-lg cursor-pointer shadow-lg"
+=======
+                  className="px-5 py-2 bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold rounded-lg cursor-pointer shadow-lg"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   Confirm Royal Check-In
                 </button>

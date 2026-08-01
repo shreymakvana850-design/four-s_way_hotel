@@ -27,11 +27,24 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+<<<<<<< HEAD
   Info
 } from 'lucide-react';
 
 interface WeddingsPageProps {
   onOpenBookNow?: () => void;
+=======
+  Info,
+  ArrowLeft
+} from 'lucide-react';
+import { WeddingsSection } from './WeddingsSection';
+import royalWeddingHeroImg from '../assets/images/royal_wedding_hero_1785300265250.jpg';
+import royalIndianCoupleImg from '../assets/images/royal_indian_couple_1785386231352.jpg';
+
+interface WeddingsPageProps {
+  onOpenBookNow?: () => void;
+  onGoBack?: () => void;
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 }
 
 // 12 Gallery Images with Categories
@@ -52,10 +65,17 @@ const GALLERY_IMAGES = [
   },
   {
     id: 3,
+<<<<<<< HEAD
     title: 'Luxury Floral Decor',
     category: 'Decor',
     url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200',
     desc: 'Intricate orchids, roses, and gold accent centerpieces.'
+=======
+    title: 'Royal Indian Wedding Couple',
+    category: 'Bridal',
+    url: royalIndianCoupleImg,
+    desc: 'Grand royal wedding attire with exquisite jewelry and regal decor.'
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   },
   {
     id: 4,
@@ -129,7 +149,11 @@ const TESTIMONIALS = [
     couple: 'Rohan & Ananya',
     date: 'December 2025',
     venue: 'Royal Garden Lawn',
+<<<<<<< HEAD
     image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=600',
+=======
+    image: royalIndianCoupleImg,
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     quote: "Our wedding at Four's Way Hotel was nothing short of a fairytale. From the grand entrance to the exquisite catering and attentive staff, every detail exceeded our highest expectations!",
     rating: 5,
   },
@@ -181,7 +205,11 @@ const FAQS = [
   }
 ];
 
+<<<<<<< HEAD
 export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => {
+=======
+export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoBack }) => {
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // Gallery Filter State
   const [activeTab, setActiveTab] = useState('All');
   const [selectedImage, setSelectedImage] = useState<typeof GALLERY_IMAGES[0] | null>(null);
@@ -226,12 +254,17 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
   };
 
   return (
+<<<<<<< HEAD
     <div className="bg-[#0B0B0B] text-stone-100 font-sans selection:bg-[#C8A45D] selection:text-black min-h-screen">
+=======
+    <div className="bg-[#140a06] text-stone-100 font-sans selection:bg-[#C8A45D] selection:text-black min-h-screen">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
       {/* SECTION 1: HERO SECTION */}
       <section id="wedding-hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Background Visual Layer */}
         <div className="absolute inset-0 z-0">
           <img
+<<<<<<< HEAD
             src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000"
             alt="Luxury Wedding at Four's Way Hotel"
             className="w-full h-full object-cover object-center filter brightness-[0.65] contrast-105 scale-105 transition-transform duration-1000"
@@ -239,6 +272,15 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
           {/* Dark Overlay Vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-black/80" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(11,11,11,0.8)_100%)]" />
+=======
+            src={royalWeddingHeroImg}
+            alt="Luxury Royal Wedding Mandap at Four's Way Hotel"
+            className="w-full h-full object-cover object-center filter brightness-[0.70] contrast-110 scale-105 transition-transform duration-1000"
+          />
+          {/* Dark Overlay Vignette for rich text contrast */}
+          <div className="absolute inset-0 bg-linear-to-t from-[#140a06] via-[#140a06]/60 to-black/75" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(20,10,6,0.85)_100%)]" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         </div>
 
         {/* Hero Content Box */}
@@ -260,7 +302,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
             className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#F8F4ED] leading-[1.15] tracking-wide drop-shadow-2xl"
           >
             A Perfect Destination for <br className="hidden sm:inline" />
+<<<<<<< HEAD
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
+=======
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               Your Dream Wedding
             </span>
           </motion.h1>
@@ -283,7 +329,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
           >
             <button
               onClick={() => scrollToSection('wedding-enquiry')}
+<<<<<<< HEAD
               className="bg-gradient-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
+=======
+              className="bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               <Heart className="w-4 h-4 fill-stone-950" />
               <span>Book Wedding</span>
@@ -320,10 +370,21 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
         </div>
       </section>
 
+<<<<<<< HEAD
 
       {/* SECTION 2: WEDDING EXPERIENCE */}
       <section id="wedding-experience" className="py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
+=======
+      {/* ROYAL WEDDINGS DESTINATIONS & VENUES */}
+      <WeddingsSection onInquireWedding={() => scrollToSection('wedding-enquiry')} />
+
+
+      {/* SECTION 2: WEDDING EXPERIENCE */}
+      <section id="wedding-experience" className="py-24 bg-linear-to-b from-[#140a06] via-[#1c0e08] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(217,119,6,0.12),transparent_70%)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16 relative z-10">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
               <Sparkles className="w-3.5 h-3.5" />
@@ -341,7 +402,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
             {/* Card 1: Engagement Ceremony */}
             <motion.div
               whileHover={{ y: -8 }}
+<<<<<<< HEAD
               className="bg-stone-900/90 border border-[#C8A45D]/40 hover:border-[#C8A45D] rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 group flex flex-col"
+=======
+              className="bg-[#190c06]/90 border border-amber-600/40 hover:border-amber-400 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 group flex flex-col"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -349,12 +414,21 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt="Engagement Ceremony"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Pre-Wedding
                 </span>
               </div>
               <div className="p-6 space-y-3 flex-1 flex flex-col justify-between bg-stone-950/60">
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-[#140a06] via-transparent to-transparent opacity-80" />
+                <span className="absolute top-4 left-4 bg-[#140a06]/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
+                  Pre-Wedding
+                </span>
+              </div>
+              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between bg-[#110703]/80">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <div className="space-y-2">
                   <h3 className="text-2xl font-serif font-bold text-[#F8F4ED] group-hover:text-[#C8A45D] transition-colors">
                     Engagement Ceremony
@@ -381,7 +455,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt="Mehendi & Haldi"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Festive Rituals
                 </span>
@@ -413,7 +491,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt="Wedding Ceremony"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Main Event
                 </span>
@@ -463,7 +545,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt="Grand Ballroom"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+=======
+                <div className="absolute inset-0 bg-linear -to-t from-stone-950 via-stone-950/20 to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
                     Indoor Regal Ballroom
@@ -489,7 +575,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+<<<<<<< HEAD
                   className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+=======
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   <span>Book Venue</span>
                   <ChevronRight className="w-4 h-4" />
@@ -505,7 +595,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt="Royal Garden Lawn"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
                     Open-Air Royal Lawn
@@ -531,7 +625,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+<<<<<<< HEAD
                   className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+=======
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   <span>Book Venue</span>
                   <ChevronRight className="w-4 h-4" />
@@ -547,7 +645,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt="Poolside Celebration"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
                     Sunset & Cocktail Arena
@@ -573,7 +675,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+<<<<<<< HEAD
                   className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+=======
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   <span>Book Venue</span>
                   <ChevronRight className="w-4 h-4" />
@@ -589,7 +695,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt="Banquet Hall"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
                     Classic Indoor Banquet
@@ -615,7 +725,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+<<<<<<< HEAD
                   className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+=======
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   <span>Book Venue</span>
                   <ChevronRight className="w-4 h-4" />
@@ -628,8 +742,14 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
 
 
       {/* SECTION 4: GALLERY */}
+<<<<<<< HEAD
       <section id="wedding-gallery" className="py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+=======
+      <section id="wedding-gallery" className="py-24 bg-linear-to-b from-[#140a06] via-[#1b0d07] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(217,119,6,0.1),transparent_70%)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12 relative z-10">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
               <Camera className="w-3.5 h-3.5" />
@@ -648,11 +768,18 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
+<<<<<<< HEAD
                   className={`text-xs font-serif px-5 py-2 rounded-full border transition-all cursor-pointer ${
                     activeTab === tab
                       ? 'bg-[#C8A45D] text-stone-950 border-[#C8A45D] font-bold shadow-lg'
                       : 'bg-stone-900/80 text-stone-300 border-stone-800 hover:border-[#C8A45D]/50'
                   }`}
+=======
+                  className={`text-xs font-serif px-5 py-2 rounded-full border transition-all cursor-pointer ${activeTab === tab
+                    ? 'bg-[#C8A45D] text-stone-950 border-[#C8A45D] font-bold shadow-lg'
+                    : 'bg-stone-900/80 text-stone-300 border-stone-800 hover:border-[#C8A45D]/50'
+                    }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   {tab}
                 </button>
@@ -682,7 +809,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90 group-hover:brightness-100"
                   />
+<<<<<<< HEAD
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
+=======
+                  <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     <span className="text-[10px] uppercase font-serif text-[#C8A45D] tracking-wider">
                       {item.category}
                     </span>
@@ -745,8 +876,14 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
 
 
       {/* SECTION 5: WEDDING PACKAGES */}
+<<<<<<< HEAD
       <section id="wedding-packages" className="py-24 bg-stone-950 relative border-t border-[#C8A45D]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
+=======
+      <section id="wedding-packages" className="py-24 bg-linear-to-b from-[#140a06] via-[#1c0f08] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(217,119,6,0.12),transparent_70%)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16 relative z-10">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
               <Crown className="w-3.5 h-3.5" />
@@ -810,7 +947,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
 
             {/* Package 2: Gold Package (Highlighted) */}
             <div className="bg-stone-900 border-2 border-[#C8A45D] rounded-2xl p-8 space-y-8 flex flex-col justify-between transition-all duration-300 shadow-2xl relative transform md:-translate-y-4">
+<<<<<<< HEAD
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
+=======
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 Most Popular Choice
               </div>
 
@@ -853,7 +994,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
 
               <button
                 onClick={() => scrollToSection('wedding-enquiry')}
+<<<<<<< HEAD
                 className="w-full bg-gradient-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
+=======
+                className="w-full bg-linear-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 Inquire Gold Package
               </button>
@@ -911,8 +1056,14 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
 
 
       {/* SECTION 6: WHY CHOOSE FOUR'S WAY HOTEL */}
+<<<<<<< HEAD
       <section id="why-choose-us" className="py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
+=======
+      <section id="why-choose-us" className="py-24 bg-linear-to-b from-[#140a06] via-[#1b0d07] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(217,119,6,0.1),transparent_70%)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16 relative z-10">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
               <ShieldCheck className="w-3.5 h-3.5" />
@@ -985,7 +1136,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                   alt={TESTIMONIALS[currentTestimonial].couple}
                   className="w-full h-full object-cover"
                 />
+<<<<<<< HEAD
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <div className="absolute bottom-4 left-4 text-xs font-serif text-[#C8A45D]">
                   Venue: {TESTIMONIALS[currentTestimonial].venue}
                 </div>
@@ -1206,7 +1361,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
 
               <button
                 type="submit"
+<<<<<<< HEAD
                 className="w-full bg-gradient-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer flex items-center justify-center gap-2"
+=======
+                className="w-full bg-linear -to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer flex items-center justify-center gap-2"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 <Send className="w-4 h-4 fill-stone-950" />
                 <span>Submit Wedding Enquiry</span>
@@ -1246,9 +1405,14 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                       {faq.q}
                     </span>
                     <ChevronDown
+<<<<<<< HEAD
                       className={`w-5 h-5 text-[#C8A45D] shrink-0 transition-transform duration-300 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
+=======
+                      className={`w-5 h-5 text-[#C8A45D] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+                        }`}
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     />
                   </button>
                   {isOpen && (

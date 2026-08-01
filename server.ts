@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
+<<<<<<< HEAD
 
 async function startServer() {
   const app = express();
@@ -9,6 +10,43 @@ async function startServer() {
 
   app.use(express.json());
 
+=======
+import { dbConnect } from "./src/lib/dbConnect";
+import { seedDatabaseIfEmpty } from "./src/lib/seedDb";
+
+import { RoomModel } from "./src/models/Room";
+import { GuestModel } from "./src/models/Guest";
+import { HousekeepingTaskModel } from "./src/models/HousekeepingTask";
+import { DiningOrderModel } from "./src/models/DiningOrder";
+import { BanquetBookingModel } from "./src/models/BanquetBooking";
+import { StaffMemberModel } from "./src/models/StaffMember";
+import { InventoryItemModel } from "./src/models/InventoryItem";
+import { InvoiceModel } from "./src/models/Invoice";
+
+async function startServer() {
+  const app = express();
+  const PORT = Number(process.env.PORT) || 3000;
+
+  app.use(express.json());
+
+  // Connect to MongoDB Database & Auto-Seed initial data
+  try {
+    await dbConnect();
+    await seedDatabaseIfEmpty();
+  } catch (_err) {
+    console.warn("⚠️ Continuing server startup. Database connection will be retried on API calls.");
+  }
+
+  // Helper for DB Connection Assurance
+  const ensureDb = async () => {
+    try {
+      await dbConnect();
+    } catch (_e) {
+      // Ignored
+    }
+  };
+
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // Initialize Gemini AI Client
   const getAiClient = () => {
     const apiKey = process.env.GEMINI_API_KEY;
@@ -25,11 +63,306 @@ async function startServer() {
     });
   };
 
+<<<<<<< HEAD
   // API Health Endpoint
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", app: "Heritage Khirasara Palace ERP", timestamp: new Date().toISOString() });
   });
 
+=======
+  // ==========================================
+  // API HEALTH & DB STATUS ENDPOINT
+  // ==========================================
+  app.get("/api/health", async (req, res) => {
+    let dbStatus = "Disconnected";
+    try {
+      await dbConnect();
+      dbStatus = "Connected (MongoDB Atlas / Local)";
+    } catch (err: any) {
+      dbStatus = `Error: ${err.message}`;
+    }
+    res.json({
+      status: "ok",
+      app: "Heritage Khirasara Palace ERP",
+      database: dbStatus,
+      timestamp: new Date().toISOString()
+    });
+  });
+
+  // ==========================================
+  // ROOM MANAGEMENT ENDPOINTS
+  // ==========================================
+  app.get("/api/rooms", async (req, res) => {
+    try {
+      await ensureDb();
+      const rooms = await (RoomModel as any).find({}).sort({ number: 1 });
+      res.json(rooms);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/rooms", async (req, res) => {
+    try {
+      await ensureDb();
+      const newRoom = new RoomModel(req.body);
+      await newRoom.save();
+      res.status(201).json(newRoom);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  app.patch("/api/rooms/:id/status", async (req, res) => {
+    try {
+      await ensureDb();
+      const { status } = req.body;
+      const room = await (RoomModel as any).findByIdAndUpdate(
+        req.params.id,
+        { status },
+        { new: true }
+      );
+      if (!room) return res.status(404).json({ error: "Room not found" });
+      res.json(room);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // GUEST & RESERVATIONS ENDPOINTS
+  // ==========================================
+  app.get("/api/guests", async (req, res) => {
+    try {
+      await ensureDb();
+      const guests = await (GuestModel as any).find({}).sort({ createdAt: -1 });
+      res.json(guests);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/guests", async (req, res) => {
+    try {
+      await ensureDb();
+      const newGuest = new GuestModel(req.body);
+      await newGuest.save();
+
+      // If check-in guest, update room status to Occupied
+      if (req.body.roomNumber && req.body.status === 'CheckedIn') {
+        await (RoomModel as any).findOneAndUpdate(
+          { number: req.body.roomNumber },
+          { status: 'Occupied', currentGuestName: req.body.name, checkInDate: req.body.checkIn, checkOutDate: req.body.checkOut }
+        );
+      }
+
+      res.status(201).json(newGuest);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  app.patch("/api/guests/:id", async (req, res) => {
+    try {
+      await ensureDb();
+      const updatedGuest = await (GuestModel as any).findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+      if (!updatedGuest) return res.status(404).json({ error: "Guest record not found" });
+      res.json(updatedGuest);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // HOUSEKEEPING & BUTLER TASKS ENDPOINTS
+  // ==========================================
+  app.get("/api/tasks", async (req, res) => {
+    try {
+      await ensureDb();
+      const tasks = await (HousekeepingTaskModel as any).find({}).sort({ createdAt: -1 });
+      res.json(tasks);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/tasks", async (req, res) => {
+    try {
+      await ensureDb();
+      const newTask = new HousekeepingTaskModel(req.body);
+      await newTask.save();
+      res.status(201).json(newTask);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  app.patch("/api/tasks/:id/status", async (req, res) => {
+    try {
+      await ensureDb();
+      const { status } = req.body;
+      const task = await (HousekeepingTaskModel as any).findByIdAndUpdate(
+        req.params.id,
+        { status },
+        { new: true }
+      );
+      if (!task) return res.status(404).json({ error: "Task not found" });
+      res.json(task);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // DINING & F&B POS ENDPOINTS
+  // ==========================================
+  app.get("/api/orders", async (req, res) => {
+    try {
+      await ensureDb();
+      const orders = await (DiningOrderModel as any).find({}).sort({ createdAt: -1 });
+      res.json(orders);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/orders", async (req, res) => {
+    try {
+      await ensureDb();
+      const newOrder = new DiningOrderModel(req.body);
+      await newOrder.save();
+      res.status(201).json(newOrder);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  app.patch("/api/orders/:id/status", async (req, res) => {
+    try {
+      await ensureDb();
+      const { status } = req.body;
+      const order = await (DiningOrderModel as any).findByIdAndUpdate(
+        req.params.id,
+        { status },
+        { new: true }
+      );
+      if (!order) return res.status(404).json({ error: "Order not found" });
+      res.json(order);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // BANQUET & WEDDING EVENTS ENDPOINTS
+  // ==========================================
+  app.get("/api/banquets", async (req, res) => {
+    try {
+      await ensureDb();
+      const banquets = await (BanquetBookingModel as any).find({}).sort({ date: 1 });
+      res.json(banquets);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/banquets", async (req, res) => {
+    try {
+      await ensureDb();
+      const newBanquet = new BanquetBookingModel(req.body);
+      await newBanquet.save();
+      res.status(201).json(newBanquet);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // STAFF & ROSTER ENDPOINTS
+  // ==========================================
+  app.get("/api/staff", async (req, res) => {
+    try {
+      await ensureDb();
+      const staff = await (StaffMemberModel as any).find({}).sort({ name: 1 });
+      res.json(staff);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/staff", async (req, res) => {
+    try {
+      await ensureDb();
+      const newStaff = new StaffMemberModel(req.body);
+      await newStaff.save();
+      res.status(201).json(newStaff);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // INVENTORY & SUPPLIES ENDPOINTS
+  // ==========================================
+  app.get("/api/inventory", async (req, res) => {
+    try {
+      await ensureDb();
+      const inventory = await (InventoryItemModel as any).find({}).sort({ category: 1, name: 1 });
+      res.json(inventory);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.patch("/api/inventory/:id/stock", async (req, res) => {
+    try {
+      await ensureDb();
+      const { stockLevel } = req.body;
+      const item = await (InventoryItemModel as any).findByIdAndUpdate(
+        req.params.id,
+        { stockLevel },
+        { new: true }
+      );
+      if (!item) return res.status(404).json({ error: "Inventory item not found" });
+      res.json(item);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // INVOICE & GST BILLING ENDPOINTS
+  // ==========================================
+  app.get("/api/invoices", async (req, res) => {
+    try {
+      await ensureDb();
+      const invoices = await (InvoiceModel as any).find({}).sort({ createdAt: -1 });
+      res.json(invoices);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/invoices", async (req, res) => {
+    try {
+      await ensureDb();
+      const newInvoice = new InvoiceModel(req.body);
+      await newInvoice.save();
+      res.status(201).json(newInvoice);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
+  // ==========================================
+  // GEMINI AI INTEGRATION ENDPOINTS
+  // ==========================================
+
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // AI Endpoint 1: Royal Concierge & Custom Itinerary Generator
   app.post("/api/ai/royal-concierge", async (req, res) => {
     try {

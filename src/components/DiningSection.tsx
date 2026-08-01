@@ -1,5 +1,6 @@
 import React from 'react';
 import { DINING_DATA, DiningVenue } from '../data/websiteData';
+<<<<<<< HEAD
 import { UtensilsCrossed, Crown, Clock, CheckCircle2, Calendar } from 'lucide-react';
 
 interface DiningSectionProps {
@@ -11,6 +12,50 @@ export const DiningSection: React.FC<DiningSectionProps> = ({ onOpenTableReserva
     <section id="dining" className="py-20 bg-stone-950 text-stone-100 relative border-t border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
         
+=======
+import { UtensilsCrossed, Clock, CheckCircle2, Calendar, ArrowLeft, Utensils } from 'lucide-react';
+
+interface DiningSectionProps {
+  onOpenTableReservation: (venue: DiningVenue) => void;
+  onGoBack?: () => void;
+  onOpenFoodOrdering?: () => void;
+  isStandalonePage?: boolean;
+}
+
+export const DiningSection: React.FC<DiningSectionProps> = ({
+  onOpenTableReservation,
+  onGoBack,
+  onOpenFoodOrdering,
+  isStandalonePage = false,
+}) => {
+  return (
+    <section id="dining" className={`bg-stone-950 text-stone-100 relative ${isStandalonePage ? 'pt-24 pb-20 min-h-screen' : 'py-20 border-t border-amber-900/30'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+
+        {/* Navigation bar if standalone page */}
+        {isStandalonePage && (
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-amber-900/40">
+            <button
+              onClick={onGoBack}
+              className="inline-flex items-center gap-2 text-xs font-serif font-bold text-amber-400 hover:text-amber-300 bg-amber-950/60 hover:bg-amber-900/80 px-4 py-2 rounded-xl border border-amber-800/60 transition-all cursor-pointer shadow"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>← Back to Hotel Home</span>
+            </button>
+
+            {onOpenFoodOrdering && (
+              <button
+                onClick={onOpenFoodOrdering}
+                className="inline-flex items-center gap-2 text-xs font-serif font-bold text-stone-950 bg-linear-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 px-4 py-2 rounded-xl shadow-lg transition-all cursor-pointer"
+              >
+                <Utensils className="w-4 h-4" />
+                <span>Explore Food Menu & Order Online</span>
+              </button>
+            )}
+          </div>
+        )}
+
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-serif uppercase tracking-widest bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
@@ -40,7 +85,11 @@ export const DiningSection: React.FC<DiningSectionProps> = ({ onOpenTableReserva
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
+<<<<<<< HEAD
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent" />
+=======
+                  <div className="absolute inset-0 bg-linear-to-t from-stone-900 via-transparent to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   <span className="absolute top-3 left-3 bg-amber-950/90 text-amber-300 border border-amber-700/60 text-[11px] px-2.5 py-1 rounded-full font-serif flex items-center gap-1">
                     <Clock className="w-3 h-3 text-amber-400" /> {venue.timing}
                   </span>
@@ -62,7 +111,11 @@ export const DiningSection: React.FC<DiningSectionProps> = ({ onOpenTableReserva
                     <ul className="grid grid-cols-2 gap-1 text-[11px] text-stone-300">
                       {venue.highlights.map((h, i) => (
                         <li key={i} className="flex items-center gap-1">
+<<<<<<< HEAD
                           <CheckCircle2 className="w-3 h-3 text-amber-400 flex-shrink-0" />
+=======
+                          <CheckCircle2 className="w-3 h-3 text-amber-400 shrink-0" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                           <span className="truncate">{h}</span>
                         </li>
                       ))}

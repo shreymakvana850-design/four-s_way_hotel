@@ -22,5 +22,14 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
+<<<<<<< HEAD
   }
+=======
+  },
+  "exclude": [
+    "for's-way-hotel",
+    "node_modules",
+    "dist"
+  ]
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 }

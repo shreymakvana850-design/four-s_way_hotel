@@ -37,7 +37,11 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="bg-stone-900 border-b border-amber-800/40 text-stone-100 shadow-xl sticky top-0 z-30">
       {/* Top Gold Banner */}
+<<<<<<< HEAD
       <div className="bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 px-4 py-1 text-center text-xs font-serif tracking-widest text-amber-200 border-b border-amber-600/30 flex justify-between items-center">
+=======
+      <div className="bg-linear-to-r from-amber-950 via-amber-800 to-amber-950 px-4 py-1 text-center text-xs font-serif tracking-widest text-amber-200 border-b border-amber-600/30 flex justify-between items-center">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         <span className="hidden md:inline">🏰 EST. 1976 • 50 YEARS OF ROYAL LUXURY</span>
         <span className="font-semibold mx-auto md:mx-0">FOUR'S WAY HOTEL • DUBAI, UAE</span>
         <span className="hidden md:flex items-center gap-1 text-amber-300">
@@ -49,7 +53,11 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col lg:flex-row items-center justify-between gap-4">
         {/* Brand Logo & Title */}
         <div className="flex items-center gap-3">
+<<<<<<< HEAD
           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 p-0.5 shadow-lg flex items-center justify-center">
+=======
+          <div className="w-12 h-12 rounded-full bg-linear-to-br from-amber-500 to-amber-700 p-0.5 shadow-lg flex items-center justify-center">
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             <div className="w-full h-full rounded-full bg-stone-950 flex items-center justify-center text-amber-400">
               <Crown className="w-7 h-7" />
             </div>
@@ -73,17 +81,29 @@ export const Header: React.FC<HeaderProps> = ({
             <p className="text-stone-400 text-[11px] uppercase font-mono">Occupancy</p>
             <p className="text-amber-400 font-bold text-sm md:text-base font-serif">{occupancyRate}%</p>
           </div>
+<<<<<<< HEAD
           <div className="h-7 w-[1px] bg-stone-800" />
+=======
+          <div className="h-7 w-px bg-stone-800" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center">
             <p className="text-stone-400 text-[11px] uppercase font-mono">Suites Avail.</p>
             <p className="text-emerald-400 font-bold text-sm md:text-base font-serif">{availableCount} / {totalRooms}</p>
           </div>
+<<<<<<< HEAD
           <div className="h-7 w-[1px] bg-stone-800" />
+=======
+          <div className="h-7 w-px bg-stone-800" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center">
             <p className="text-stone-400 text-[11px] uppercase font-mono">Today's Rev.</p>
             <p className="text-amber-300 font-bold text-sm md:text-base font-serif">₹{dailyRevenue.toLocaleString('en-IN')}</p>
           </div>
+<<<<<<< HEAD
           <div className="h-7 w-[1px] bg-stone-800" />
+=======
+          <div className="h-7 w-px bg-stone-800" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center">
             <p className="text-stone-400 text-[11px] uppercase font-mono">Tasks</p>
             <p className={`font-bold text-sm md:text-base font-serif ${pendingTasksCount > 0 ? 'text-amber-400' : 'text-stone-300'}`}>
@@ -96,7 +116,11 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-2 w-full lg:w-auto justify-end">
           <button
             onClick={onOpenAI}
+<<<<<<< HEAD
             className="flex-1 lg:flex-none flex items-center justify-center gap-1.5 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-semibold px-3 py-2 rounded-lg text-xs shadow-md transition-all border border-amber-400/40 cursor-pointer"
+=======
+            className="flex-1 lg:flex-none flex items-center justify-center gap-1.5 bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-semibold px-3 py-2 rounded-lg text-xs shadow-md transition-all border border-amber-400/40 cursor-pointer"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           >
             <Sparkles className="w-4 h-4" />
             <span>Royal AI</span>

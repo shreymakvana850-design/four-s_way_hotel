@@ -69,7 +69,11 @@ export const GSTBillingView: React.FC<GSTBillingViewProps> = ({ invoices, onAddI
 
         <button
           onClick={() => setIsModalOpen(true)}
+<<<<<<< HEAD
           className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow transition-all cursor-pointer"
+=======
+          className="bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow transition-all cursor-pointer"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         >
           <Plus className="w-4 h-4" />
           <span>Generate Guest Folio Invoice</span>
@@ -304,7 +308,11 @@ export const GSTBillingView: React.FC<GSTBillingViewProps> = ({ invoices, onAddI
                 </button>
                 <button
                   type="submit"
+<<<<<<< HEAD
                   className="px-5 py-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold rounded-lg cursor-pointer shadow-lg"
+=======
+                  className="px-5 py-2 bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold rounded-lg cursor-pointer shadow-lg"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   Generate & Settle Invoice
                 </button>

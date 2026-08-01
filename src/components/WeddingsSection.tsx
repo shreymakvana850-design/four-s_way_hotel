@@ -8,9 +8,17 @@ interface WeddingsSectionProps {
 
 export const WeddingsSection: React.FC<WeddingsSectionProps> = ({ onInquireWedding }) => {
   return (
+<<<<<<< HEAD
     <section id="weddings" className="py-20 bg-stone-900 text-stone-100 relative border-t border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
         
+=======
+    <section id="weddings" className="py-20 bg-linear-to-b from-[#180e08] via-[#1c0f08] to-[#140a06] text-stone-100 relative border-t-2 border-amber-600/30 overflow-hidden">
+      {/* Royal Ambient Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(217,119,6,0.12),transparent_70%)] pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12 relative z-10">
+
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-serif uppercase tracking-widest bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
@@ -29,7 +37,11 @@ export const WeddingsSection: React.FC<WeddingsSectionProps> = ({ onInquireWeddi
           {WEDDING_VENUES_DATA.map((venue) => (
             <div
               key={venue.id}
+<<<<<<< HEAD
               className="bg-stone-950 border border-amber-900/40 hover:border-amber-500/60 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between group transition-all"
+=======
+              className="bg-[#130a05]/90 border border-amber-600/40 hover:border-amber-400/80 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between group transition-all"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               <div>
                 <div className="relative h-52 overflow-hidden">
@@ -39,7 +51,11 @@ export const WeddingsSection: React.FC<WeddingsSectionProps> = ({ onInquireWeddi
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
+<<<<<<< HEAD
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent" />
+=======
+                  <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   <span className="absolute top-3 right-3 bg-amber-500 text-stone-950 text-xs font-serif font-bold px-3 py-1 rounded-full shadow flex items-center gap-1">
                     <Users className="w-3 h-3" /> {venue.capacity}
                   </span>
@@ -60,7 +76,11 @@ export const WeddingsSection: React.FC<WeddingsSectionProps> = ({ onInquireWeddi
                     <ul className="space-y-1 text-[11px] text-stone-300">
                       {venue.features.map((f, i) => (
                         <li key={i} className="flex items-center gap-1.5">
+<<<<<<< HEAD
                           <CheckCircle2 className="w-3 h-3 text-amber-400 flex-shrink-0" />
+=======
+                          <CheckCircle2 className="w-3 h-3 text-amber-400 shrink-0" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                           <span>{f}</span>
                         </li>
                       ))}
@@ -72,7 +92,11 @@ export const WeddingsSection: React.FC<WeddingsSectionProps> = ({ onInquireWeddi
               <div className="p-6 pt-0">
                 <button
                   onClick={() => onInquireWedding(venue)}
+<<<<<<< HEAD
                   className="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-serif font-bold text-xs py-2.5 rounded-xl shadow cursor-pointer transition-all flex items-center justify-center gap-1.5"
+=======
+                  className="w-full bg-linear-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-serif font-bold text-xs py-2.5 rounded-xl shadow cursor-pointer transition-all flex items-center justify-center gap-1.5"
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Inquire for {venue.name}</span>
