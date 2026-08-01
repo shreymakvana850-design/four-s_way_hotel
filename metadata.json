@@ -1,0 +1,6 @@
+{
+  "name": "Four's Way Hotel",
+  "description": "Official luxury hotel website for Four's Way Hotel Rajkot, featuring royal suites, fine dining, event venues, photo gallery, and direct room booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
