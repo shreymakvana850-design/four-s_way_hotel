@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { X, Building2, Users, Lock, User, KeyRound, Eye, EyeOff, ShieldAlert, LogOut, Sparkles, UtensilsCrossed, CalendarDays, Package, FileCheck, ShieldCheck } from 'lucide-react';
+import { X, Building2, Users, ShoppingBag, Lock, User, KeyRound, Eye, EyeOff, ShieldAlert, LogOut, Sparkles, UtensilsCrossed, CalendarDays, Package, FileCheck, ShieldCheck } from 'lucide-react';
 import { RoomRecord, CustomerRecord, FoodOrder } from '../data/websiteData';
 import { Room, Guest, HousekeepingTask, DiningOrder, BanquetBooking, StaffMember, InventoryItem, Invoice } from '../types';
-import { getApiUrl, API_BASE_URL } from '../config/api';
 
 import { FrontDeskView } from './FrontDeskView';
 import { HousekeepingView } from './HousekeepingView';
@@ -66,49 +65,49 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
   // Fetch all ERP datasets from MongoDB API endpoints on load
   const loadAllErpData = async () => {
     try {
-      const resRooms = await fetch(getApiUrl('/api/rooms'));
+      const resRooms = await fetch('/api/rooms');
       if (resRooms.ok) {
         const data = await resRooms.json();
         if (Array.isArray(data) && data.length > 0) setDbRooms(data);
       }
 
-      const resGuests = await fetch(getApiUrl('/api/guests'));
+      const resGuests = await fetch('/api/guests');
       if (resGuests.ok) {
         const data = await resGuests.json();
         if (Array.isArray(data) && data.length > 0) setDbGuests(data);
       }
 
-      const resTasks = await fetch(getApiUrl('/api/tasks'));
+      const resTasks = await fetch('/api/tasks');
       if (resTasks.ok) {
         const data = await resTasks.json();
         if (Array.isArray(data) && data.length > 0) setDbTasks(data);
       }
 
-      const resOrders = await fetch(getApiUrl('/api/orders'));
+      const resOrders = await fetch('/api/orders');
       if (resOrders.ok) {
         const data = await resOrders.json();
         if (Array.isArray(data) && data.length > 0) setDbOrders(data);
       }
 
-      const resBanquets = await fetch(getApiUrl('/api/banquets'));
+      const resBanquets = await fetch('/api/banquets');
       if (resBanquets.ok) {
         const data = await resBanquets.json();
         if (Array.isArray(data) && data.length > 0) setDbBanquets(data);
       }
 
-      const resStaff = await fetch(getApiUrl('/api/staff'));
+      const resStaff = await fetch('/api/staff');
       if (resStaff.ok) {
         const data = await resStaff.json();
         if (Array.isArray(data) && data.length > 0) setDbStaff(data);
       }
 
-      const resInv = await fetch(getApiUrl('/api/inventory'));
+      const resInv = await fetch('/api/inventory');
       if (resInv.ok) {
         const data = await resInv.json();
         if (Array.isArray(data) && data.length > 0) setDbInventory(data);
       }
 
-      const resInvcs = await fetch(getApiUrl('/api/invoices'));
+      const resInvcs = await fetch('/api/invoices');
       if (resInvcs.ok) {
         const data = await resInvcs.json();
         if (Array.isArray(data) && data.length > 0) setDbInvoices(data);
@@ -155,7 +154,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
   const handleUpdateRoomStatus = async (roomId: string, newStatus: Room['status']) => {
     setDbRooms((prev) => prev.map((r) => (r.id === roomId ? { ...r, status: newStatus } : r)));
     try {
-      await fetch(getApiUrl(`/api/rooms/${roomId}/status`), {
+      await fetch(`/api/rooms/${roomId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -167,7 +166,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
 
   const handleCheckInGuest = async (newGuest: Omit<Guest, 'id'>) => {
     try {
-      const res = await fetch(getApiUrl('/api/guests'), {
+      const res = await fetch('/api/guests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newGuest),
@@ -184,7 +183,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
 
   const handleAddTask = async (task: Omit<HousekeepingTask, 'id'>) => {
     try {
-      const res = await fetch(getApiUrl('/api/tasks'), {
+      const res = await fetch('/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(task),
@@ -201,7 +200,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
   const handleUpdateTaskStatus = async (taskId: string, newStatus: HousekeepingTask['status']) => {
     setDbTasks((prev) => prev.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t)));
     try {
-      await fetch(getApiUrl(`/api/tasks/${taskId}/status`), {
+      await fetch(`/api/tasks/${taskId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -213,7 +212,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
 
   const handleCreateDiningOrder = async (order: Omit<DiningOrder, 'id' | 'createdAt'>) => {
     try {
-      const res = await fetch(getApiUrl('/api/orders'), {
+      const res = await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(order),
@@ -230,7 +229,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
   const handleUpdateDiningOrderStatus = async (orderId: string, newStatus: DiningOrder['status']) => {
     setDbOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o)));
     try {
-      await fetch(getApiUrl(`/api/orders/${orderId}/status`), {
+      await fetch(`/api/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -242,7 +241,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
 
   const handleAddBanquetBooking = async (booking: Omit<BanquetBooking, 'id'>) => {
     try {
-      const res = await fetch(getApiUrl('/api/banquets'), {
+      const res = await fetch('/api/banquets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(booking),
@@ -263,7 +262,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
     try {
       const item = dbInventory.find((i) => i.id === itemId);
       if (item) {
-        await fetch(getApiUrl(`/api/inventory/${itemId}/stock`), {
+        await fetch(`/api/inventory/${itemId}/stock`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ stockLevel: item.stockLevel + qty }),
@@ -284,7 +283,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
     const fullInvoice = { ...inv, invoiceNo, subtotal, cgst, sgst, grandTotal, paymentStatus: 'Paid' as const };
 
     try {
-      const res = await fetch(getApiUrl('/api/invoices'), {
+        const res = await fetch('/api/invoices', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(fullInvoice),
@@ -398,18 +397,10 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-<<<<<<< HEAD
               <h2 className="font-serif font-bold text-base sm:text-lg text-amber-100 flex items-center gap-2">
                 Hotel for's way ERP
-=======
-              <h2 className="font-serif font-bold text-base sm:text-lg text-amber-100 flex items-center gap-2 flex-wrap">
-                Heritage Khirasara Palace ERP
->>>>>>> 5ec6b378559a08c34028b27cf579290594041974
                 <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-mono font-normal">
                   MongoDB Connected
-                </span>
-                <span className="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full font-mono font-normal">
-                  API: {API_BASE_URL || 'Relative (/api)'}
                 </span>
               </h2>
               <p className="text-[11px] text-stone-400">
