@@ -2,15 +2,6 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
-<<<<<<< HEAD
-
-async function startServer() {
-  const app = express();
-  const PORT = 3000;
-
-  app.use(express.json());
-
-=======
 import { dbConnect } from "./src/lib/dbConnect";
 import { seedDatabaseIfEmpty } from "./src/lib/seedDb";
 
@@ -46,7 +37,6 @@ async function startServer() {
     }
   };
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // Initialize Gemini AI Client
   const getAiClient = () => {
     const apiKey = process.env.GEMINI_API_KEY;
@@ -63,13 +53,6 @@ async function startServer() {
     });
   };
 
-<<<<<<< HEAD
-  // API Health Endpoint
-  app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", app: "Heritage Khirasara Palace ERP", timestamp: new Date().toISOString() });
-  });
-
-=======
   // ==========================================
   // API HEALTH & DB STATUS ENDPOINT
   // ==========================================
@@ -362,7 +345,6 @@ async function startServer() {
   // GEMINI AI INTEGRATION ENDPOINTS
   // ==========================================
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // AI Endpoint 1: Royal Concierge & Custom Itinerary Generator
   app.post("/api/ai/royal-concierge", async (req, res) => {
     try {

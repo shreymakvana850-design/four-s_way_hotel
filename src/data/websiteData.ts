@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import dalBaatiImg from '../assets/images/dal_baati_churma_1785159914667.jpg';
 import rajasthaniRoyalThaliImg from '../assets/images/rajasthani_royal_thali.jpg';
 import pyaazKachoriImg from '../assets/images/pyaaz_kachori_1785160124174.jpg';
@@ -51,7 +49,6 @@ import vegManchurianGravyImg from '../assets/images/veg_manchurian_gravy.jpg';
 import gujaratiThaliImg from '../assets/images/gujarati_thali_platter_1785246899977.jpg';
 import chineseBhelImg from '../assets/images/chinese_bhel_crispy_1785247134761.jpg';
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 export interface Suite {
   id: string;
   name: string;
@@ -88,11 +85,7 @@ export interface WeddingVenue {
 export interface MenuItem {
   id: string;
   name: string;
-<<<<<<< HEAD
-  category: 'Rajasthani' | 'Punjabi' | 'Gujarati' | 'South Indian & Starters' | 'Chinese' | 'Foreign Dishes';
-=======
   category: 'Rajasthani' | 'Punjabi' | 'Gujarati' | 'South Indian' | 'Chinese' | 'Fast Food & Drinks';
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   price: number;
   isVeg: boolean;
   description: string;
@@ -151,23 +144,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
   // Rajasthani
   {
     id: 'raj-1',
-<<<<<<< HEAD
-    name: 'Dal Baati Churma',
-    category: 'Rajasthani',
-    price: 450,
-    isVeg: true,
-    description: 'Traditional wood-baked wheat baatis served with five-lentil Panchmel dal, pure desi ghee, and sweet rose-almond churma.',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-2',
-    name: 'Laal Maas',
-    category: 'Rajasthani',
-    price: 580,
-    isVeg: false,
-    description: 'Fiery royal mutton curry slow-cooked with Mathania red chilies, garlic, whole spices, and mustard oil.',
-    image: 'https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=600&q=80'
-=======
     name: 'Rajasthani Thali',
     category: 'Rajasthani',
     price: 580,
@@ -183,7 +159,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     isVeg: true,
     description: 'Royal gram flour dumplings stuffed with nuts and khoya simmered in rich saffron curd gravy.',
     image: govindGattaImg
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   },
   {
     id: 'raj-3',
@@ -192,123 +167,39 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     price: 380,
     isVeg: true,
     description: 'Gram flour dumplings simmered in rich spiced yogurt and aromatic Rajasthani spices gravy.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-4',
-    name: 'Ker Sangri',
-    category: 'Rajasthani',
-    price: 420,
-    isVeg: true,
-    description: 'Authentic desert berries and dried beans slow-cooked with red chilies, dry mango powder, and mustard oil.',
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-5',
-    name: 'Pyaaz Kachori',
-=======
     image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'raj-5',
     name: 'Pyaaz Kachori & Imli Chutney',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     category: 'Rajasthani',
     price: 220,
     isVeg: true,
     description: 'Crispy deep-fried flaky pastry filled with spicy onion, fennel, and coriander mixture served with sweet & tangy chutneys.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-6',
-    name: 'Mirchi Vada',
-=======
     image: pyaazKachoriImg
   },
   {
     id: 'raj-6',
     name: 'Jodhpuri Mirchi Vada',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     category: 'Rajasthani',
     price: 240,
     isVeg: true,
     description: 'Large green chilies stuffed with tangy potato masala, coated in gram flour batter and golden fried crisp.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-7',
-    name: 'Bajre ki Roti & Lehsun Chutney',
-    category: 'Rajasthani',
-    price: 290,
-    isVeg: true,
-    description: 'Earthy pearl millet flatbreads topped with fresh white butter, served with fiery garlic-red chili chutney and organic jaggery.',
-    image: 'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-8',
-=======
     image: mirchiVadaImg
   },
   {
     id: 'raj-7',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     name: 'Papad ki Sabzi',
     category: 'Rajasthani',
     price: 340,
     isVeg: true,
     description: 'Roasted urad dal papads cooked in a rich, creamy curd gravy tempered with mustard seeds and fresh coriander.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-9',
-    name: 'Ghewar',
-    category: 'Rajasthani',
-    price: 360,
-    isVeg: true,
-    description: 'Traditional honeycomb disc cake soaked in saffron sugar syrup, garnished with thick rabri, pistachio and silver foil.',
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'raj-10',
-    name: 'Malpua',
-    category: 'Rajasthani',
-    price: 320,
-    isVeg: true,
-    description: 'Golden ghee-fried sweet pancakes dipped in cardamom saffron syrup, served warm with chilled saffron rabri.',
-    image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80'
-=======
     image: papadKiSabziImg
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   },
 
   // Punjabi
   {
     id: 'pun-1',
-<<<<<<< HEAD
-    name: 'Butter Chicken',
-    category: 'Punjabi',
-    price: 520,
-    isVeg: false,
-    description: 'Creamy tomato gravy mein cooked tender chicken with rich butter and kasuri methi.',
-    image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-2',
-    name: 'Sarson da Saag & Makki di Roti',
-    category: 'Punjabi',
-    price: 420,
-    isVeg: true,
-    description: 'Punjab ki sabse famous traditional dish - fresh mustard greens saag served with makki roti and white butter.',
-    image: 'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-3',
-    name: 'Chole Bhature',
-=======
     name: 'Paneer Butter Masala',
     category: 'Punjabi',
     price: 450,
@@ -328,58 +219,33 @@ export const FOOD_MENU_DATA: MenuItem[] = [
   {
     id: 'pun-3',
     name: 'Amritsari Chole Bhature',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     category: 'Punjabi',
     price: 340,
     isVeg: true,
     description: 'Spicy chole ke saath fluffy bhature, pickles and sirka onions.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-4',
-    name: 'Amritsari Kulcha',
-=======
     image: choleBhatureImg
   },
   {
     id: 'pun-4',
     name: 'Stuffed Amritsari Kulcha',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     category: 'Punjabi',
     price: 320,
     isVeg: true,
     description: 'Stuffed tandoori kulcha, spicy chole aur imli chutney ke saath.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-5',
-    name: 'Dal Makhani',
-=======
     image: amritsariKulchaImg
   },
   {
     id: 'pun-5',
     name: 'Dal Makhani (Overnight Slow Cooked)',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     category: 'Punjabi',
     price: 390,
     isVeg: true,
     description: 'Black urad dal aur rajma ki rich, buttery dal slow cooked overnight on charcoal.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-6',
-    name: 'Paneer Tikka',
-=======
     image: dalMakhaniImg
   },
   {
     id: 'pun-6',
     name: 'Tandoori Paneer Tikka',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     category: 'Punjabi',
     price: 440,
     isVeg: true,
@@ -402,43 +268,15 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     price: 420,
     isVeg: true,
     description: 'Palak aur paneer ki healthy curry cooked in aromatic Punjabi spices.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-9',
-    name: 'Rajma Chawal',
-=======
     image: palakPaneerImg
   },
   {
     id: 'pun-9',
     name: 'Rajma Chawal with Desi Ghee',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     category: 'Punjabi',
     price: 320,
     isVeg: true,
     description: 'Rajma curry ke saath steamed basmati rice served with fresh ghee.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-10',
-    name: 'Tandoori Chicken',
-    category: 'Punjabi',
-    price: 540,
-    isVeg: false,
-    description: 'Yogurt aur masalon mein marinated grilled chicken cooked in clay tandoor.',
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-11',
-    name: 'Amritsari Fish Fry',
-    category: 'Punjabi',
-    price: 580,
-    isVeg: false,
-    description: 'Crispy spicy fish fry marinated in ajwain, gram flour and lemon juice.',
-=======
     image: rajmaChawalImg
   },
   {
@@ -457,7 +295,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     price: 410,
     isVeg: true,
     description: 'Crispy spicy cottage cheese fry marinated in ajwain, gram flour and lemon juice.',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80'
   },
   {
@@ -467,11 +304,7 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     price: 430,
     isVeg: true,
     description: 'Capsicum aur paneer ki masaledar sabzi cooked with fresh kadai spices.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80'
-=======
     image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80'
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   },
   {
     id: 'pun-13',
@@ -484,52 +317,17 @@ export const FOOD_MENU_DATA: MenuItem[] = [
   },
   {
     id: 'pun-14',
-<<<<<<< HEAD
-    name: 'Lassi',
-    category: 'Punjabi',
-    price: 180,
-    isVeg: true,
-    description: 'Punjab ki famous thick sweet ya salted creamy yogurt drink topped with malai.',
-    image: 'https://images.unsplash.com/photo-1571006682880-60b6bc72e816?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'pun-15',
-    name: 'Pinni',
-    category: 'Punjabi',
-    price: 280,
-    isVeg: true,
-    description: 'Ghee, atta aur dry fruits se bani traditional Punjabi sweet laddoos.',
-    image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80'
-=======
     name: 'Kulhad Kesar Lassi',
     category: 'Punjabi',
     price: 180,
     isVeg: true,
     description: 'Punjab ki famous thick sweet creamy yogurt drink topped with malai and saffron.',
     image: kulhadKesarLassiImg
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   },
 
   // Gujarati
   {
     id: 'guj-1',
-<<<<<<< HEAD
-    name: 'Royal Kathiyawadi Thali',
-    category: 'Gujarati',
-    price: 550,
-    isVeg: true,
-    description: 'Ringan Bharta, Sev Tameta, Lasaniya Bataka, Kathiawadi Kadhi, Bajra Rota with White Butter, Jaggery & Chaas.',
-    image: 'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'guj-2',
-    name: 'Sev Tameta Nu Shaak',
-    category: 'Gujarati',
-    price: 320,
-    isVeg: true,
-    description: 'Tangy tomato curry tempered with mustard, cumin, curry leaves, topped with crispy spiced chickpea sev.',
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80'
-=======
     name: 'Gujarati Thali',
     category: 'Gujarati',
     price: 550,
@@ -545,7 +343,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     isVeg: true,
     description: 'Steamed & spiced colocasia leaf rolls stuffed with tangy gram flour paste, sliced and tempered with mustard seeds, sesame & fresh coconut.',
     image: surtiPatraImg
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   },
   {
     id: 'guj-3',
@@ -554,16 +351,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     price: 420,
     isVeg: true,
     description: 'Traditional Gujarati winter medley of sweet potatoes, purple yam, raw banana, and green muthiyas with fluffy puris.',
-<<<<<<< HEAD
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80'
-  },
-
-  // South Indian & Starters
-  {
-    id: 'so-1',
-    name: 'Royal Mysore Masala Dosa',
-    category: 'South Indian & Starters',
-=======
     image: undhiyuImg
   },
   {
@@ -590,7 +377,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     id: 'so-1',
     name: 'Royal Mysore Masala Dosa',
     category: 'South Indian',
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     price: 280,
     isVeg: true,
     description: 'Crispy fermented rice crepe lined with spicy red chutney, stuffed with potato masala, served with 3 chutneys & sambar.',
@@ -598,23 +384,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
   },
   {
     id: 'so-2',
-<<<<<<< HEAD
-    name: 'Paneer Tikka Angara',
-    category: 'South Indian & Starters',
-    price: 380,
-    isVeg: true,
-    description: 'Charcoal grilled cottage cheese marinated in mustard oil, Kashmiri chili, hung curd, and smoky spices.',
-    image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'so-3',
-    name: 'Crispy Chili Garlic Corn',
-    category: 'South Indian & Starters',
-    price: 290,
-    isVeg: true,
-    description: 'Golden fried sweet corn kernels tossed with crushed pepper, spring onion, fresh garlic, and lime juice.',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80'
-=======
     name: 'Medu Vada',
     category: 'South Indian',
     price: 220,
@@ -648,7 +417,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     isVeg: true,
     description: 'Authentic Grand South Indian Thali featuring Rice, Sambar, Rasam, Poriyal, Kootu, Appalam, Curd & Payasam served on a traditional platter.',
     image: southIndianThaliImg
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   },
 
   // Chinese
@@ -670,36 +438,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     description: 'Wok-tossed noodles with shredded bell peppers, cabbage, carrot in spicy house Schezwan sauce.',
     image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80'
   },
-<<<<<<< HEAD
-
-  // Foreign Dishes
-  {
-    id: 'fn-1',
-    name: 'Classic Penne Arrabbiata Pasta',
-    category: 'Foreign Dishes',
-    price: 440,
-    isVeg: true,
-    description: 'Italian Penne tossed in spicy garlic tomato basil sauce with black olives, bell peppers, and parmesan.',
-    image: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281288?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'fn-2',
-    name: 'Wood-Fired Margherita Pizza',
-    category: 'Foreign Dishes',
-    price: 490,
-    isVeg: true,
-    description: 'Hand-stretched sourdough pizza topped with San Marzano tomato sauce, fresh mozzarella cheese & extra virgin olive oil.',
-    image: 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'fn-3',
-    name: 'Continental Grilled Cottage Cheese Sizzler',
-    category: 'Foreign Dishes',
-    price: 520,
-    isVeg: true,
-    description: 'Served on a piping hot iron skillet with herb butter rice, sautéed vegetables, french fries, and barbecue mushroom glaze.',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'
-=======
   {
     id: 'ch-3',
     name: 'Momos',
@@ -917,7 +655,6 @@ export const FOOD_MENU_DATA: MenuItem[] = [
     isVeg: true,
     description: 'Chilled carbonated soft drinks served with ice cubes and fresh lemon slices.',
     image: coldrinkImg
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   }
 ];
 

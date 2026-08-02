@@ -1,9 +1,4 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Crown } from 'lucide-react';
-
-export const ContactSection: React.FC = () => {
-=======
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Crown, ArrowLeft } from 'lucide-react';
 
 interface ContactSectionProps {
@@ -12,7 +7,6 @@ interface ContactSectionProps {
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage, onGoBack }) => {
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -32,11 +26,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
   return (
     <section id="contact" className="py-20 bg-stone-950 text-stone-100 relative border-t border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
-<<<<<<< HEAD
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-=======
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 relative">
@@ -51,7 +40,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
               </button>
             </div>
           )}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-serif uppercase tracking-widest bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
             <MapPin className="w-3.5 h-3.5" /> Direct Contact & Location
           </div>
@@ -64,11 +52,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-<<<<<<< HEAD
-          
-=======
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           {/* Left: Contact Info & Map Box */}
           <div className="space-y-6">
             <div className="bg-stone-900 border border-amber-900/40 p-6 rounded-2xl shadow-xl space-y-6">
@@ -78,11 +62,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
 
               <div className="space-y-4 text-xs text-stone-300">
                 <div className="flex items-start gap-3">
-<<<<<<< HEAD
-                  <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 flex-shrink-0">
-=======
                   <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 shrink-0">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -92,11 +72,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
                 </div>
 
                 <div className="flex items-start gap-3">
-<<<<<<< HEAD
-                  <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 flex-shrink-0">
-=======
                   <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 shrink-0">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
@@ -106,11 +82,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
                 </div>
 
                 <div className="flex items-start gap-3">
-<<<<<<< HEAD
-                  <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 flex-shrink-0">
-=======
                   <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 shrink-0">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
@@ -120,11 +92,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
                 </div>
 
                 <div className="flex items-start gap-3">
-<<<<<<< HEAD
-                  <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 flex-shrink-0">
-=======
                   <div className="w-8 h-8 rounded-lg bg-amber-950 border border-amber-700/50 flex items-center justify-center text-amber-400 shrink-0">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
@@ -238,11 +206,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isStandalonePage
 
                 <button
                   type="submit"
-<<<<<<< HEAD
-                  className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-serif font-bold text-xs py-3.5 rounded-xl shadow-xl cursor-pointer flex items-center justify-center gap-2 transition-all"
-=======
                   className="w-full bg-linear-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-serif font-bold text-xs py-3.5 rounded-xl shadow-xl cursor-pointer flex items-center justify-center gap-2 transition-all"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   <Send className="w-4 h-4" />
                   <span>Submit Inquiry To Concierge</span>

@@ -19,11 +19,7 @@ export const ExperienceSection: React.FC = () => {
   return (
     <section id="experiences" className="py-20 bg-stone-950 text-stone-100 relative border-t border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-serif uppercase tracking-widest bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
@@ -55,11 +51,7 @@ export const ExperienceSection: React.FC = () => {
         </div>
 
         {/* Video / Photo Highlight Banner */}
-<<<<<<< HEAD
-        <div className="bg-gradient-to-r from-stone-900 via-amber-950/40 to-stone-900 border border-amber-700/40 p-8 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-=======
         <div className="bg-linear-to-r from-stone-900 via-amber-950/40 to-stone-900 border border-amber-700/40 p-8 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="space-y-2 max-w-2xl">
             <h3 className="text-xl font-serif font-bold text-amber-100 flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-amber-400" /> Complimentary Royal Welcome Ceremony
@@ -71,11 +63,7 @@ export const ExperienceSection: React.FC = () => {
 
           <a
             href="#suites"
-<<<<<<< HEAD
-            className="bg-amber-500 hover:bg-amber-400 text-stone-950 font-serif font-bold text-xs px-6 py-3 rounded-xl shadow-lg transition-all flex-shrink-0"
-=======
             className="bg-amber-500 hover:bg-amber-400 text-stone-950 font-serif font-bold text-xs px-6 py-3 rounded-xl shadow-lg transition-all shrink-0"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           >
             Explore Royal Stay
           </a>

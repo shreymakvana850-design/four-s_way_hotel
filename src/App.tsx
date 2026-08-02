@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-=======
 import React, { useState, useEffect } from 'react';
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { WelcomeSection } from './components/WelcomeSection';
@@ -20,10 +16,7 @@ import { TableReservationModal } from './components/TableReservationModal';
 import { FoodOrderingModal } from './components/FoodOrderingModal';
 import { ManagementModal } from './components/ManagementModal';
 import { BookNowSelectorModal } from './components/BookNowSelectorModal';
-<<<<<<< HEAD
-=======
 import { AIAssistantModal } from './components/AIAssistantModal';
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
 import {
   Suite,
@@ -35,17 +28,11 @@ import {
   INITIAL_CUSTOMERS_DATA,
 } from './data/websiteData';
 
-<<<<<<< HEAD
-export default function App() {
-  // Navigation View State ('home' active by default)
-  const [currentView, setCurrentView] = useState<'home' | 'weddings'>('home');
-=======
 type AppView = 'home' | 'rooms' | 'dining' | 'weddings' | 'contact';
 
 export default function App() {
   // Navigation View State ('home' active by default)
   const [currentView, setCurrentView] = useState<AppView>('home');
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
   // Modals Visibility
   const [isBookNowSelectorOpen, setIsBookNowSelectorOpen] = useState(false);
@@ -53,10 +40,7 @@ export default function App() {
   const [isTableModalOpen, setIsTableModalOpen] = useState(false);
   const [isFoodOrderingOpen, setIsFoodOrderingOpen] = useState(false);
   const [isManagementOpen, setIsManagementOpen] = useState(false);
-<<<<<<< HEAD
-=======
   const [isAIAssistantOpen, setIsAIAssistantOpen] = useState(false);
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
   // Selections & Parameters
   const [selectedSuite, setSelectedSuite] = useState<Suite | null>(null);
@@ -97,8 +81,6 @@ export default function App() {
     },
   ]);
 
-<<<<<<< HEAD
-=======
   // Fetch live database records on mount
   useEffect(() => {
     async function loadDbData() {
@@ -150,7 +132,6 @@ export default function App() {
     loadDbData();
   }, []);
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // Handlers for Navbar & Book Now
   const handleOpenBookNowSelector = () => {
     setIsBookNowSelectorOpen(true);
@@ -181,43 +162,15 @@ export default function App() {
     setIsBookingOpen(true);
   };
 
-<<<<<<< HEAD
-=======
   const handleSelectView = (view: AppView) => {
     setCurrentView(view);
   };
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   const handleOpenTableReservation = (venue: DiningVenue) => {
     setSelectedDiningVenue(venue);
     setIsTableModalOpen(true);
   };
 
-<<<<<<< HEAD
-  // State Updates from Modals
-  const handleBookingConfirmed = (customer: CustomerRecord) => {
-    setCustomers((prev) => [customer, ...prev]);
-  };
-
-  const handleTableReserved = (customer: CustomerRecord) => {
-    setCustomers((prev) => [customer, ...prev]);
-  };
-
-  const handleFoodOrderPlaced = (order: FoodOrder, customer: CustomerRecord) => {
-    setFoodOrders((prev) => [order, ...prev]);
-    setCustomers((prev) => [customer, ...prev]);
-  };
-
-  // Management State Handlers
-  const handleUpdateRoomStatus = (roomId: string, newStatus: RoomRecord['status']) => {
-    setRooms((prev) =>
-      prev.map((r) => (r.id === roomId ? { ...r, status: newStatus } : r))
-    );
-  };
-
-  const handleAddRoom = (newRoom: RoomRecord) => {
-    setRooms((prev) => [...prev, newRoom]);
-=======
   // State Updates from Modals & API Sync
   const handleBookingConfirmed = async (customer: CustomerRecord) => {
     setCustomers((prev) => [customer, ...prev]);
@@ -312,7 +265,6 @@ export default function App() {
     } catch (e) {
       console.warn('Could not add room to DB:', e);
     }
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   };
 
   const handleUpdateCustomerPayment = (customerId: string, newStatus: 'Paid' | 'Pending') => {
@@ -325,12 +277,6 @@ export default function App() {
     setCustomers((prev) => [newCust, ...prev]);
   };
 
-<<<<<<< HEAD
-  const handleUpdateOrderStatus = (orderId: string, newStatus: FoodOrder['orderStatus']) => {
-    setFoodOrders((prev) =>
-      prev.map((o) => (o.id === orderId ? { ...o, orderStatus: newStatus } : o))
-    );
-=======
   const handleUpdateOrderStatus = async (orderId: string, newStatus: FoodOrder['orderStatus']) => {
     setFoodOrders((prev) =>
       prev.map((o) => (o.id === orderId ? { ...o, orderStatus: newStatus } : o))
@@ -344,7 +290,6 @@ export default function App() {
     } catch (e) {
       console.warn('Could not sync order status to DB:', e);
     }
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   };
 
   return (
@@ -354,16 +299,6 @@ export default function App() {
         onOpenBookNowSelector={handleOpenBookNowSelector}
         onOpenManagement={() => setIsManagementOpen(true)}
         onOpenFoodOrdering={() => setIsFoodOrderingOpen(true)}
-<<<<<<< HEAD
-        currentView={currentView}
-        onSelectView={(view) => setCurrentView(view)}
-      />
-
-      {currentView === 'weddings' ? (
-        <>
-          <WeddingsPage onOpenBookNow={handleOpenBookNowSelector} />
-          <Footer />
-=======
         onOpenAIAssistant={() => setIsAIAssistantOpen(true)}
         currentView={currentView}
         onSelectView={handleSelectView}
@@ -399,7 +334,6 @@ export default function App() {
             <ContactSection isStandalonePage={true} onGoBack={() => setCurrentView('home')} />
           </div>
           <Footer onSelectView={setCurrentView} />
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         </>
       ) : (
         <>
@@ -409,34 +343,14 @@ export default function App() {
           {/* Welcome & Overview Section with Services & Why Choose Us */}
           <WelcomeSection onOpenBookNow={handleOpenBookNowSelector} />
 
-<<<<<<< HEAD
-          {/* Suites & Rooms Showcase */}
-          <SuitesSection onSelectSuite={handleSelectSuite} />
-
-          {/* Fine Dining & Restaurants */}
-          <DiningSection onOpenTableReservation={handleOpenTableReservation} />
-
-          {/* Royal Weddings Teaser */}
-          <WeddingsSection onInquireWedding={() => setCurrentView('weddings')} />
-
-=======
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           {/* Royal Experiences & Amenities */}
           <ExperienceSection />
 
           {/* Guest Reviews & Testimonials */}
           <TestimonialsSection />
 
-<<<<<<< HEAD
-          {/* Direct Contact & Location */}
-          <ContactSection />
-
-          {/* Footer */}
-          <Footer />
-=======
           {/* Footer */}
           <Footer onSelectView={setCurrentView} />
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         </>
       )}
 
@@ -464,11 +378,7 @@ export default function App() {
         onTableReserved={handleTableReserved}
       />
 
-<<<<<<< HEAD
-      {/* Food Ordering Modal (Rajasthani, Punjabi, Gujarati, South Indian, Chinese, Foreign) */}
-=======
       {/* Food Ordering Modal */}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
       <FoodOrderingModal
         isOpen={isFoodOrderingOpen}
         onClose={() => setIsFoodOrderingOpen(false)}
@@ -488,12 +398,6 @@ export default function App() {
         onAddCustomer={handleAddCustomer}
         onUpdateOrderStatus={handleUpdateOrderStatus}
       />
-<<<<<<< HEAD
-    </div>
-  );
-}
-
-=======
 
       {/* Royal Gemini AI Concierge & Rate Optimizer Assistant */}
       <AIAssistantModal
@@ -503,4 +407,3 @@ export default function App() {
     </div>
   );
 }
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99

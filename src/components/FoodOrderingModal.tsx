@@ -40,11 +40,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
   const [step, setStep] = useState<'dishes' | 'details' | 'payment' | 'success'>('dishes');
   const [selectedCategory, setSelectedCategory] = useState<string>('Rajasthani');
   const [cart, setCart] = useState<{ [id: string]: number }>({});
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   // Delivery & Room state
   const [deliveryType, setDeliveryType] = useState<'Room Delivery' | 'Table Dining' | 'Takeaway'>('Room Delivery');
   const [roomOrTableNo, setRoomOrTableNo] = useState('');
@@ -66,18 +62,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
 
   if (!isOpen) return null;
 
-<<<<<<< HEAD
-  const categories = [
-    'Rajasthani',
-    'Punjabi',
-    'Gujarati',
-    'South Indian & Starters',
-    'Chinese',
-    'Foreign Dishes',
-  ];
-=======
   const categories = Array.from(new Set(FOOD_MENU_DATA.map((item) => item.category)));
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
   const updateQuantity = (itemId: string, delta: number) => {
     setCart((prev) => {
@@ -203,11 +188,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-stone-950/85 backdrop-blur-md overflow-y-auto no-scrollbar">
       <div className="relative w-full max-w-5xl bg-stone-900 border border-amber-800/40 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col no-scrollbar">
         {/* Header */}
-<<<<<<< HEAD
-        <div className="bg-gradient-to-r from-stone-950 via-amber-950/60 to-stone-950 p-4 sm:p-5 border-b border-amber-800/40 flex items-center justify-between shrink-0">
-=======
         <div className="bg-linear-to-r from-stone-950 via-amber-950/60 to-stone-950 p-4 sm:p-5 border-b border-amber-800/40 flex items-center justify-between shrink-0">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
               <Utensils className="w-5 h-5" />
@@ -258,18 +239,10 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-<<<<<<< HEAD
-                  className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-serif font-medium transition-all cursor-pointer ${
-                    selectedCategory === cat
-                      ? 'bg-amber-500 text-stone-950 font-bold shadow-md shadow-amber-500/20'
-                      : 'bg-stone-800/80 text-stone-300 hover:bg-stone-800 hover:text-amber-200'
-                  }`}
-=======
                   className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-serif font-medium transition-all cursor-pointer ${selectedCategory === cat
                     ? 'bg-amber-500 text-stone-950 font-bold shadow-md shadow-amber-500/20'
                     : 'bg-stone-800/80 text-stone-300 hover:bg-stone-800 hover:text-amber-200'
                     }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   {cat}
                 </button>
@@ -298,14 +271,8 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                   return (
                     <div
                       key={item.id}
-<<<<<<< HEAD
-                      className={`bg-stone-950/90 border rounded-xl p-3.5 flex gap-3.5 transition-all shadow-md group ${
-                        quantity > 0 ? 'border-amber-500/80 bg-amber-950/10' : 'border-stone-800 hover:border-amber-600/60'
-                      }`}
-=======
                       className={`bg-stone-950/90 border rounded-xl p-3.5 flex gap-3.5 transition-all shadow-md group ${quantity > 0 ? 'border-amber-500/80 bg-amber-950/10' : 'border-stone-800 hover:border-amber-600/60'
                         }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     >
                       <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden shrink-0 border border-stone-800">
                         <img
@@ -372,11 +339,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
 
             {/* Persistent Floating Bottom Action Bar - APPERS ONLY AFTER FOOD IS SELECTED */}
             {cartItems.length > 0 ? (
-<<<<<<< HEAD
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-950 via-stone-950/95 to-stone-950/80 p-3 sm:p-4 border-t border-amber-500/40 backdrop-blur-md flex items-center justify-between gap-4 z-20 shadow-2xl animate-in slide-in-from-bottom-5 duration-300">
-=======
               <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-stone-950 via-stone-950/95 to-stone-950/80 p-3 sm:p-4 border-t border-amber-500/40 backdrop-blur-md flex items-center justify-between gap-4 z-20 shadow-2xl animate-in slide-in-from-bottom-5 duration-300">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 <div className="flex items-center gap-3">
                   <div className="bg-amber-500/20 text-amber-400 p-2.5 rounded-xl border border-amber-500/40 font-bold font-mono text-sm flex items-center gap-2">
                     <ShoppingBag className="w-5 h-5 text-amber-400" />
@@ -399,11 +362,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                   <button
                     type="button"
                     onClick={handleProceedToDetails}
-<<<<<<< HEAD
-                    className="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-stone-950 font-serif font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-xl transition-all cursor-pointer flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
-=======
                     className="bg-linear-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-stone-950 font-serif font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-xl transition-all cursor-pointer flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <span>Proceed to Room & Guest Details (₹{totalAmount})</span>
                     <ArrowRight className="w-4 h-4" />
@@ -453,18 +412,10 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                           key={type}
                           type="button"
                           onClick={() => setDeliveryType(type)}
-<<<<<<< HEAD
-                          className={`py-2.5 px-3 rounded-lg text-xs font-medium transition-all text-center border cursor-pointer ${
-                            deliveryType === type
-                              ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-md'
-                              : 'bg-stone-900 text-stone-300 border-stone-800 hover:bg-stone-800'
-                          }`}
-=======
                           className={`py-2.5 px-3 rounded-lg text-xs font-medium transition-all text-center border cursor-pointer ${deliveryType === type
                             ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-md'
                             : 'bg-stone-900 text-stone-300 border-stone-800 hover:bg-stone-800'
                             }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                         >
                           {type}
                         </button>
@@ -479,13 +430,8 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                       {deliveryType === 'Room Delivery'
                         ? 'Room Number *'
                         : deliveryType === 'Table Dining'
-<<<<<<< HEAD
-                        ? 'Restaurant Table Number *'
-                        : 'Takeaway Counter Location *'}
-=======
                           ? 'Restaurant Table Number *'
                           : 'Takeaway Counter Location *'}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                     </label>
                     <input
                       type="text"
@@ -494,13 +440,8 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                         deliveryType === 'Room Delivery'
                           ? 'e.g., Maharaja Suite 101 or Room 204'
                           : deliveryType === 'Table Dining'
-<<<<<<< HEAD
-                          ? 'e.g., Deep Mahal Table 4 or Sheesh Mahal Table 2'
-                          : 'e.g., Main Reception Desk'
-=======
                             ? 'e.g., Deep Mahal Table 4 or Sheesh Mahal Table 2'
                             : 'e.g., Main Reception Desk'
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                       }
                       value={roomOrTableNo}
                       onChange={(e) => setRoomOrTableNo(e.target.value)}
@@ -541,11 +482,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
 
                   <button
                     type="submit"
-<<<<<<< HEAD
-                    className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-stone-950 font-serif font-bold text-sm py-3.5 rounded-xl shadow-xl hover:from-amber-500 hover:to-amber-400 transition-all cursor-pointer flex items-center justify-center gap-2 mt-4"
-=======
                     className="w-full bg-linear-to-r from-amber-600 via-amber-500 to-amber-600 text-stone-950 font-serif font-bold text-sm py-3.5 rounded-xl shadow-xl hover:from-amber-500 hover:to-amber-400 transition-all cursor-pointer flex items-center justify-center gap-2 mt-4"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <span>Proceed to Payment Gateway Page</span>
                     <ArrowRight className="w-4 h-4" />
@@ -620,18 +557,10 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setPaymentOption('upi')}
-<<<<<<< HEAD
-                    className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
-                      paymentOption === 'upi'
-                        ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
-                        : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
-                    }`}
-=======
                     className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${paymentOption === 'upi'
                       ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
                       : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
                       }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <QrCode className="w-5 h-5" /> UPI / QR Code
                   </button>
@@ -639,18 +568,10 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setPaymentOption('card')}
-<<<<<<< HEAD
-                    className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
-                      paymentOption === 'card'
-                        ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
-                        : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
-                    }`}
-=======
                     className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${paymentOption === 'card'
                       ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
                       : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
                       }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <CreditCard className="w-5 h-5" /> Credit / Debit Card
                   </button>
@@ -658,18 +579,10 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setPaymentOption('netbanking')}
-<<<<<<< HEAD
-                    className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
-                      paymentOption === 'netbanking'
-                        ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
-                        : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
-                    }`}
-=======
                     className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${paymentOption === 'netbanking'
                       ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
                       : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
                       }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <Building2 className="w-5 h-5" /> Net Banking
                   </button>
@@ -677,18 +590,10 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setPaymentOption('cash')}
-<<<<<<< HEAD
-                    className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${
-                      paymentOption === 'cash'
-                        ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
-                        : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
-                    }`}
-=======
                     className={`p-3 rounded-xl border text-xs font-serif flex flex-col items-center gap-1.5 transition-all cursor-pointer ${paymentOption === 'cash'
                       ? 'bg-amber-500 text-stone-950 font-bold border-amber-400 shadow-lg'
                       : 'bg-stone-950 text-stone-300 border-stone-800 hover:bg-stone-800'
                       }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <Banknote className="w-5 h-5" /> Pay at Hotel
                   </button>
@@ -728,11 +633,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                 {/* Option 2: CREDIT / DEBIT CARD */}
                 {paymentOption === 'card' && (
                   <div className="bg-stone-950 p-5 rounded-xl border border-stone-800 space-y-4">
-<<<<<<< HEAD
-                    <div className="w-full max-w-sm mx-auto h-44 rounded-2xl bg-gradient-to-tr from-amber-900 via-stone-900 to-amber-950 border border-amber-500/40 p-4 shadow-xl text-stone-100 flex flex-col justify-between font-mono">
-=======
                     <div className="w-full max-w-sm mx-auto h-44 rounded-2xl bg-linear-to-tr from-amber-900 via-stone-900 to-amber-950 border border-amber-500/40 p-4 shadow-xl text-stone-100 flex flex-col justify-between font-mono">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                       <div className="flex justify-between items-center">
                         <span className="text-xs font-serif tracking-widest text-amber-400 uppercase">
                           Khirasara Palace Card
@@ -813,18 +714,10 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                           key={bank}
                           type="button"
                           onClick={() => setSelectedBank(bank)}
-<<<<<<< HEAD
-                          className={`p-2.5 rounded-lg border text-xs text-left transition-all ${
-                            selectedBank === bank
-                              ? 'bg-amber-500/20 border-amber-500 text-amber-200 font-bold'
-                              : 'bg-stone-900 border-stone-800 text-stone-400 hover:bg-stone-800'
-                          }`}
-=======
                           className={`p-2.5 rounded-lg border text-xs text-left transition-all ${selectedBank === bank
                             ? 'bg-amber-500/20 border-amber-500 text-amber-200 font-bold'
                             : 'bg-stone-900 border-stone-800 text-stone-400 hover:bg-stone-800'
                             }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                         >
                           {bank}
                         </button>
@@ -864,11 +757,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                     </div>
                     <div className="flex justify-between">
                       <span className="text-stone-400">Dishes Ordered:</span>
-<<<<<<< HEAD
-                      <span className="font-semibold text-stone-200 text-right max-w-[140px] truncate">
-=======
                       <span className="font-semibold text-stone-200 text-right max-w-35 truncate">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                         {cartItems.map(i => `${i.quantity}x ${i.menuItem.name}`).join(', ')}
                       </span>
                     </div>
@@ -894,11 +783,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                   type="button"
                   onClick={handleFinalPaymentSubmit}
                   disabled={isProcessingPayment}
-<<<<<<< HEAD
-                  className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-stone-950 font-serif font-bold text-sm py-3.5 rounded-xl shadow-xl hover:from-amber-500 hover:to-amber-400 transition-all cursor-pointer flex items-center justify-center gap-2"
-=======
                   className="w-full bg-linear-to-r from-amber-600 via-amber-500 to-amber-600 text-stone-950 font-serif font-bold text-sm py-3.5 rounded-xl shadow-xl hover:from-amber-500 hover:to-amber-400 transition-all cursor-pointer flex items-center justify-center gap-2"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   {isProcessingPayment ? (
                     <span className="flex items-center gap-2">
