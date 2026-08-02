@@ -29,7 +29,7 @@ export const BookNowSelectorModal: React.FC<BookNowSelectorModalProps> = ({
             <Crown className="w-6 h-6" />
           </div>
           <h3 className="font-serif font-bold text-2xl text-amber-100">
-            Royal Khirasara Booking
+            Four's way Hotel Booking
           </h3>
           <p className="text-xs text-stone-400 mt-1">
             Choose what you would like to book or order today

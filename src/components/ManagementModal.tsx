@@ -398,7 +398,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
             </div>
             <div>
               <h2 className="font-serif font-bold text-base sm:text-lg text-amber-100 flex items-center gap-2">
-                Heritage Khirasara Palace ERP
+                Hotel for's way ERP
                 <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-mono font-normal">
                   MongoDB Connected
                 </span>
