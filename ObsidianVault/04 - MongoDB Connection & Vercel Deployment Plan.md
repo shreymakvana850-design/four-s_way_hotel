@@ -56,6 +56,21 @@ When your React app is deployed as a static site on Vercel:
 
 ---
 
+## 🔒 Express CORS Middleware & Production Cross-Origin Security
+To allow the Vercel frontend (`https://four-s-way-hotel.vercel.app`) to send API requests to the Render backend (`https://four-s-way-hotel-dzxu.onrender.com`):
+* Installed `cors` and `@types/cors`.
+* Middleware registered BEFORE any routes in [`server.ts`](file:///home/keval-tank/Desktop/code/four-s_way_hotel/server.ts).
+* Dynamic origin checking via `ALLOWED_ORIGINS` environment variable:
+  ```env
+  ALLOWED_ORIGINS="https://four-s-way-hotel.vercel.app,https://four-s-way-hotel-git-main-shreymakvana850-9129s-projects.vercel.app,http://localhost:5173,http://localhost:3000"
+  ```
+* Supports HTTP methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`) and headers (`Content-Type`, `Authorization`).
+* Handles preflight OPTIONS requests with `app.options('*', cors(corsOptions))`.
+* Automatically permits requests without `Origin` header (curl, Postman, health checks).
+* Automatically permits all `*.vercel.app` preview branch deployments.
+
+---
+
 ## 🔑 MongoDB Atlas Network Access Requirement
 To ensure your local machine can connect to Atlas without getting blocked by a database firewall:
 1. In MongoDB Atlas dashboard -> **Security -> Network Access**.
