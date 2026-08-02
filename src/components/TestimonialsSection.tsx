@@ -6,11 +6,7 @@ export const TestimonialsSection: React.FC = () => {
   return (
     <section className="py-20 bg-stone-900 text-stone-100 relative border-t border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-serif uppercase tracking-widest bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">

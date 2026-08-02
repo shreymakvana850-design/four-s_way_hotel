@@ -105,18 +105,10 @@ export const DiningPOSView: React.FC<DiningPOSViewProps> = ({
             <button
               key={outlet}
               onClick={() => setSelectedOutlet(outlet)}
-<<<<<<< HEAD
-              className={`px-3.5 py-2 rounded-lg text-xs font-serif font-bold transition-all cursor-pointer ${
-                selectedOutlet === outlet
-                  ? 'bg-amber-800 text-amber-100 border border-amber-500/50 shadow'
-                  : 'bg-stone-950 text-stone-300 hover:bg-stone-800'
-              }`}
-=======
               className={`px-3.5 py-2 rounded-lg text-xs font-serif font-bold transition-all cursor-pointer ${selectedOutlet === outlet
                 ? 'bg-amber-800 text-amber-100 border border-amber-500/50 shadow'
                 : 'bg-stone-950 text-stone-300 hover:bg-stone-800'
                 }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               {outlet}
             </button>
@@ -133,18 +125,10 @@ export const DiningPOSView: React.FC<DiningPOSViewProps> = ({
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-<<<<<<< HEAD
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
-                  activeCategory === cat
-                    ? 'bg-amber-700 text-amber-100 border border-amber-400/50 shadow'
-                    : 'bg-stone-900 text-stone-300 hover:bg-stone-800'
-                }`}
-=======
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${activeCategory === cat
                   ? 'bg-amber-700 text-amber-100 border border-amber-400/50 shadow'
                   : 'bg-stone-900 text-stone-300 hover:bg-stone-800'
                   }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 {cat}
               </button>
@@ -278,36 +262,20 @@ export const DiningPOSView: React.FC<DiningPOSViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('Room Charge')}
-<<<<<<< HEAD
-                  className={`py-1.5 rounded text-center border cursor-pointer font-medium ${
-                    paymentMethod === 'Room Charge'
-                      ? 'bg-amber-900/80 text-amber-100 border-amber-500'
-                      : 'bg-stone-950 text-stone-400 border-stone-800'
-                  }`}
-=======
                   className={`py-1.5 rounded text-center border cursor-pointer font-medium ${paymentMethod === 'Room Charge'
                     ? 'bg-amber-900/80 text-amber-100 border-amber-500'
                     : 'bg-stone-950 text-stone-400 border-stone-800'
                     }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   Room Folio Charge
                 </button>
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('UPI / Cash / Card')}
-<<<<<<< HEAD
-                  className={`py-1.5 rounded text-center border cursor-pointer font-medium ${
-                    paymentMethod === 'UPI / Cash / Card'
-                      ? 'bg-amber-900/80 text-amber-100 border-amber-500'
-                      : 'bg-stone-950 text-stone-400 border-stone-800'
-                  }`}
-=======
                   className={`py-1.5 rounded text-center border cursor-pointer font-medium ${paymentMethod === 'UPI / Cash / Card'
                     ? 'bg-amber-900/80 text-amber-100 border-amber-500'
                     : 'bg-stone-950 text-stone-400 border-stone-800'
                     }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   Direct UPI / Cash
                 </button>
@@ -317,11 +285,7 @@ export const DiningPOSView: React.FC<DiningPOSViewProps> = ({
             <button
               onClick={handlePlaceOrder}
               disabled={cart.length === 0}
-<<<<<<< HEAD
-              className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer"
-=======
               className="w-full bg-linear-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-stone-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               <Send className="w-4 h-4" /> Dispatch Order to Kitchen
             </button>

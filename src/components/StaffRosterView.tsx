@@ -34,18 +34,10 @@ export const StaffRosterView: React.FC<StaffRosterViewProps> = ({ staff, onToggl
             <button
               key={dept}
               onClick={() => setSelectedDept(dept)}
-<<<<<<< HEAD
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                selectedDept === dept
-                  ? 'bg-amber-700 text-amber-100 border border-amber-400/50 shadow'
-                  : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
-              }`}
-=======
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${selectedDept === dept
                   ? 'bg-amber-700 text-amber-100 border border-amber-400/50 shadow'
                   : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
                 }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
             >
               {dept}
             </button>
@@ -58,34 +50,18 @@ export const StaffRosterView: React.FC<StaffRosterViewProps> = ({ staff, onToggl
         {filteredStaff.map((member) => (
           <div
             key={member.id}
-<<<<<<< HEAD
-            className={`bg-stone-900 border p-4 rounded-xl space-y-3 transition-all ${
-              member.status === 'On Duty'
-                ? 'border-amber-700/50 shadow-lg'
-                : 'border-stone-800 opacity-80'
-            }`}
-=======
             className={`bg-stone-900 border p-4 rounded-xl space-y-3 transition-all ${member.status === 'On Duty'
                 ? 'border-amber-700/50 shadow-lg'
                 : 'border-stone-800 opacity-80'
               }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           >
             <div className="flex items-center justify-between">
               <span className="font-serif font-bold text-amber-100 text-base">{member.name}</span>
               <span
-<<<<<<< HEAD
-                className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded-full border ${
-                  member.status === 'On Duty'
-                    ? 'bg-emerald-950 text-emerald-300 border-emerald-700/60'
-                    : 'bg-stone-800 text-stone-400 border-stone-700'
-                }`}
-=======
                 className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded-full border ${member.status === 'On Duty'
                     ? 'bg-emerald-950 text-emerald-300 border-emerald-700/60'
                     : 'bg-stone-800 text-stone-400 border-stone-700'
                   }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               >
                 {member.status}
               </span>

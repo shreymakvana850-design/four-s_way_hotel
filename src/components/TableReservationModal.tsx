@@ -58,11 +58,7 @@ export const TableReservationModal: React.FC<TableReservationModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 bg-stone-950/85 backdrop-blur-md flex items-center justify-center p-4">
       <div className="bg-stone-900 border border-amber-600/60 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative text-stone-100">
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-stone-400 hover:text-amber-200 cursor-pointer"
@@ -185,18 +181,10 @@ export const TableReservationModal: React.FC<TableReservationModalProps> = ({
                 <div className="grid grid-cols-2 gap-2">
                   <label
                     onClick={() => setPaymentMethod('Online Payment (UPI/Card)')}
-<<<<<<< HEAD
-                    className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer transition-all ${
-                      paymentMethod === 'Online Payment (UPI/Card)'
-                        ? 'bg-amber-500/10 border-amber-500 text-amber-200'
-                        : 'bg-stone-950 border-stone-800 text-stone-400 hover:bg-stone-800/60'
-                    }`}
-=======
                     className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'Online Payment (UPI/Card)'
                       ? 'bg-amber-500/10 border-amber-500 text-amber-200'
                       : 'bg-stone-950 border-stone-800 text-stone-400 hover:bg-stone-800/60'
                       }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <div className="flex items-center gap-1.5">
                       <CreditCard className="w-3.5 h-3.5 text-amber-400" />
@@ -211,18 +199,10 @@ export const TableReservationModal: React.FC<TableReservationModalProps> = ({
 
                   <label
                     onClick={() => setPaymentMethod('Cash Payment')}
-<<<<<<< HEAD
-                    className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer transition-all ${
-                      paymentMethod === 'Cash Payment'
-                        ? 'bg-amber-500/10 border-amber-500 text-amber-200'
-                        : 'bg-stone-950 border-stone-800 text-stone-400 hover:bg-stone-800/60'
-                    }`}
-=======
                     className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'Cash Payment'
                       ? 'bg-amber-500/10 border-amber-500 text-amber-200'
                       : 'bg-stone-950 border-stone-800 text-stone-400 hover:bg-stone-800/60'
                       }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                   >
                     <div className="flex items-center gap-1.5">
                       <Banknote className="w-3.5 h-3.5 text-emerald-400" />
@@ -247,11 +227,7 @@ export const TableReservationModal: React.FC<TableReservationModalProps> = ({
                 </button>
                 <button
                   type="submit"
-<<<<<<< HEAD
-                  className="px-6 py-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-serif font-bold rounded-xl cursor-pointer shadow-lg"
-=======
                   className="px-6 py-2 bg-linear-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-serif font-bold rounded-xl cursor-pointer shadow-lg"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
                 >
                   Confirm Table Reservation
                 </button>

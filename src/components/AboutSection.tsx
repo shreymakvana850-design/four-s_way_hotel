@@ -1,20 +1,12 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Crown, Compass, Shield, Award, Sparkles } from 'lucide-react';
-=======
 import { Crown } from 'lucide-react';
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 
 export const AboutSection: React.FC = () => {
   return (
     <section id="history" className="py-20 bg-stone-950 text-stone-100 relative border-t border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-<<<<<<< HEAD
-          
-=======
 
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           {/* Left Text Narrative */}
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-serif uppercase tracking-widest bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
@@ -65,15 +57,9 @@ export const AboutSection: React.FC = () => {
                 src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
                 alt="Khirasara Palace Courtyard"
                 referrerPolicy="no-referrer"
-<<<<<<< HEAD
-                className="w-full h-[450px] object-cover hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />
-=======
                 className="w-full h-112.5 object-cover hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-linear-to-t from-stone-950/80 via-transparent to-transparent" />
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
               <div className="absolute bottom-6 left-6 right-6 bg-stone-900/90 backdrop-blur-sm border border-amber-500/40 p-4 rounded-xl text-xs text-stone-200">
                 <p className="font-serif font-bold text-amber-200 mb-0.5">The Central Heritage Courtyard</p>
                 <p className="text-stone-300">Features hand-carved sandstone arches, illuminated fountains, and starlight folk performances.</p>
