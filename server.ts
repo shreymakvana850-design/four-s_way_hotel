@@ -27,7 +27,7 @@ async function startServer() {
   app.use(express.json());
 
   // External Backend Proxy Configuration
-  const BACKEND_URL = process.env.BACKEND_URL?.replace(/\/$/, "");
+  const BACKEND_URL = process.env.VITE_BACKEND_URL?.replace(/\/$/, "");
 
   if (BACKEND_URL) {
     console.log(`🌐 External Backend Proxy active -> Forwarding /api to: ${BACKEND_URL}`);
