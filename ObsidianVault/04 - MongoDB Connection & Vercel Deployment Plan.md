@@ -32,11 +32,42 @@ Thanks to the [`vercel.json`](file:///home/keval-tank/Desktop/code/four-s_way_ho
 
 ---
 
-## 🌐 External Deployed Backend URL (`BACKEND_URL`)
-If you deploy your backend to an external service (such as Render, Railway, Heroku, or Fly.io):
-* Define `VITE_BACKEND_URL="https://four-s-way-hotel-dzxu.onrender.com"` in `.env`.
-* Both `server.ts` and `vite.config.ts` will proxy all `/api/*` requests directly to your deployed backend URL.
-* If `VITE_BACKEND_URL` is omitted, the app defaults to local Express & MongoDB routes.
+## 🌐 External Deployed Backend URL (`VITE_BACKEND_URL` & `vercel.json`)
+When your React app is deployed as a static site on Vercel:
+1. **Vite Client-side Env**: React components in the browser read `import.meta.env.VITE_BACKEND_URL` from [`src/config/api.ts`](file:///home/keval-tank/Desktop/code/four-s_way_hotel/src/config/api.ts). In `.env`, set:
+   ```env
+   VITE_BACKEND_URL="https://four-s-way-hotel-dzxu.onrender.com"
+   BACKEND_URL="https://four-s-way-hotel-dzxu.onrender.com"
+   ```
+2. **Vercel Edge Rewrite (`vercel.json`)**:
+   [`vercel.json`](file:///home/keval-tank/Desktop/code/four-s_way_hotel/vercel.json) contains an edge network rewrite rule:
+   ```json
+   {
+     "rewrites": [
+       {
+         "source": "/api/:path*",
+         "destination": "https://four-s-way-hotel-dzxu.onrender.com/api/:path*"
+       }
+     ]
+   }
+   ```
+   This guarantees that even if `VITE_BACKEND_URL` is not set in Vercel's UI, Vercel will automatically route all `/api/*` HTTP requests directly to Render!
+3. **Visual Confirmation**: Opening the Management Portal in your browser displays a badge in the header bar confirming the active API base URL.
+
+---
+
+## 🔒 Express CORS Middleware & Production Cross-Origin Security
+To allow the Vercel frontend (`https://four-s-way-hotel.vercel.app`) to send API requests to the Render backend (`https://four-s-way-hotel-dzxu.onrender.com`):
+* Installed `cors` and `@types/cors`.
+* Middleware registered BEFORE any routes in [`server.ts`](file:///home/keval-tank/Desktop/code/four-s_way_hotel/server.ts).
+* Dynamic origin checking via `ALLOWED_ORIGINS` environment variable:
+  ```env
+  ALLOWED_ORIGINS="https://four-s-way-hotel.vercel.app,https://four-s-way-hotel-git-main-shreymakvana850-9129s-projects.vercel.app,http://localhost:5173,http://localhost:3000"
+  ```
+* Supports HTTP methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`) and headers (`Content-Type`, `Authorization`).
+* Handles preflight OPTIONS requests with `app.options('*', cors(corsOptions))`.
+* Automatically permits requests without `Origin` header (curl, Postman, health checks).
+* Automatically permits all `*.vercel.app` preview branch deployments.
 
 ---
 
@@ -136,11 +167,30 @@ If keeping `server.ts` as a unified Express application:
 
 ---
 
-### Step 4: Vercel Environment Variables Configuration
-In Vercel Dashboard -> **Project Settings** -> **Environment Variables**:
+### Step 4: Platform Deployment Checklists (Render & Vercel)
 
-1. `MONGODB_URI` = `mongodb+srv://<username>:<password>@cluster0.mongodb.net/khirasara_palace_erp?retryWrites=true&w=all`
-2. `GEMINI_API_KEY` = `<your-google-gemini-api-key>`
+#### 🚀 Render (Backend Web Service)
+1. **Service Type**: Web Service connected to your GitHub repo.
+2. **Build Command**: `npm install && npm run build`
+3. **Start Command**: `npm run server`
+4. **Environment Variables**:
+   - `MONGODB_URI` = `mongodb+srv://...` (Atlas Connection String)
+   - `GEMINI_API_KEY` = `AQ.Ab8RN6LbkHKY...`
+   - `NODE_ENV` = `production`
+   *(⚠️ Do NOT set `BACKEND_URL` or `VITE_BACKEND_URL` on Render)*
+
+---
+
+#### ⚡ Vercel (Frontend React Web App)
+1. **Framework Preset**: Vite
+2. **Build Command**: `npm run build`
+3. **Output Directory**: `dist`
+4. **Environment Variables**:
+   - `VITE_BACKEND_URL` = `https://four-s-way-hotel-dzxu.onrender.com`
+   - `BACKEND_URL` = `https://four-s-way-hotel-dzxu.onrender.com`
+5. **Edge Rewrites**: Managed automatically via [`vercel.json`](file:///home/keval-tank/Desktop/code/four-s_way_hotel/vercel.json).
+
+---
 
 ---
 

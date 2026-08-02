@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
@@ -13,23 +14,64 @@ import { BanquetBookingModel } from "./src/models/BanquetBooking";
 import { StaffMemberModel } from "./src/models/StaffMember";
 import { InventoryItemModel } from "./src/models/InventoryItem";
 import { InvoiceModel } from "./src/models/Invoice";
-import dns from "node:dns";
-
-dns.setServers([
-  "8.8.8.8",
-  "8.8.4.4",
-]);
 
 async function startServer() {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
+  const NODE_ENV = process.env.NODE_ENV || "development";
 
+  // Validate & Parse Allowed Origins
+  const envOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim()).filter(Boolean)
+    : [];
+
+  const DEFAULT_ORIGINS = [
+    "https://four-s-way-hotel.vercel.app",
+    "https://four-s-way-hotel-git-main-shreymakvana850-9129s-projects.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://localhost:4173",
+  ];
+
+  const allowedOrigins = Array.from(new Set([...envOrigins, ...DEFAULT_ORIGINS]));
+
+  // Startup Environment Warnings
+  if (!process.env.MONGODB_URI) {
+    console.warn("⚠️ Notice: MONGODB_URI environment variable is not defined.");
+  }
+  if (!process.env.GEMINI_API_KEY) {
+    console.warn("⚠️ Notice: GEMINI_API_KEY environment variable is not defined.");
+  }
+
+  // Configure CORS Middleware BEFORE any routes
+  const corsOptions: cors.CorsOptions = {
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. mobile apps, curl, Postman, health checks)
+      if (!origin) return callback(null, true);
+
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.endsWith(".vercel.app") ||
+        NODE_ENV !== "production"
+      ) {
+        return callback(null, true);
+      }
+      callback(new Error(`CORS policy blocked request from origin: ${origin}`));
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  };
+
+  app.use(cors(corsOptions));
+  app.options("*", cors(corsOptions));
   app.use(express.json());
 
-  // External Backend Proxy Configuration
+  // External Backend Proxy Configuration (if act as gateway)
   const BACKEND_URL = process.env.VITE_BACKEND_URL?.replace(/\/$/, "");
 
-  if (BACKEND_URL) {
+  if (BACKEND_URL && BACKEND_URL !== `http://localhost:${PORT}`) {
     console.log(`🌐 External Backend Proxy active -> Forwarding /api to: ${BACKEND_URL}`);
     app.use("/api", async (req, res, next) => {
       try {
@@ -55,15 +97,17 @@ async function startServer() {
         }
       } catch (err: any) {
         console.error(`❌ Proxy error forwarding ${req.originalUrl} to ${BACKEND_URL}:`, err.message);
-        next(); // Fall back to local routes if remote backend is unreachable
+        next();
       }
     });
   }
 
   // Connect to MongoDB Database & Auto-Seed initial data
+  let isDbConnected = false;
   try {
     await dbConnect();
     await seedDatabaseIfEmpty();
+    isDbConnected = true;
   } catch (_err) {
     console.warn("⚠️ Continuing server startup. Database connection will be retried on API calls.");
   }
@@ -72,6 +116,7 @@ async function startServer() {
   const ensureDb = async () => {
     try {
       await dbConnect();
+      isDbConnected = true;
     } catch (_e) {
       // Ignored
     }
@@ -97,17 +142,21 @@ async function startServer() {
   // API HEALTH & DB STATUS ENDPOINT
   // ==========================================
   app.get("/api/health", async (req, res) => {
-    let dbStatus = "Disconnected";
+    let dbStatus = "disconnected";
     try {
       await dbConnect();
-      dbStatus = "Connected (MongoDB Atlas / Local)";
+      dbStatus = "connected";
+      isDbConnected = true;
     } catch (err: any) {
-      dbStatus = `Error: ${err.message}`;
+      dbStatus = `disconnected (${err.message})`;
+      isDbConnected = false;
     }
     res.json({
       status: "ok",
       app: "Heritage Khirasara Palace ERP",
       database: dbStatus,
+      environment: NODE_ENV,
+      cors: true,
       timestamp: new Date().toISOString()
     });
   });
@@ -521,8 +570,23 @@ Generate a JSON response with:
     }
   });
 
+  // Centralized Express Error Handler Middleware
+  app.use((err: any, req: express.Request, res: express.Response, _next: express.NextFunction) => {
+    const statusCode = err.status || err.statusCode || 500;
+    console.error(`❌ [Error ${statusCode}] ${req.method} ${req.originalUrl}:`, err.message);
+    if (NODE_ENV !== "production" && err.stack) {
+      console.error(err.stack);
+    }
+    res.status(statusCode).json({
+      error: err.message || "Internal Server Error",
+      status: statusCode,
+      path: req.originalUrl,
+      timestamp: new Date().toISOString(),
+    });
+  });
+
   // Vite middleware for development vs static serve for production
-  if (process.env.NODE_ENV !== "production") {
+  if (NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -537,7 +601,15 @@ Generate a JSON response with:
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Heritage Khirasara Palace ERP Server running on http://0.0.0.0:${PORT}`);
+    console.log("\n==========================================");
+    console.log(`🏰 Heritage Khirasara Palace ERP Server`);
+    console.log(`🌍 Environment: ${NODE_ENV}`);
+    console.log(`🔌 Port: ${PORT}`);
+    console.log(`🔒 Allowed CORS Origins:`);
+    allowedOrigins.forEach((o) => console.log(`   - ${o}`));
+    console.log(`🛢️ MongoDB Status: ${isDbConnected ? "Connected" : "Disconnected"}`);
+    console.log(`✨ Server listening at http://0.0.0.0:${PORT}`);
+    console.log("==========================================\n");
   });
 }
 
