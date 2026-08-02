@@ -646,15 +646,11 @@ className = "bg-stone-900/90 border border-[#C8A45D]/40 hover:border-[#C8A45D] r
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
       />
 <<<<<<< HEAD
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
-=======
-                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
-                  <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
-                    Sunset & Cocktail Arena
-                  </span>
-                </div>
+                <><div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" /><div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
+  <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
+    Sunset & Cocktail Arena
+  </span>
+</div></>
               </div >
   <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
     <div className="space-y-3">
