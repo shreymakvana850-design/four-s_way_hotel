@@ -552,7 +552,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             <div className="bg-stone-900 border border-[#C8A45D]/40 rounded-2xl overflow-hidden shadow-2xl flex flex-col group hover:border-[#C8A45D] transition-all">
               <div className="relative h-72 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1000"
+                  src="https://zerogravity.photography/2022/10/beautiful-pool-party-ideas-for-destination-weddings/"
                   alt="Poolside Celebration"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
