@@ -313,7 +313,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
             <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 mx-auto shadow-inner">
               <Lock className="w-7 h-7 text-amber-400" />
             </div>
-            <h3 className="font-serif font-bold text-xl text-amber-100">Heritage Palace Staff Portal</h3>
+            <h3 className="font-serif font-bold text-xl text-amber-100">Four's Way Hotel Management Portal</h3>
             <p className="text-xs text-stone-400">Enter your credentials to access live ERP modules</p>
           </div>
 
@@ -371,17 +371,7 @@ export const ManagementModal: React.FC<ManagementModalProps> = ({
             </button>
           </form>
 
-          <div className="bg-stone-950 p-3.5 rounded-xl border border-stone-800 text-[11px] text-stone-400 space-y-1.5">
-            <span className="font-serif text-amber-400 font-bold block">🔑 Staff Login Passwords:</span>
-            <div className="flex items-center justify-between font-mono text-stone-300">
-              <span>Username: <strong className="text-amber-200">admin</strong></span>
-              <span>Password: <strong className="text-amber-200">admin123</strong></span>
-            </div>
-            <div className="flex items-center justify-between font-mono text-stone-300">
-              <span>Username: <strong className="text-amber-200">staff</strong></span>
-              <span>Password: <strong className="text-amber-200">staff123</strong></span>
-            </div>
-          </div>
+  
         </div>
       </div>
     );
