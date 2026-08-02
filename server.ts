@@ -13,6 +13,12 @@ import { BanquetBookingModel } from "./src/models/BanquetBooking";
 import { StaffMemberModel } from "./src/models/StaffMember";
 import { InventoryItemModel } from "./src/models/InventoryItem";
 import { InvoiceModel } from "./src/models/Invoice";
+import dns from "node:dns";
+
+dns.setServers([
+  "8.8.8.8",
+  "8.8.4.4",
+]);
 
 async function startServer() {
   const app = express();
