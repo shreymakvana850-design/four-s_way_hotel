@@ -18,6 +18,8 @@ import { ManagementModal } from './components/ManagementModal';
 import { BookNowSelectorModal } from './components/BookNowSelectorModal';
 import { AIAssistantModal } from './components/AIAssistantModal';
 
+import { getApiUrl } from './config/api';
+
 import {
   Suite,
   DiningVenue,
@@ -85,7 +87,7 @@ export default function App() {
   useEffect(() => {
     async function loadDbData() {
       try {
-        const resRooms = await fetch('/api/rooms');
+        const resRooms = await fetch(getApiUrl('/api/rooms'));
         if (resRooms.ok) {
           const dataRooms = await resRooms.json();
           if (Array.isArray(dataRooms) && dataRooms.length > 0) {
@@ -104,7 +106,7 @@ export default function App() {
       }
 
       try {
-        const resGuests = await fetch('/api/guests');
+        const resGuests = await fetch(getApiUrl('/api/guests'));
         if (resGuests.ok) {
           const dataGuests = await resGuests.json();
           if (Array.isArray(dataGuests) && dataGuests.length > 0) {
@@ -175,7 +177,7 @@ export default function App() {
   const handleBookingConfirmed = async (customer: CustomerRecord) => {
     setCustomers((prev) => [customer, ...prev]);
     try {
-      await fetch('/api/guests', {
+      await fetch(getApiUrl('/api/guests'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -206,7 +208,7 @@ export default function App() {
     setFoodOrders((prev) => [order, ...prev]);
     setCustomers((prev) => [customer, ...prev]);
     try {
-      await fetch('/api/orders', {
+      await fetch(getApiUrl('/api/orders'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -236,7 +238,7 @@ export default function App() {
       prev.map((r) => (r.id === roomId ? { ...r, status: newStatus } : r))
     );
     try {
-      await fetch(`/api/rooms/${roomId}/status`, {
+      await fetch(getApiUrl(`/api/rooms/${roomId}/status`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -249,7 +251,7 @@ export default function App() {
   const handleAddRoom = async (newRoom: RoomRecord) => {
     setRooms((prev) => [...prev, newRoom]);
     try {
-      await fetch('/api/rooms', {
+      await fetch(getApiUrl('/api/rooms'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -282,7 +284,7 @@ export default function App() {
       prev.map((o) => (o.id === orderId ? { ...o, orderStatus: newStatus } : o))
     );
     try {
-      await fetch(`/api/orders/${orderId}/status`, {
+      await fetch(getApiUrl(`/api/orders/${orderId}/status`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, Crown, TrendingUp, MessageSquare, Loader2, Send, CheckCircle2, X } from 'lucide-react';
+import { getApiUrl } from '../config/api';
 
 interface AIAssistantModalProps {
   isOpen: boolean;
@@ -38,7 +39,7 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({ isOpen, onCl
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/ai/royal-concierge', {
+      const res = await fetch(getApiUrl('/api/ai/royal-concierge'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ guestName, roomCategory, occasion, preferences })
@@ -58,7 +59,7 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({ isOpen, onCl
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/ai/rate-optimizer', {
+      const res = await fetch(getApiUrl('/api/ai/rate-optimizer'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ occupancyPercentage, currentSeason, upcomingEvents, competitorRate })
@@ -78,7 +79,7 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({ isOpen, onCl
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/ai/guest-sentiment', {
+      const res = await fetch(getApiUrl('/api/ai/guest-sentiment'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reviews: reviewText })
