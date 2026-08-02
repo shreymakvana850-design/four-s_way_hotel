@@ -26,6 +26,40 @@ async function startServer() {
 
   app.use(express.json());
 
+  // External Backend Proxy Configuration
+  const BACKEND_URL = process.env.BACKEND_URL?.replace(/\/$/, "");
+
+  if (BACKEND_URL) {
+    console.log(`🌐 External Backend Proxy active -> Forwarding /api to: ${BACKEND_URL}`);
+    app.use("/api", async (req, res, next) => {
+      try {
+        const targetUrl = `${BACKEND_URL}${req.originalUrl}`;
+        const fetchOptions: RequestInit = {
+          method: req.method,
+          headers: {
+            "Content-Type": req.headers["content-type"] || "application/json",
+            ...(req.headers.authorization ? { Authorization: req.headers.authorization as string } : {}),
+          },
+          body: ["POST", "PUT", "PATCH"].includes(req.method) ? JSON.stringify(req.body) : undefined,
+        };
+
+        const response = await fetch(targetUrl, fetchOptions);
+        const contentType = response.headers.get("content-type");
+
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          return res.status(response.status).json(data);
+        } else {
+          const text = await response.text();
+          return res.status(response.status).send(text);
+        }
+      } catch (err: any) {
+        console.error(`❌ Proxy error forwarding ${req.originalUrl} to ${BACKEND_URL}:`, err.message);
+        next(); // Fall back to local routes if remote backend is unreachable
+      }
+    });
+  }
+
   // Connect to MongoDB Database & Auto-Seed initial data
   try {
     await dbConnect();

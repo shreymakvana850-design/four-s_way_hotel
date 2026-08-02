@@ -32,6 +32,14 @@ Thanks to the [`vercel.json`](file:///home/keval-tank/Desktop/code/four-s_way_ho
 
 ---
 
+## 🌐 External Deployed Backend URL (`BACKEND_URL`)
+If you deploy your backend to an external service (such as Render, Railway, Heroku, or Fly.io):
+* Define `BACKEND_URL="https://four-s-way-hotel-dzxu.onrender.com"` in `.env`.
+* Both `server.ts` and `vite.config.ts` will proxy all `/api/*` requests directly to your deployed backend URL.
+* If `BACKEND_URL` is omitted, the app defaults to local Express & MongoDB routes.
+
+---
+
 ## 🔑 MongoDB Atlas Network Access Requirement
 To ensure your local machine can connect to Atlas without getting blocked by a database firewall:
 1. In MongoDB Atlas dashboard -> **Security -> Network Access**.

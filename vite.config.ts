@@ -4,6 +4,8 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  const targetBackend = process.env.BACKEND_URL || 'http://localhost:3000';
+
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
@@ -14,8 +16,9 @@ export default defineConfig(() => {
     server: {
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: targetBackend,
           changeOrigin: true,
+          secure: false,
         },
       },
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
