@@ -183,7 +183,7 @@ export default function App() {
         body: JSON.stringify({
           name: customer.name,
           phone: customer.phone,
-          email: customer.email || 'guest@khirasarapalace.in',
+          email: customer.email || 'guest@fourswayhotel.com',
           idType: 'Aadhaar Card',
           idNumber: 'AUTO-GEN-ID',
           roomNumber: '101',
