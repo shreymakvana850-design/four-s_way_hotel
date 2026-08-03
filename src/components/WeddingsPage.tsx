@@ -35,7 +35,7 @@ interface WeddingsPageProps {
   onOpenBookNow?: () => void;
   Info,
   ArrowLeft: any
-} from 'lucide-react';
+}import { Calendar } from "lucide-react";
 import { WeddingsSection } from './WeddingsSection';
 import royalWeddingHeroImg from '../assets/images/royal_wedding_hero_1785300265250.jpg';
 import royalIndianCoupleImg from '../assets/images/royal_indian_couple_1785386231352.jpg';
@@ -704,8 +704,8 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                               key={tab}
                               onClick={() => setActiveTab(tab)}
                               className={`text-xs font-serif px-5 py-2 rounded-full border transition-all cursor-pointer ${activeTab === tab
-                                  ? 'bg-[#C8A45D] text-stone-950 border-[#C8A45D] font-bold shadow-lg'
-                                  : 'bg-stone-900/80 text-stone-300 border-stone-800 hover:border-[#C8A45D]/50'
+                                ? 'bg-[#C8A45D] text-stone-950 border-[#C8A45D] font-bold shadow-lg'
+                                : 'bg-stone-900/80 text-stone-300 border-stone-800 hover:border-[#C8A45D]/50'
                                 }`}
                               className={`text-xs font-serif px-5 py-2 rounded-full border transition-all cursor-pointer ${activeTab === tab
                                 ? 'bg-[#C8A45D] text-stone-950 border-[#C8A45D] font-bold shadow-lg'
@@ -1443,6 +1443,6 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => 
                             </div>
                           </footer >
                         </div >
-                        </motion.div >  
-                        );
+                      </motion.div >
+                      );
 };
