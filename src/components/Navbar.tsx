@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   return (
                     <button
                       key={link.name}
-                      onClick={() => onSelectView(link.view)}
+                      onClick={() => onSelectView(link.view!)}
                       className={`${currentView === link.view
                         ? 'text-amber-400 font-bold border-b border-amber-400'
                         : link.isWeddings
@@ -212,9 +212,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                         key={link.name}
                         onClick={() => {
                           setMobileMenuOpen(false);
-                          onSelectView(link.view);
+                          onSelectView(link.view!);
                         }}
-                        className={`text-left py-1 border-b border-stone-800/60 ${currentView === link.view
+                        className={`text-left py-1 border-b border-stone-800/60 ${currentView === link.view!
                           ? 'text-amber-400 font-bold'
                           : link.isWeddings
                             ? 'text-amber-300 font-bold'
