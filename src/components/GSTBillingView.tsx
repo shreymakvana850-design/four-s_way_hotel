@@ -139,8 +139,8 @@ export const GSTBillingView: React.FC<GSTBillingViewProps> = ({ invoices, onAddI
             {/* Receipt Header */}
             <div className="border-b border-amber-900/50 pb-4 text-center space-y-1">
               <div className="inline-flex items-center gap-1 text-amber-400 font-serif text-lg font-bold">
-                <Crown className="w-5 h-5 text-amber-400" />  </div>
-              <p className="text-xs text-amber-200 font-serif"></p>
+                <Crown className="w-5 h-5 text-amber-400" />FOUR'S WAY HOTEL</div>
+              <p className="text-xs text-amber-200 font-serif">50-Year Heritage Luxury Hotel • Dubai</p>
               <p className="text-[10px] text-stone-400 font-mono">GSTIN: 24AAACH1234F1Z8 • Phone: +91 281 292 2000</p>
             </div>
 
