@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Crown,
   Sparkles,
-  Calendar,
   Users,
   MapPin,
   Maximize2,
