@@ -240,42 +240,31 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </nav>
 
-          <div className="pt-2 flex flex-col space-y-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAIAssistant();
-              }}
-              className="w-full bg-amber-500/10 text-amber-300 border border-amber-500/50 text-xs font-serif font-semibold px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
-            >
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Royal AI Assistant</span>
-            </button>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenManagement();
+            }}
+            className="w-full bg-stone-900 text-amber-300 border border-amber-500/40 text-xs font-serif font-semibold px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
+          >
+            <Building2 className="w-4 h-4 text-amber-400" />
+            <span>Management Portal</span>
+          </button>
 
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenManagement();
-              }}
-              className="w-full bg-stone-900 text-amber-300 border border-amber-500/40 text-xs font-serif font-semibold px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
-            >
-              <Building2 className="w-4 h-4 text-amber-400" />
-              <span>Management Portal</span>
-            </button>
-
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBookNowSelector();
-              }}
-              className="w-full bg-amber-500 text-stone-950 font-serif font-bold text-xs px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
-            >
-              <Calendar className="w-4 h-4" />
-              <span>Book Now</span>
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenBookNowSelector();
+            }}
+            className="w-full bg-amber-500 text-stone-950 font-serif font-bold text-xs px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
+          >
+            <Calendar className="w-4 h-4" />
+            <span>Book Now</span>
+          </button>
         </div>
-      )}
-    </header>
+        </div>
+  )
+}
+    </header >
   );
 };

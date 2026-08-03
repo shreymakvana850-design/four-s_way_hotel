@@ -257,7 +257,6 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
           {/* Dark Overlay Vignette */}
           <div className="absolute inset-0 bg-linear-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-black/80" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(11,11,11,0.8)_100%)]" />
-          <img
             src={royalWeddingHeroImg}
             alt="Luxury Royal Wedding Mandap at Four's Way Hotel"
             className="w-full h-full object-cover object-center filter brightness-[0.70] contrast-110 scale-105 transition-transform duration-1000"
@@ -287,9 +286,8 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
           >
             A Perfect Destination for <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
-                Your Dream Wedding
-              </span>
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
+              Your Dream Wedding
             </span>
           </motion.h1>
 
@@ -311,6 +309,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
           >
             <button
               onClick={() => scrollToSection('wedding-enquiry')}
+              className="bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
               className="bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
             >
               <Heart className="w-4 h-4 fill-stone-950" />
