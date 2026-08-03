@@ -239,7 +239,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               </>
             )}
           </nav>
-
           <button
             onClick={() => {
               setMobileMenuOpen(false);
