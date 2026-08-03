@@ -255,8 +255,9 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             className="w-full h-full object-cover object-center filter brightness-[0.65] contrast-105 scale-105 transition-transform duration-1000"
           />
           {/* Dark Overlay Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-black/80" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-black/80" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(11,11,11,0.8)_100%)]" />
+          <img
             src={royalWeddingHeroImg}
             alt="Luxury Royal Wedding Mandap at Four's Way Hotel"
             className="w-full h-full object-cover object-center filter brightness-[0.70] contrast-110 scale-105 transition-transform duration-1000"
@@ -285,9 +286,10 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#F8F4ED] leading-[1.15] tracking-wide drop-shadow-2xl"
           >
             A Perfect Destination for <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
-              Your Dream Wedding
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
+                Your Dream Wedding
+              </span>
             </span>
           </motion.h1>
 
@@ -309,7 +311,6 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
           >
             <button
               onClick={() => scrollToSection('wedding-enquiry')}
-              className="bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
               className="bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
             >
               <Heart className="w-4 h-4 fill-stone-950" />
@@ -384,7 +385,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Engagement Ceremony"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Pre-Wedding
                 </span>
@@ -422,7 +423,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Mehendi & Haldi"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Festive Rituals
@@ -455,7 +456,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Wedding Ceremony"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Main Event
@@ -506,7 +507,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Grand Ballroom"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute inset-0 bg-linear -to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
@@ -533,7 +534,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
-                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -550,7 +551,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Royal Garden Lawn"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
@@ -577,7 +578,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
-                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -594,7 +595,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Poolside Celebration"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
@@ -621,7 +622,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
-                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -638,7 +639,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Banquet Hall"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
                     Classic Indoor Banquet
@@ -664,7 +665,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
-                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
+                  className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -741,7 +742,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90 group-hover:brightness-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
+                  <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
                   <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
                     <span className="text-[10px] uppercase font-serif text-[#C8A45D] tracking-wider">
                       {item.category}
@@ -876,7 +877,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             {/* Package 2: Gold Package (Highlighted) */}
             <div className="bg-stone-900 border-2 border-[#C8A45D] rounded-2xl p-8 space-y-8 flex flex-col justify-between transition-all duration-300 shadow-2xl relative transform md:-translate-y-4">
 
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
                 Most Popular Choice
               </div>
@@ -921,7 +922,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
               <button
                 onClick={() => scrollToSection('wedding-enquiry')}
 
-                className="w-full bg-gradient-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
+                className="w-full bg-linear-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
 
                 className="w-full bg-linear-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
               >
@@ -1279,7 +1280,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer flex items-center justify-center gap-2"
+                className="w-full bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4 fill-stone-950" />
                 <span>Submit Wedding Enquiry</span>
