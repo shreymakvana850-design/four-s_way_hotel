@@ -1,6 +1,6 @@
-# 🏰 Heritage Khirasara Palace ERP - Obsidian Vault Index
+# 🏰 Four's Way Hotel ERP - Obsidian Vault Index
 
-Welcome to the Obsidian Knowledge Base for **Heritage Khirasara Palace Hotel ERP** (`four-s_way_hotel`).
+Welcome to the Obsidian Knowledge Base for **Four's Way Hotel ERP** (`four-s_way_hotel`).
 
 ## 📌 Quick Navigation (Wikilinks)
 - [[01 - Current Project State & Architecture]] - Overview of frontend, backend, tech stack, and dev environment.

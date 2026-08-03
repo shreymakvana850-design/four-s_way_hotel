@@ -153,7 +153,7 @@ async function startServer() {
     }
     res.json({
       status: "ok",
-      app: "Heritage Khirasara Palace ERP",
+      app: "Four's Way Hotel ERP",
       database: dbStatus,
       environment: NODE_ENV,
       cors: true,
@@ -447,7 +447,7 @@ async function startServer() {
       const { guestName, roomCategory, preferences, stayDuration, occasion } = req.body;
 
       const prompt = `
-You are the Chief Royal Concierge at the 450-year-old Heritage Khirasara Palace Hotel in Rajkot, Gujarat, India.
+You are the Chief Royal Concierge at the 50-year-old Four's Way Hotel in Dubai.
 Generate a tailored 24-hour Royal Guest Itinerary and Protocol for our guest.
 
 Guest Details:
@@ -470,7 +470,7 @@ Provide a structured, regal response in JSON format with:
         contents: prompt,
         config: {
           responseMimeType: "application/json",
-          systemInstruction: "You are an elite hospitality AI for Heritage Khirasara Palace Rajkot. Always respond with regal, gracious, and culturally authentic Gujarati heritage hospitality tone in clean JSON."
+          systemInstruction: "You are an elite hospitality AI for Four's Way Hotel in Dubai. Always respond with regal, gracious, and culturally authentic hospitality tone in clean JSON."
         }
       });
 
@@ -495,7 +495,7 @@ Provide a structured, regal response in JSON format with:
       const { occupancyPercentage, currentSeason, upcomingEvents, competitorRate } = req.body;
 
       const prompt = `
-You are the Chief Revenue Manager and Yield Optimization AI for Heritage Khirasara Palace, Rajkot.
+You are the Chief Revenue Manager and Yield Optimization AI for Four's Way Hotel in Dubai.
 Analyze the following operational data and generate dynamic rate recommendations:
 
 Current Hotel Metrics:
@@ -544,7 +544,7 @@ Generate a JSON object with:
       const { reviews } = req.body;
 
       const prompt = `
-Analyze these guest feedback comments from Heritage Khirasara Palace guests:
+Analyze these guest feedback comments from Four's Way Hotel guests:
 "${reviews || 'The Maharaja Suite was breathtaking! The vintage car arrival made us feel like royalty. However, breakfast service at Deep Mahal took 20 minutes longer than expected. Housekeeping butler Manish was exceptional.'}"
 
 Generate a JSON response with:
@@ -602,7 +602,7 @@ Generate a JSON response with:
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log("\n==========================================");
-    console.log(`🏰 Heritage Khirasara Palace ERP Server`);
+    console.log(`🏰 Four's Way Hotel ERP Server`);
     console.log(`🌍 Environment: ${NODE_ENV}`);
     console.log(`🔌 Port: ${PORT}`);
     console.log(`🔒 Allowed CORS Origins:`);

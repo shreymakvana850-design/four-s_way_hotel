@@ -11,7 +11,7 @@
   - Created Mongoose models in `src/models/`: `Room`, `Guest`, `HousekeepingTask`, `DiningOrder`, `BanquetBooking`, `StaffMember`, `InventoryItem`, and `Invoice`.
 
 - [x] **Task 3: Database Seeding Script**
-  - Created auto-seed function `src/lib/seedDb.ts` to populate empty MongoDB collections with initial Heritage Khirasara Palace ERP records.
+  - Created auto-seed function `src/lib/seedDb.ts` to populate empty MongoDB collections with initial Four's Way Hotel ERP records.
 
 - [x] **Task 4: Express API Routes Implementation**
   - Updated `server.ts` with complete REST API CRUD endpoints for all 8 ERP domains + Gemini AI endpoints.

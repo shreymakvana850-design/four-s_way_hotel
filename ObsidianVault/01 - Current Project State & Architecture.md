@@ -1,7 +1,7 @@
 # 🏢 01 - Current Project State & Architecture
 
 ## 📋 Overview
-The project is a high-end web application and Enterprise Resource Planning (ERP) suite for **Heritage Khirasara Palace Hotel** located in Rajkot, Gujarat.
+The project is a high-end web application and Enterprise Resource Planning (ERP) suite for **Four's Way  Hotel** located in Dubai.
 
 It combines a **guest-facing booking/marketing website** with a **back-office hotel management portal**.
 
