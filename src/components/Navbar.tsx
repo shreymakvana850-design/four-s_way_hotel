@@ -249,6 +249,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="w-full bg-amber-500/10 text-amber-300 border border-amber-500/50 text-xs font-serif font-semibold px-4 py-2.5 rounded-lg flex items-center justify-center gap-2"
             >
               <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>Royal AI Assistant</span>
             </button>
 
             <button
