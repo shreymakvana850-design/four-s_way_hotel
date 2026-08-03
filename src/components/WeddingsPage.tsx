@@ -34,6 +34,7 @@ import {
 import { WeddingsSection } from './WeddingsSection';
 import royalWeddingHeroImg from '../assets/images/royal_wedding_hero_1785300265250.jpg';
 import royalIndianCoupleImg from '../assets/images/royal_indian_couple_1785386231352.jpg';
+import poolsideVenueImg from '../assets/images/poolside_venue_celebration_1785687162778.jpg';
 
 
 import { Calendar } from "lucide-react";
@@ -583,9 +584,9 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({
             <div className="bg-stone-900 border border-[#C8A45D]/40 rounded-2xl overflow-hidden shadow-2xl flex flex-col group hover:border-[#C8A45D] transition-all">
               <div className="relative h-72 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200"
+                  src={poolsideVenueImg}
                   alt="Poolside Celebration"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
