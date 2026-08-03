@@ -16,7 +16,7 @@ export const TestimonialsSection: React.FC = () => {
             Loved By Royal Travelers & Families
           </h2>
           <p className="text-stone-300 text-sm">
-            Read what distinguished guests, couples, and grand wedding hosts say about their experience at Heritage Khirasara Palace.
+            Read what distinguished guests, couples, and grand wedding hosts say about their experience at Four's Way Hotel.
           </p>
         </div>
 

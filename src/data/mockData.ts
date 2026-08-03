@@ -191,7 +191,7 @@ export const INITIAL_TASKS: HousekeepingTask[] = [
 export const MENU_ITEMS: MenuItem[] = [
   {
     id: 'm1',
-    name: 'Khirasara Shahi Royal Thali',
+    name: "Four's Way Royal Kathiyawadi Thali",
     category: 'Gujarati Royal Thali',
     price: 1850,
     description: '3 Sweets, 4 Heritage Kathiyawadi Curry Delicacies, Farsan, Rotla with White Butter, Kichdi, and Fresh Chaas.',
@@ -247,7 +247,7 @@ export const INITIAL_ORDERS: DiningOrder[] = [
     guestName: 'Vikramaditya Singhania',
     roomNumber: '101',
     items: [
-      { id: 'm1', name: 'Khirasara Shahi Royal Thali', price: 1850, qty: 2, category: 'Gujarati Royal Thali' },
+      { id: 'm1', name: "Four's Way Royal Kathiyawadi Thali", price: 1850, qty: 2, category: 'Gujarati Royal Thali' },
       { id: 'm5', name: 'Kesaria Gulab Sharbat', price: 280, qty: 2, category: 'Royal Mocktails & Beverages' }
     ],
     totalAmount: 4260,

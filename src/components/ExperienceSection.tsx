@@ -57,7 +57,7 @@ export const ExperienceSection: React.FC = () => {
               <Sparkles className="w-5 h-5 text-amber-400" /> Complimentary Royal Welcome Ceremony
             </h3>
             <p className="text-xs text-stone-300 leading-relaxed">
-              Every guest checking into Heritage Khirasara Palace is greeted with traditional Aarti, Tilak, floral garlands, Shehnai music, and a refreshing royal saffron-infused welcome drink.
+              Every guest checking into Heritage Four's way is greeted with traditional Aarti, Tilak, floral garlands, Shehnai music, and a refreshing royal saffron-infused welcome drink.
             </p>
           </div>
 

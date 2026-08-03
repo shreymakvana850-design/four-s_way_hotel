@@ -55,7 +55,7 @@ export const AboutSection: React.FC = () => {
             <div className="relative rounded-2xl overflow-hidden border-2 border-amber-600/40 shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
-                alt="Khirasara Palace Courtyard"
+                alt="Four's Way  Courtyard"
                 referrerPolicy="no-referrer"
                 className="w-full h-112.5 object-cover hover:scale-105 transition-transform duration-700"
               />

@@ -838,7 +838,7 @@ export const EXPERIENCES_DATA = [
 
 export const TESTIMONIALS_DATA = [
   {
-    quote: "Staying at Heritage Khirasara Palace felt like living in a timeless royal fairy tale. The Maharaja Suite view and the Kathiyawadi Thali at Deep Mahal were beyond world class!",
+    quote: "Staying at Four's Way Hotel felt like living in a timeless royal fairy tale. The Maharaja Suite view and the Kathiyawadi Thali at Deep Mahal were beyond world class!",
     author: "Raghuvendra & Harshita Rathore",
     location: "Mumbai, Maharashtra",
     rating: 5

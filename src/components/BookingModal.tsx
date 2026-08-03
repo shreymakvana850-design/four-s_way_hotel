@@ -245,7 +245,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   type="text"
                   value={specialRequests}
                   onChange={(e) => setSpecialRequests(e.target.value)}
-                  placeholder="e.g. Vintage Car pickup from Rajkot Airport, Jain meals..."
+                  placeholder="e.g. Airport Road, Al Garhoud District, Deira, Dubai...."
                   className="w-full bg-stone-950 border border-amber-900/60 rounded-xl p-2.5 text-stone-100 outline-none focus:border-amber-500"
                 />
               </div>

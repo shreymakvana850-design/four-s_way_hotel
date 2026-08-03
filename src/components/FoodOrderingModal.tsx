@@ -637,7 +637,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                     <div className="w-full max-w-sm mx-auto h-44 rounded-2xl bg-linear-to-tr from-amber-900 via-stone-900 to-amber-950 border border-amber-500/40 p-4 shadow-xl text-stone-100 flex flex-col justify-between font-mono">
                       <div className="flex justify-between items-center">
                         <span className="text-xs font-serif tracking-widest text-amber-400 uppercase">
-                          Khirasara Palace Card
+                          four's way hotel  Card
                         </span>
                         <ShieldCheck className="w-5 h-5 text-amber-400" />
                       </div>
@@ -815,7 +815,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                 Food Order & Payment Confirmed!
               </h3>
               <p className="text-stone-300 text-sm mt-2 max-w-md mx-auto">
-                Your order has been dispatched to Khirasara Palace kitchen and is being cooked in pure ghee.
+                Your order has been dispatched to Four's way hotel kitchen and is being cooked in pure ghee.
               </p>
             </div>
 
