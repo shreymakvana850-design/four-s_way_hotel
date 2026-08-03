@@ -27,8 +27,14 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+
+  Info
+} from 'lucide-react';
+
+interface WeddingsPageProps {
+  onOpenBookNow?: () => void;
   Info,
-  ArrowLeft
+  ArrowLeft: any
 } from 'lucide-react';
 import { WeddingsSection } from './WeddingsSection';
 import royalWeddingHeroImg from '../assets/images/royal_wedding_hero_1785300265250.jpg';
@@ -57,6 +63,11 @@ const GALLERY_IMAGES = [
   },
   {
     id: 3,
+
+    title: 'Luxury Floral Decor',
+    category: 'Decor',
+    url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200',
+    desc: 'Intricate orchids, roses, and gold accent centerpieces.'
     title: 'Royal Indian Wedding Couple',
     category: 'Bridal',
     url: royalIndianCoupleImg,
@@ -186,6 +197,7 @@ const FAQS = [
   }
 ];
 
+export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => {
 export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoBack }) => {
   // Gallery Filter State
   const [activeTab, setActiveTab] = useState('All');
@@ -231,12 +243,20 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
   };
 
   return (
+    <div className="bg-[#0B0B0B] text-stone-100 font-sans selection:bg-[#C8A45D] selection:text-black min-h-screen">
     <div className="bg-[#140a06] text-stone-100 font-sans selection:bg-[#C8A45D] selection:text-black min-h-screen">
       {/* SECTION 1: HERO SECTION */}
       <section id="wedding-hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Background Visual Layer */}
         <div className="absolute inset-0 z-0">
           <img
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000"
+            alt="Luxury Wedding at Four's Way Hotel"
+            className="w-full h-full object-cover object-center filter brightness-[0.65] contrast-105 scale-105 transition-transform duration-1000"
+          />
+          {/* Dark Overlay Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-black/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(11,11,11,0.8)_100%)]" />
             src={royalWeddingHeroImg}
             alt="Luxury Royal Wedding Mandap at Four's Way Hotel"
             className="w-full h-full object-cover object-center filter brightness-[0.70] contrast-110 scale-105 transition-transform duration-1000"
@@ -246,17 +266,17 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(20,10,6,0.85)_100%)]" />
         </div>
 
-        {/* Hero Content Box */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-8 py-12">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 bg-[#C8A45D]/10 border border-[#C8A45D]/40 px-5 py-2 rounded-full text-[#C8A45D] text-xs font-serif uppercase tracking-widest backdrop-blur-md shadow-2xl"
-          >
-            <Crown className="w-4 h-4 text-[#C8A45D]" />
-            <span>Dubai's Ultimate Destination Palace Wedding</span>
-          </motion.div>
+          {/* Hero Content Box */}
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-8 py-12">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="inline-flex items-center gap-2 bg-[#C8A45D]/10 border border-[#C8A45D]/40 px-5 py-2 rounded-full text-[#C8A45D] text-xs font-serif uppercase tracking-widest backdrop-blur-md shadow-2xl"
+            >
+              <Crown className="w-4 h-4 text-[#C8A45D]" />
+              <span>Dubai's Ultimate Destination Palace Wedding</span>
+            </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -265,19 +285,20 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#F8F4ED] leading-[1.15] tracking-wide drop-shadow-2xl"
           >
             A Perfect Destination for <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#F8F4ED] via-[#C8A45D] to-[#F8F4ED]">
               Your Dream Wedding
             </span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4 }}
-            className="text-stone-300 text-base sm:text-lg max-w-3xl mx-auto font-sans leading-relaxed font-light"
-          >
-            Celebrate timeless love with elegance, luxury, and unforgettable memories at <span className="text-[#C8A45D] font-medium">Four's Way Hotel</span>.
-          </motion.p>
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, delay: 0.4 }}
+      className="text-stone-300 text-base sm:text-lg max-w-3xl mx-auto font-sans leading-relaxed font-light"
+    >
+      Celebrate timeless love with elegance, luxury, and unforgettable memories at <span className="text-[#C8A45D] font-medium">Four's Way Hotel</span>.
+    </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
@@ -289,42 +310,47 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             <button
               onClick={() => scrollToSection('wedding-enquiry')}
               className="bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
+              className="bg-linear-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm px-8 py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/25 transition-all cursor-pointer flex items-center gap-2 transform hover:-translate-y-0.5"
             >
               <Heart className="w-4 h-4 fill-stone-950" />
               <span>Book Wedding</span>
             </button>
 
-            <button
-              onClick={() => scrollToSection('wedding-venues')}
-              className="bg-stone-900/80 hover:bg-stone-800 text-[#F8F4ED] border border-[#C8A45D]/50 hover:border-[#C8A45D] font-serif font-semibold text-sm px-8 py-4 rounded-xl backdrop-blur-md transition-all cursor-pointer flex items-center gap-2"
-            >
-              <Building2 className="w-4 h-4 text-[#C8A45D]" />
-              <span>Explore Venues</span>
-            </button>
-          </motion.div>
+    <button
+      onClick={() => scrollToSection('wedding-venues')}
+      className="bg-stone-900/80 hover:bg-stone-800 text-[#F8F4ED] border border-[#C8A45D]/50 hover:border-[#C8A45D] font-serif font-semibold text-sm px-8 py-4 rounded-xl backdrop-blur-md transition-all cursor-pointer flex items-center gap-2"
+    >
+      <Building2 className="w-4 h-4 text-[#C8A45D]" />
+      <span>Explore Venues</span>
+    </button>
+  </motion.div>
 
-          {/* Quick Metrics Bar */}
-          <div className="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-[#C8A45D]/20 mt-10">
-            <div className="text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">1,500+</div>
-              <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">Max Capacity</div>
-            </div>
-            <div className="text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">4</div>
-              <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">Royal Venues</div>
-            </div>
-            <div className="text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">50+</div>
-              <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">Luxury Suites</div>
-            </div>
-            <div className="text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">5★</div>
-              <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">5-Star Hospitality</div>
-            </div>
-          </div>
-        </div>
-      </section>
+  {/* Quick Metrics Bar */ }
+  <div className="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-[#C8A45D]/20 mt-10">
+    <div className="text-center space-y-1">
+      <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">1,500+</div>
+      <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">Max Capacity</div>
+    </div>
+    <div className="text-center space-y-1">
+      <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">4</div>
+      <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">Royal Venues</div>
+    </div>
+    <div className="text-center space-y-1">
+      <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">50+</div>
+      <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">Luxury Suites</div>
+    </div>
+    <div className="text-center space-y-1">
+      <div className="text-2xl sm:text-3xl font-serif font-bold text-[#C8A45D]">5★</div>
+      <div className="text-xs text-stone-400 font-sans uppercase tracking-wider">5-Star Hospitality</div>
+    </div>
+  </div>
+        </div >
+      </section >
 
+
+      {/* SECTION 2: WEDDING EXPERIENCE */}
+      <section id="wedding-experience" className="py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
       {/* ROYAL WEDDINGS DESTINATIONS & VENUES */}
       <WeddingsSection onInquireWedding={() => scrollToSection('wedding-enquiry')} />
 
@@ -358,6 +384,12 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Engagement Ceremony"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
+                <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
+                  Pre-Wedding
+                </span>
+              </div>
+              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between bg-stone-950/60">
                 <div className="absolute inset-0 bg-linear-to-t from-[#140a06] via-transparent to-transparent opacity-80" />
                 <span className="absolute top-4 left-4 bg-[#140a06]/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Pre-Wedding
@@ -390,26 +422,27 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Mehendi & Haldi"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Festive Rituals
                 </span>
-              </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between bg-stone-950/60">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-serif font-bold text-[#F8F4ED] group-hover:text-[#C8A45D] transition-colors">
-                    Mehendi & Haldi
-                  </h3>
-                  <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-light">
-                    Vibrant open-air garden setup with marigold drapes, traditional Henna artists, live dhol beats, and artisanal culinary food stalls.
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-stone-800 flex items-center justify-between text-xs text-[#C8A45D]">
-                  <span className="font-serif">Vibrant & Joyous</span>
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </motion.div>
+              </div >
+  <div className="p-6 space-y-3 flex-1 flex flex-col justify-between bg-stone-950/60">
+    <div className="space-y-2">
+      <h3 className="text-2xl font-serif font-bold text-[#F8F4ED] group-hover:text-[#C8A45D] transition-colors">
+        Mehendi & Haldi
+      </h3>
+      <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-light">
+        Vibrant open-air garden setup with marigold drapes, traditional Henna artists, live dhol beats, and artisanal culinary food stalls.
+      </p>
+    </div>
+    <div className="pt-4 border-t border-stone-800 flex items-center justify-between text-xs text-[#C8A45D]">
+      <span className="font-serif">Vibrant & Joyous</span>
+      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+    </div>
+  </div>
+            </motion.div >
 
             {/* Card 3: Wedding Ceremony */}
             <motion.div
@@ -422,46 +455,47 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Wedding Ceremony"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-transparent to-transparent opacity-80" />
                 <span className="absolute top-4 left-4 bg-stone-950/80 border border-[#C8A45D]/50 text-[#C8A45D] text-xs font-serif px-3 py-1 rounded-full backdrop-blur-md">
                   Main Event
                 </span>
-              </div>
-              <div className="p-6 space-y-3 flex-1 flex flex-col justify-between bg-stone-950/60">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-serif font-bold text-[#F8F4ED] group-hover:text-[#C8A45D] transition-colors">
-                    Wedding Ceremony
-                  </h3>
-                  <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-light">
-                    Exchange vows on a regal mandap stage with bespoke floral artistry, grand procession entrances, and royal 5-star hospitality.
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-stone-800 flex items-center justify-between text-xs text-[#C8A45D]">
-                  <span className="font-serif">Royal & Grand</span>
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </motion.div>
-          </div>
+              </div >
+  <div className="p-6 space-y-3 flex-1 flex flex-col justify-between bg-stone-950/60">
+    <div className="space-y-2">
+      <h3 className="text-2xl font-serif font-bold text-[#F8F4ED] group-hover:text-[#C8A45D] transition-colors">
+        Wedding Ceremony
+      </h3>
+      <p className="text-stone-300 text-xs sm:text-sm leading-relaxed font-light">
+        Exchange vows on a regal mandap stage with bespoke floral artistry, grand procession entrances, and royal 5-star hospitality.
+      </p>
+    </div>
+    <div className="pt-4 border-t border-stone-800 flex items-center justify-between text-xs text-[#C8A45D]">
+      <span className="font-serif">Royal & Grand</span>
+      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+    </div>
+  </div>
+            </motion.div >
+          </div >
+        </div >
+      </section >
+
+
+  {/* SECTION 3: WEDDING VENUES */ }
+  < section id = "wedding-venues" className = "py-24 bg-stone-950 relative border-t border-[#C8A45D]/20" >
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
+      <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
+          <Building2 className="w-3.5 h-3.5" />
+          <span>Imperial Venues</span>
         </div>
-      </section>
-
-
-      {/* SECTION 3: WEDDING VENUES */}
-      <section id="wedding-venues" className="py-24 bg-stone-950 relative border-t border-[#C8A45D]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
-              <Building2 className="w-3.5 h-3.5" />
-              <span>Imperial Venues</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#F8F4ED]">
-              Exquisite Wedding Venues
-            </h2>
-            <p className="text-stone-300 text-sm sm:text-base font-light leading-relaxed">
-              Four distinct, world-class venues tailored to accommodate every scale of luxury wedding celebrations.
-            </p>
-          </div>
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#F8F4ED]">
+          Exquisite Wedding Venues
+        </h2>
+        <p className="text-stone-300 text-sm sm:text-base font-light leading-relaxed">
+          Four distinct, world-class venues tailored to accommodate every scale of luxury wedding celebrations.
+        </p>
+      </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Venue 1: Grand Ballroom */}
@@ -472,6 +506,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Grand Ballroom"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute inset-0 bg-linear -to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
@@ -498,6 +533,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -514,6 +550,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Royal Garden Lawn"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
@@ -540,6 +577,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -552,10 +590,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             <div className="bg-stone-900 border border-[#C8A45D]/40 rounded-2xl overflow-hidden shadow-2xl flex flex-col group hover:border-[#C8A45D] transition-all">
               <div className="relative h-72 overflow-hidden">
                 <img
-                  src="https://zerogravity.photography/2022/10/beautiful-pool-party-ideas-for-destination-weddings/"
+                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1000"
                   alt="Poolside Celebration"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
@@ -582,6 +621,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -598,7 +638,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   alt="Banquet Hall"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
                   <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
                     Classic Indoor Banquet
@@ -624,6 +664,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 </div>
                 <button
                   onClick={() => scrollToSection('wedding-enquiry')}
+                  className="w-full mt-4 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                   className="w-full mt-4 bg-linear-to-r from-[#C8A45D] to-[#b38f49] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-xs py-3 rounded-xl shadow cursor-pointer transition-all text-center flex items-center justify-center gap-2"
                 >
                   <span>Book Venue</span>
@@ -637,6 +678,10 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
 
 
       {/* SECTION 4: GALLERY */}
+
+      <section id="wedding-gallery" className="py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+
       <section id="wedding-gallery" className="py-24 bg-linear-to-b from-[#140a06] via-[#1b0d07] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(217,119,6,0.1),transparent_70%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12 relative z-10">
@@ -658,6 +703,11 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
+                  className={`text-xs font-serif px-5 py-2 rounded-full border transition-all cursor-pointer ${
+                    activeTab === tab
+                      ? 'bg-[#C8A45D] text-stone-950 border-[#C8A45D] font-bold shadow-lg'
+                      : 'bg-stone-900/80 text-stone-300 border-stone-800 hover:border-[#C8A45D]/50'
+                  }`}
                   className={`text-xs font-serif px-5 py-2 rounded-full border transition-all cursor-pointer ${activeTab === tab
                     ? 'bg-[#C8A45D] text-stone-950 border-[#C8A45D] font-bold shadow-lg'
                     : 'bg-stone-900/80 text-stone-300 border-stone-800 hover:border-[#C8A45D]/50'
@@ -691,6 +741,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90 group-hover:brightness-100"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
                   <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
                     <span className="text-[10px] uppercase font-serif text-[#C8A45D] tracking-wider">
                       {item.category}
@@ -707,53 +758,57 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                   </div>
                 </motion.div>
               ))}
-            </AnimatePresence>
-          </motion.div>
+            </AnimatePresence >
+          </motion.div >
+        </div >
+
+  {/* Gallery Lightbox Modal */ }
+  <AnimatePresence>
+{
+  selectedImage && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+    >
+      <button
+        onClick={() => setSelectedImage(null)}
+        className="absolute top-6 right-6 text-stone-400 hover:text-amber-400 p-2 cursor-pointer transition-colors"
+      >
+        <CloseIcon className="w-8 h-8" />
+      </button>
+
+      <div className="max-w-4xl w-full space-y-4 text-center">
+        <div className="relative max-h-[75vh] overflow-hidden rounded-2xl border border-[#C8A45D]/40 shadow-2xl">
+          <img
+            src={selectedImage.url}
+            alt={selectedImage.title}
+            className="w-full h-auto max-h-[75vh] object-contain mx-auto"
+          />
         </div>
-
-        {/* Gallery Lightbox Modal */}
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
-            >
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-6 right-6 text-stone-400 hover:text-amber-400 p-2 cursor-pointer transition-colors"
-              >
-                <CloseIcon className="w-8 h-8" />
-              </button>
-
-              <div className="max-w-4xl w-full space-y-4 text-center">
-                <div className="relative max-h-[75vh] overflow-hidden rounded-2xl border border-[#C8A45D]/40 shadow-2xl">
-                  <img
-                    src={selectedImage.url}
-                    alt={selectedImage.title}
-                    className="w-full h-auto max-h-[75vh] object-contain mx-auto"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <span className="text-xs uppercase font-serif text-[#C8A45D] tracking-widest">
-                    {selectedImage.category}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#F8F4ED]">
-                    {selectedImage.title}
-                  </h3>
-                  <p className="text-stone-300 text-xs sm:text-sm font-light">
-                    {selectedImage.desc}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
+        <div className="space-y-1">
+          <span className="text-xs uppercase font-serif text-[#C8A45D] tracking-widest">
+            {selectedImage.category}
+          </span>
+          <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#F8F4ED]">
+            {selectedImage.title}
+          </h3>
+          <p className="text-stone-300 text-xs sm:text-sm font-light">
+            {selectedImage.desc}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+        </AnimatePresence >
+      </section >
 
 
       {/* SECTION 5: WEDDING PACKAGES */}
+      <section id="wedding-packages" className="py-24 bg-stone-950 relative border-t border-[#C8A45D]/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
       <section id="wedding-packages" className="py-24 bg-linear-to-b from-[#140a06] via-[#1c0f08] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(217,119,6,0.12),transparent_70%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16 relative z-10">
@@ -820,107 +875,114 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
 
             {/* Package 2: Gold Package (Highlighted) */}
             <div className="bg-stone-900 border-2 border-[#C8A45D] rounded-2xl p-8 space-y-8 flex flex-col justify-between transition-all duration-300 shadow-2xl relative transform md:-translate-y-4">
+
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
                 Most Popular Choice
               </div>
 
-              <div className="space-y-6 pt-2">
-                <div className="space-y-2 border-b border-stone-800 pb-6 text-center">
-                  <span className="text-xs font-serif text-[#C8A45D] uppercase tracking-widest">Grand Celebration</span>
-                  <h3 className="text-3xl font-serif font-bold text-[#F8F4ED]">Gold Package</h3>
-                  <div className="text-3xl font-serif font-bold text-[#C8A45D] pt-2">
-                    Ideal for 500 - 800 Guests
-                  </div>
-                </div>
+  <div className="space-y-6 pt-2">
+    <div className="space-y-2 border-b border-stone-800 pb-6 text-center">
+      <span className="text-xs font-serif text-[#C8A45D] uppercase tracking-widest">Grand Celebration</span>
+      <h3 className="text-3xl font-serif font-bold text-[#F8F4ED]">Gold Package</h3>
+      <div className="text-3xl font-serif font-bold text-[#C8A45D] pt-2">
+        Ideal for 500 - 800 Guests
+      </div>
+    </div>
 
-                <ul className="space-y-3.5 text-xs text-stone-200 font-sans">
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Decoration:</strong> Premium Orchid & Rose Mandap + LED Backdrop</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Food & Dining:</strong> 7-Course International & Regional Live Counters</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Photography:</strong> Cinematic 4K Videography + Drone + Album</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Accommodation:</strong> Royal Bridal Suite + 25 Deluxe Guest Rooms</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Music:</strong> Live Shehnai / Fusion Band + DJ & Dhol Artists</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Event Planning:</strong> Senior Wedding Concierge & Logistics Team</span>
-                  </li>
-                </ul>
-              </div>
+    <ul className="space-y-3.5 text-xs text-stone-200 font-sans">
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Decoration:</strong> Premium Orchid & Rose Mandap + LED Backdrop</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Food & Dining:</strong> 7-Course International & Regional Live Counters</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Photography:</strong> Cinematic 4K Videography + Drone + Album</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Accommodation:</strong> Royal Bridal Suite + 25 Deluxe Guest Rooms</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Music:</strong> Live Shehnai / Fusion Band + DJ & Dhol Artists</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Event Planning:</strong> Senior Wedding Concierge & Logistics Team</span>
+      </li>
+    </ul>
+  </div>
 
               <button
                 onClick={() => scrollToSection('wedding-enquiry')}
+
+                className="w-full bg-gradient-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
+
                 className="w-full bg-linear-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
               >
                 Inquire Gold Package
               </button>
             </div>
 
-            {/* Package 3: Royal Package */}
-            <div className="bg-stone-900/90 border border-stone-800 hover:border-[#C8A45D]/50 rounded-2xl p-8 space-y-8 flex flex-col justify-between transition-all duration-300 shadow-xl relative group">
-              <div className="space-y-6">
-                <div className="space-y-2 border-b border-stone-800 pb-6 text-center">
-                  <span className="text-xs font-serif text-stone-400 uppercase tracking-widest">Imperial Destination</span>
-                  <h3 className="text-2xl font-serif font-bold text-[#F8F4ED]">Royal Package</h3>
-                  <div className="text-3xl font-serif font-bold text-[#C8A45D] pt-2">
-                    Ideal for 1,000+ Guests
-                  </div>
-                </div>
+{/* Package 3: Royal Package */ }
+<div className="bg-stone-900/90 border border-stone-800 hover:border-[#C8A45D]/50 rounded-2xl p-8 space-y-8 flex flex-col justify-between transition-all duration-300 shadow-xl relative group">
+  <div className="space-y-6">
+    <div className="space-y-2 border-b border-stone-800 pb-6 text-center">
+      <span className="text-xs font-serif text-stone-400 uppercase tracking-widest">Imperial Destination</span>
+      <h3 className="text-2xl font-serif font-bold text-[#F8F4ED]">Royal Package</h3>
+      <div className="text-3xl font-serif font-bold text-[#C8A45D] pt-2">
+        Ideal for 1,000+ Guests
+      </div>
+    </div>
 
-                <ul className="space-y-3.5 text-xs text-stone-300 font-sans">
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Decoration:</strong> Custom Themed Heritage Palace & Garden Transformation</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Food & Dining:</strong> Unlimited Gourmet Live Cuisines by 5-Star Executive Chefs</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Photography:</strong> Celebrity Photography Team + Live Stream Feed</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Accommodation:</strong> Presidential Maharaja Suite + 50 Luxury Suites</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Music:</strong> Celebrity Singer / Orchestra & Pyrotechnics Show</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                    <span><strong>Event Planning:</strong> Full 3-Day End-to-End Wedding Operations Manager</span>
-                  </li>
-                </ul>
-              </div>
+    <ul className="space-y-3.5 text-xs text-stone-300 font-sans">
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Decoration:</strong> Custom Themed Heritage Palace & Garden Transformation</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Food & Dining:</strong> Unlimited Gourmet Live Cuisines by 5-Star Executive Chefs</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Photography:</strong> Celebrity Photography Team + Live Stream Feed</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Accommodation:</strong> Presidential Maharaja Suite + 50 Luxury Suites</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Music:</strong> Celebrity Singer / Orchestra & Pyrotechnics Show</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <Check className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+        <span><strong>Event Planning:</strong> Full 3-Day End-to-End Wedding Operations Manager</span>
+      </li>
+    </ul>
+  </div>
 
-              <button
-                onClick={() => scrollToSection('wedding-enquiry')}
-                className="w-full bg-stone-800 hover:bg-[#C8A45D] text-[#F8F4ED] hover:text-stone-950 font-serif font-bold text-xs py-3.5 rounded-xl border border-[#C8A45D]/30 transition-all cursor-pointer text-center"
-              >
-                Inquire Royal Package
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+  <button
+    onClick={() => scrollToSection('wedding-enquiry')}
+    className="w-full bg-stone-800 hover:bg-[#C8A45D] text-[#F8F4ED] hover:text-stone-950 font-serif font-bold text-xs py-3.5 rounded-xl border border-[#C8A45D]/30 transition-all cursor-pointer text-center"
+  >
+    Inquire Royal Package
+  </button>
+</div>
+          </div >
+        </div >
+      </section >
 
 
       {/* SECTION 6: WHY CHOOSE FOUR'S WAY HOTEL */}
+      <section id="why-choose-us" className="py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
       <section id="why-choose-us" className="py-24 bg-linear-to-b from-[#140a06] via-[#1b0d07] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(217,119,6,0.1),transparent_70%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16 relative z-10">
@@ -1000,224 +1062,224 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                 <div className="absolute bottom-4 left-4 text-xs font-serif text-[#C8A45D]">
                   Venue: {TESTIMONIALS[currentTestimonial].venue}
                 </div>
-              </div>
+              </div >
 
-              <div className="md:col-span-7 space-y-6 text-left">
-                <div className="flex items-center gap-1 text-[#C8A45D]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#C8A45D]" />
-                  ))}
-                </div>
+  <div className="md:col-span-7 space-y-6 text-left">
+    <div className="flex items-center gap-1 text-[#C8A45D]">
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} className="w-4 h-4 fill-[#C8A45D]" />
+      ))}
+    </div>
 
-                <blockquote className="text-stone-200 font-serif italic text-base sm:text-lg leading-relaxed">
-                  "{TESTIMONIALS[currentTestimonial].quote}"
-                </blockquote>
+    <blockquote className="text-stone-200 font-serif italic text-base sm:text-lg leading-relaxed">
+      "{TESTIMONIALS[currentTestimonial].quote}"
+    </blockquote>
 
-                <div>
-                  <h4 className="text-xl font-serif font-bold text-[#C8A45D]">
-                    {TESTIMONIALS[currentTestimonial].couple}
-                  </h4>
-                  <p className="text-xs text-stone-400 font-sans">
-                    Married in {TESTIMONIALS[currentTestimonial].date}
-                  </p>
-                </div>
+    <div>
+      <h4 className="text-xl font-serif font-bold text-[#C8A45D]">
+        {TESTIMONIALS[currentTestimonial].couple}
+      </h4>
+      <p className="text-xs text-stone-400 font-sans">
+        Married in {TESTIMONIALS[currentTestimonial].date}
+      </p>
+    </div>
 
-                {/* Slider Navigation Buttons */}
-                <div className="flex items-center gap-3 pt-4">
-                  <button
-                    onClick={() =>
-                      setCurrentTestimonial((prev) =>
-                        prev === 0 ? TESTIMONIALS.length - 1 : prev - 1
-                      )
-                    }
-                    className="w-10 h-10 rounded-full border border-[#C8A45D]/40 text-[#C8A45D] hover:bg-[#C8A45D] hover:text-stone-950 flex items-center justify-center transition-all cursor-pointer"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <span className="text-xs text-stone-400 font-mono">
-                    0{currentTestimonial + 1} / 0{TESTIMONIALS.length}
-                  </span>
-                  <button
-                    onClick={() =>
-                      setCurrentTestimonial((prev) =>
-                        prev === TESTIMONIALS.length - 1 ? 0 : prev + 1
-                      )
-                    }
-                    className="w-10 h-10 rounded-full border border-[#C8A45D]/40 text-[#C8A45D] hover:bg-[#C8A45D] hover:text-stone-950 flex items-center justify-center transition-all cursor-pointer"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+    {/* Slider Navigation Buttons */}
+    <div className="flex items-center gap-3 pt-4">
+      <button
+        onClick={() =>
+          setCurrentTestimonial((prev) =>
+            prev === 0 ? TESTIMONIALS.length - 1 : prev - 1
+          )
+        }
+        className="w-10 h-10 rounded-full border border-[#C8A45D]/40 text-[#C8A45D] hover:bg-[#C8A45D] hover:text-stone-950 flex items-center justify-center transition-all cursor-pointer"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      <span className="text-xs text-stone-400 font-mono">
+        0{currentTestimonial + 1} / 0{TESTIMONIALS.length}
+      </span>
+      <button
+        onClick={() =>
+          setCurrentTestimonial((prev) =>
+            prev === TESTIMONIALS.length - 1 ? 0 : prev + 1
+          )
+        }
+        className="w-10 h-10 rounded-full border border-[#C8A45D]/40 text-[#C8A45D] hover:bg-[#C8A45D] hover:text-stone-950 flex items-center justify-center transition-all cursor-pointer"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+    </div>
+  </div>
+            </div >
+          </div >
+        </div >
+      </section >
+
+
+  {/* SECTION 8: WEDDING ENQUIRY FORM */ }
+  < section id = "wedding-enquiry" className = "py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20" >
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      <div className="text-center space-y-4">
+        <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
+          <Send className="w-3.5 h-3.5" />
+          <span>Personalized Planning</span>
         </div>
-      </section>
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#F8F4ED]">
+          Wedding Enquiry Form
+        </h2>
+        <p className="text-stone-300 text-sm font-light">
+          Connect with our Senior Wedding Concierge team to receive customized venue layouts and pricing brochures.
+        </p>
+      </div>
 
-
-      {/* SECTION 8: WEDDING ENQUIRY FORM */}
-      <section id="wedding-enquiry" className="py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
-          <div className="text-center space-y-4">
-            <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
-              <Send className="w-3.5 h-3.5" />
-              <span>Personalized Planning</span>
+      {formSubmitted ? (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-stone-900 border border-[#C8A45D] p-8 sm:p-12 rounded-3xl text-center space-y-6 shadow-2xl"
+        >
+          <div className="w-16 h-16 rounded-full bg-[#C8A45D]/20 text-[#C8A45D] border border-[#C8A45D] flex items-center justify-center mx-auto">
+            <Check className="w-8 h-8" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-[#F8F4ED]">
+            Thank You for Reaching Out!
+          </h3>
+          <p className="text-stone-300 text-sm max-w-md mx-auto leading-relaxed">
+            Your wedding enquiry has been sent to our Wedding Operations Manager. Our team will contact you within 24 hours at <strong>{formData.phone}</strong> or <strong>{formData.email}</strong>.
+          </p>
+          <button
+            onClick={() => setFormSubmitted(false)}
+            className="bg-[#C8A45D] text-stone-950 font-serif font-bold text-xs px-6 py-3 rounded-xl cursor-pointer"
+          >
+            Submit Another Enquiry
+          </button>
+        </motion.div>
+      ) : (
+        <form
+          onSubmit={handleFormSubmit}
+          className="bg-stone-900/90 border border-[#C8A45D]/40 p-6 sm:p-10 rounded-3xl shadow-2xl space-y-6 backdrop-blur-md"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+                Bride's Full Name *
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="Enter bride's name"
+                value={formData.brideName}
+                onChange={(e) => setFormData({ ...formData, brideName: e.target.value })}
+                className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
+              />
             </div>
-            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#F8F4ED]">
-              Wedding Enquiry Form
-            </h2>
-            <p className="text-stone-300 text-sm font-light">
-              Connect with our Senior Wedding Concierge team to receive customized venue layouts and pricing brochures.
-            </p>
+
+            <div>
+              <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+                Groom's Full Name *
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="Enter groom's name"
+                value={formData.groomName}
+                onChange={(e) => setFormData({ ...formData, groomName: e.target.value })}
+                className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+                Email Address *
+              </label>
+              <input
+                type="email"
+                required
+                placeholder="name@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+                Phone / WhatsApp Number *
+              </label>
+              <input
+                type="tel"
+                required
+                placeholder="+971 50 123 4567"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+                Tentative Wedding Date *
+              </label>
+              <input
+                type="date"
+                required
+                value={formData.weddingDate}
+                onChange={(e) => setFormData({ ...formData, weddingDate: e.target.value })}
+                className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+                Estimated Guests
+              </label>
+              <select
+                value={formData.guests}
+                onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
+                className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
+              >
+                <option value="100 - 250">100 - 250 Guests</option>
+                <option value="250 - 500">250 - 500 Guests</option>
+                <option value="500 - 800">500 - 800 Guests</option>
+                <option value="800 - 1500+">800 - 1,500+ Guests</option>
+              </select>
+            </div>
           </div>
 
-          {formSubmitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-stone-900 border border-[#C8A45D] p-8 sm:p-12 rounded-3xl text-center space-y-6 shadow-2xl"
+          <div>
+            <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+              Event Type
+            </label>
+            <select
+              value={formData.eventType}
+              onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
+              className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
             >
-              <div className="w-16 h-16 rounded-full bg-[#C8A45D]/20 text-[#C8A45D] border border-[#C8A45D] flex items-center justify-center mx-auto">
-                <Check className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-serif font-bold text-[#F8F4ED]">
-                Thank You for Reaching Out!
-              </h3>
-              <p className="text-stone-300 text-sm max-w-md mx-auto leading-relaxed">
-                Your wedding enquiry has been sent to our Wedding Operations Manager. Our team will contact you within 24 hours at <strong>{formData.phone}</strong> or <strong>{formData.email}</strong>.
-              </p>
-              <button
-                onClick={() => setFormSubmitted(false)}
-                className="bg-[#C8A45D] text-stone-950 font-serif font-bold text-xs px-6 py-3 rounded-xl cursor-pointer"
-              >
-                Submit Another Enquiry
-              </button>
-            </motion.div>
-          ) : (
-            <form
-              onSubmit={handleFormSubmit}
-              className="bg-stone-900/90 border border-[#C8A45D]/40 p-6 sm:p-10 rounded-3xl shadow-2xl space-y-6 backdrop-blur-md"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                    Bride's Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Enter bride's name"
-                    value={formData.brideName}
-                    onChange={(e) => setFormData({ ...formData, brideName: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
-                  />
-                </div>
+              <option value="Full Wedding (3 Days)">Full Destination Wedding (3-Day Festivities)</option>
+              <option value="Engagement Ceremony">Engagement / Ring Ceremony</option>
+              <option value="Sangeet & Mehendi">Sangeet & Mehendi Evening</option>
+              <option value="Wedding Ceremony Only">Main Wedding Rituals & Feast</option>
+              <option value="Grand Reception">Reception Gala</option>
+            </select>
+          </div>
 
-                <div>
-                  <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                    Groom's Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Enter groom's name"
-                    value={formData.groomName}
-                    onChange={(e) => setFormData({ ...formData, groomName: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="name@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                    Phone / WhatsApp Number *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+971 50 123 4567"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                    Tentative Wedding Date *
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    value={formData.weddingDate}
-                    onChange={(e) => setFormData({ ...formData, weddingDate: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                    Estimated Guests
-                  </label>
-                  <select
-                    value={formData.guests}
-                    onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
-                  >
-                    <option value="100 - 250">100 - 250 Guests</option>
-                    <option value="250 - 500">250 - 500 Guests</option>
-                    <option value="500 - 800">500 - 800 Guests</option>
-                    <option value="800 - 1500+">800 - 1,500+ Guests</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                  Event Type
-                </label>
-                <select
-                  value={formData.eventType}
-                  onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
-                  className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors"
-                >
-                  <option value="Full Wedding (3 Days)">Full Destination Wedding (3-Day Festivities)</option>
-                  <option value="Engagement Ceremony">Engagement / Ring Ceremony</option>
-                  <option value="Sangeet & Mehendi">Sangeet & Mehendi Evening</option>
-                  <option value="Wedding Ceremony Only">Main Wedding Rituals & Feast</option>
-                  <option value="Grand Reception">Reception Gala</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
-                  Special Requirements / Notes
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Tell us about your preferred themes, diet preferences, room counts, or special requests..."
-                  value={formData.specialRequirements}
-                  onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
-                  className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors resize-none"
-                />
-              </div>
+          <div>
+            <label className="block text-xs font-serif text-[#C8A45D] uppercase mb-2">
+              Special Requirements / Notes
+            </label>
+            <textarea
+              rows={4}
+              placeholder="Tell us about your preferred themes, diet preferences, room counts, or special requests..."
+              value={formData.specialRequirements}
+              onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
+              className="w-full bg-stone-950 border border-stone-800 focus:border-[#C8A45D] rounded-xl px-4 py-3 text-xs text-stone-200 outline-none transition-colors resize-none"
+            />
+          </div>
 
               <button
                 type="submit"
-                className="w-full bg-linear -to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-[#C8A45D] via-[#d8b66e] to-[#C8A45D] hover:from-[#d8b66e] hover:to-[#C8A45D] text-stone-950 font-serif font-bold text-sm py-4 rounded-xl shadow-2xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4 fill-stone-950" />
                 <span>Submit Wedding Enquiry</span>
@@ -1228,18 +1290,18 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
       </section>
 
 
-      {/* SECTION 9: FAQ */}
-      <section id="wedding-faq" className="py-24 bg-stone-950 relative border-t border-[#C8A45D]/20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
-          <div className="text-center space-y-4">
-            <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
-              <Info className="w-3.5 h-3.5" />
-              <span>Questions & Answers</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#F8F4ED]">
-              Frequently Asked Questions
-            </h2>
-          </div>
+  {/* SECTION 9: FAQ */ }
+  < section id = "wedding-faq" className = "py-24 bg-stone-950 relative border-t border-[#C8A45D]/20" >
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      <div className="text-center space-y-4">
+        <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
+          <Info className="w-3.5 h-3.5" />
+          <span>Questions & Answers</span>
+        </div>
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#F8F4ED]">
+          Frequently Asked Questions
+        </h2>
+      </div>
 
           <div className="space-y-4">
             {FAQS.map((faq, idx) => {
@@ -1257,6 +1319,9 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
                       {faq.q}
                     </span>
                     <ChevronDown
+                      className={`w-5 h-5 text-[#C8A45D] shrink-0 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
                       className={`w-5 h-5 text-[#C8A45D] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
                         }`}
                     />
@@ -1274,8 +1339,8 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
       </section>
 
 
-      {/* SECTION 10: FOOTER */}
-      <footer className="bg-black text-stone-300 pt-16 pb-12 border-t border-[#C8A45D]/30">
+  {/* SECTION 10: FOOTER */ }
+  < footer className = "bg-black text-stone-300 pt-16 pb-12 border-t border-[#C8A45D]/30" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Col 1: Brand Info */}
           <div className="space-y-4">
@@ -1378,7 +1443,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 mt-8 border-t border-stone-900 text-center text-stone-500 text-[11px] font-sans">
           © {new Date().getFullYear()} Four's Way Hotel Dubai. All Rights Reserved. Royalty & Luxury Redefined.
         </div>
-      </footer>
-    </div>
+      </footer >
+    </div >
   );
 };
