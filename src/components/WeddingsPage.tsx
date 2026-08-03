@@ -94,7 +94,7 @@ const GALLERY_IMAGES = [
     id: 6,
     title: 'Poolside Sunset Cocktail',
     category: 'Ceremonies',
-    url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200',
+    url: 'poolside_venue_celebration_1785687162778.jpg',
     desc: 'Shimmering waters backdrop for evening sundowners.'
   },
   {
