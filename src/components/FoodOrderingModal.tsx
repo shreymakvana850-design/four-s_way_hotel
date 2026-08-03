@@ -23,7 +23,7 @@ import {
   User,
   Phone,
 } from 'lucide-react';
-import myQrCodeImg from '../assets/images/my_qr.png';
+import myQrCodeImg from '../assets/images/qr.jpg';
 import { FOOD_MENU_DATA, MenuItem, FoodOrder, FoodOrderItem, CustomerRecord } from '../data/websiteData';
 
 interface FoodOrderingModalProps {
