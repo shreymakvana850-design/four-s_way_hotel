@@ -83,7 +83,7 @@ const GALLERY_IMAGES = [
   {
     id: 5,
     title: 'Grand Ballroom Setup',
-    category: 'Venues',
+    category: 'Venues', 
     url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=1200',
     desc: '18,000 sq.ft banquet decorated for 800 royal guests.'
   },
@@ -590,7 +590,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
             <div className="bg-stone-900 border border-[#C8A45D]/40 rounded-2xl overflow-hidden shadow-2xl flex flex-col group hover:border-[#C8A45D] transition-all">
               <div className="relative h-72 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1000"
+                  src="src/assets/images/poolside_venue_celebration_1785687162778.jpg"
                   alt="Poolside Celebration"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
