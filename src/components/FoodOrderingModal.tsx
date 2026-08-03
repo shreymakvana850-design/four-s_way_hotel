@@ -23,6 +23,7 @@ import {
   User,
   Phone,
 } from 'lucide-react';
+import myQrCodeImg from '../assets/images/my_qr.png';
 import { FOOD_MENU_DATA, MenuItem, FoodOrder, FoodOrderItem, CustomerRecord } from '../data/websiteData';
 
 interface FoodOrderingModalProps {
@@ -605,7 +606,7 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                     <div className="flex flex-col sm:flex-row items-center gap-6">
                       <div className="bg-white p-3 rounded-xl border-2 border-amber-500/50 shadow-md text-center">
                         <div className="w-32 h-32 bg-stone-900 p-2 rounded flex flex-col items-center justify-center text-amber-400 font-mono text-[10px]">
-                          <QrCode className="w-20 h-20 text-stone-100" />
+                         <img src={myQrCodeImg} alt="UPI QR Code" className="w-40 h-40 object-contain rounded-lg shadow-md" />
                           <span className="mt-1 font-bold text-amber-400">SCAN & PAY ₹{totalAmount}</span>
                         </div>
                         <span className="text-[10px] text-stone-600 font-sans block mt-1">GPay • PhonePe • Paytm</span>
