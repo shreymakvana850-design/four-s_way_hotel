@@ -27,15 +27,12 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
-<<<<<<< HEAD
   Info
 } from 'lucide-react';
 
 interface WeddingsPageProps {
   onOpenBookNow?: () => void;
-=======
-  Info,
-  ArrowLeft
+  onGoBack?: () => void;
 } from 'lucide-react';
 import { WeddingsSection } from './WeddingsSection';
 import royalWeddingHeroImg from '../assets/images/royal_wedding_hero_1785300265250.jpg';
@@ -44,7 +41,6 @@ import royalIndianCoupleImg from '../assets/images/royal_indian_couple_178538623
 interface WeddingsPageProps {
   onOpenBookNow?: () => void;
   onGoBack?: () => void;
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
 }
 
 // 12 Gallery Images with Categories
@@ -65,18 +61,18 @@ const GALLERY_IMAGES = [
   },
   {
     id: 3,
-<<<<<<< HEAD
     title: 'Luxury Floral Decor',
     category: 'Decor',
     url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200',
     desc: 'Intricate orchids, roses, and gold accent centerpieces.'
-=======
+  },
+  {
+    id: 4,
     title: 'Royal Indian Wedding Couple',
     category: 'Bridal',
     url: royalIndianCoupleImg,
     desc: 'Grand royal wedding attire with exquisite jewelry and regal decor.'
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
-  },
+``  },
   {
     id: 4,
     title: 'Bridal Suite & Couture',
@@ -205,11 +201,8 @@ const FAQS = [
   }
 ];
 
-<<<<<<< HEAD
 export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow }) => {
-=======
-export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoBack }) => {
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
+  export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoBack }) => {
   // Gallery Filter State
   const [activeTab, setActiveTab] = useState('All');
   const [selectedImage, setSelectedImage] = useState<typeof GALLERY_IMAGES[0] | null>(null);
@@ -254,7 +247,7 @@ export const WeddingsPage: React.FC<WeddingsPageProps> = ({ onOpenBookNow, onGoB
   };
 
   return (
-<<<<<<< HEAD
+<<<<<<< HEADohk
     <div className="bg-[#0B0B0B] text-stone-100 font-sans selection:bg-[#C8A45D] selection:text-black min-h-screen">
 =======
     <div className="bg-[#140a06] text-stone-100 font-sans selection:bg-[#C8A45D] selection:text-black min-h-screen">
@@ -646,11 +639,15 @@ className = "bg-stone-900/90 border border-[#C8A45D]/40 hover:border-[#C8A45D] r
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
       />
 <<<<<<< HEAD
-                <><div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" /><div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
-  <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
-    Sunset & Cocktail Arena
-  </span>
-</div></>
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
+=======
+                <div className="absolute inset-0 bg-linear-to-t from-stone-950 via-stone-950/20 to-transparent" />
+>>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif">
+                  <span className="bg-[#C8A45D] text-stone-950 font-bold px-3 py-1 rounded-full shadow">
+                    Sunset & Cocktail Arena
+                  </span>
+                </div>
               </div >
   <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
     <div className="space-y-3">
@@ -944,11 +941,10 @@ className = "bg-stone-900/90 border border-[#C8A45D]/40 hover:border-[#C8A45D] r
 
             {/* Package 2: Gold Package (Highlighted) */}
             <div className="bg-stone-900 border-2 border-[#C8A45D] rounded-2xl p-8 space-y-8 flex flex-col justify-between transition-all duration-300 shadow-2xl relative transform md:-translate-y-4">
-<<<<<<< HEAD
+
 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
 =======
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-[#C8A45D] to-[#b38f49] text-stone-950 text-[11px] font-serif font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
     Most Popular Choice
   </div>
 
@@ -991,11 +987,9 @@ className = "bg-stone-900/90 border border-[#C8A45D]/40 hover:border-[#C8A45D] r
 
   <button
     onClick={() => scrollToSection('wedding-enquiry')}
-<<<<<<< HEAD
+
     className="w-full bg-gradient-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
-=======
                 className="w-full bg-linear-to-r from-[#C8A45D] to-[#d8b66e] text-stone-950 font-serif font-bold text-xs py-4 rounded-xl shadow-xl hover:shadow-[#C8A45D]/30 transition-all cursor-pointer text-center"
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
   >
     Inquire Gold Package
   </button>
@@ -1053,14 +1047,13 @@ className = "bg-stone-900/90 border border-[#C8A45D]/40 hover:border-[#C8A45D] r
 
 
   {/* SECTION 6: WHY CHOOSE FOUR'S WAY HOTEL */ }
-<<<<<<< HEAD
+
   < section id = "why-choose-us" className = "py-24 bg-[#0B0B0B] relative border-t border-[#C8A45D]/20" >
     <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
 =======
       <section id="why-choose-us" className="py-24 bg-linear-to-b from-[#140a06] via-[#1b0d07] to-[#140a06] relative border-t-2 border-amber-600/30 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(217,119,6,0.1),transparent_70%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-16 relative z-10">
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 text-[#C8A45D] text-xs font-serif uppercase tracking-widest bg-[#C8A45D]/10 px-4 py-1.5 rounded-full border border-[#C8A45D]/30">
               <ShieldCheck className="w-3.5 h-3.5" />
@@ -1402,13 +1395,12 @@ className = "bg-stone-900/90 border border-[#C8A45D]/40 hover:border-[#C8A45D] r
                   {faq.q}
                 </span>
                 <ChevronDown
-<<<<<<< HEAD
+
                   className={`w-5 h-5 text-[#C8A45D] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
                     }`}
-=======
                       className={`w-5 h-5 text-[#C8A45D] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
                         }`}
->>>>>>> 086ae4c44501e58da82521f9dca7fa9f0b513b99
+               086ae4c44501e58da82521f9dca7fa9f0b513b99
                 />
               </button>
               {isOpen && (
