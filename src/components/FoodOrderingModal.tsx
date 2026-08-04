@@ -424,72 +424,105 @@ export const FoodOrderingModal: React.FC<FoodOrderingModalProps> = ({
                     </div>
                   </div>
 
-                  {/* Room or Table Number */}
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-serif text-amber-300 flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                      {deliveryType === 'Room Delivery'
-                        ? 'Room Number *'
-                        : deliveryType === 'Table Dining'
-                          ? 'Restaurant Table Number *'
-                          : 'Takeaway Counter Location *'}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder={
-                        deliveryType === 'Room Delivery'
-                          ? 'e.g., Maharaja Suite 101 or Room 204'
-                          : deliveryType === 'Table Dining'
-                            ? 'e.g., Deep Mahal Table 4 or Sheesh Mahal Table 2'
-                            : 'e.g., Main Reception Desk'
-                      }
-                      value={roomOrTableNo}
-                      onChange={(e) => setRoomOrTableNo(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-xs text-stone-100 focus:border-amber-500 outline-none"
-                    />
-                  </div>
+                 {/* Hotel Room Number Selection */}
+<div className="space-y-2">
+  <label className="text-xs font-serif text-amber-300 flex items-center justify-between">
+    <span className="flex items-center gap-1">
+      <MapPin className="w-3.5 h-3.5 text-amber-400" />
+      Select Hotel Room Number for Delivery *
+    </span>
+    <span className="text-[10px] text-emerald-400 font-mono font-semibold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60">
+      100 Rooms Inventory Active
+    </span>
+  </label>
 
-                  {/* Guest Name & Mobile */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-serif text-amber-300 flex items-center gap-1">
-                        <User className="w-3.5 h-3.5 text-amber-400" /> Guest Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g., Maharaval Digvijay Singh"
-                        value={guestName}
-                        onChange={(e) => setGuestName(e.target.value)}
-                        className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-xs text-stone-100 focus:border-amber-500 outline-none"
-                      />
-                    </div>
+  {deliveryType === 'Room Delivery' && rooms.length > 0 && (
+    <div className="space-y-2.5">
+      <select
+        value={roomOrTableNo}
+        onChange={(e) => {
+          const val = e.target.value;
+          setRoomOrTableNo(val);
+          const cleanNum = val.replace(/[^\d]/g, '');
+          const selectedR = rooms.find((r) => r.roomNumber === cleanNum || `Room ${r.roomNumber}` === val);
+          if (selectedR) {
+            if (selectedR.guestName) setGuestName(selectedR.guestName);
+            if (selectedR.guestPhone) setPhone(selectedR.guestPhone);
+          }
+        }}
+        required
+        className="w-full bg-stone-900 border border-amber-900/60 rounded-xl px-3.5 py-3 text-xs text-stone-100 focus:border-amber-400 outline-none font-mono cursor-pointer shadow-inner"
+      >
+        <option value="">-- Click to Choose Room Number (101 to 520) --</option>
+        
+        <optgroup label="🔴 Currently Occupied Rooms (With Guest Info)">
+          {rooms.filter(r => r.status === 'Occupied').map((r) => (
+            <option key={r.id} value={`Room ${r.roomNumber}`} className="text-amber-300 bg-stone-950 font-semibold">
+              Room {r.roomNumber} ({r.suiteName}) — Guest: {r.guestName} ({r.guestPhone || 'No Phone'})
+            </option>
+          ))}
+        </optgroup>
 
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-serif text-amber-300 flex items-center gap-1">
-                        <Phone className="w-3.5 h-3.5 text-amber-400" /> Mobile Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+91 92743 96643"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-xs text-stone-100 focus:border-amber-500 outline-none"
-                      />
-                    </div>
-                  </div>
+        <optgroup label="🟢 Available Hotel Rooms">
+          {rooms.filter(r => r.status === 'Available').map((r) => (
+            <option key={r.id} value={`Room ${r.roomNumber}`} className="text-emerald-300 bg-stone-950">
+              Room {r.roomNumber} ({r.suiteName}) — Available
+            </option>
+          ))}
+        </optgroup>
+      </select>
+    </div>
+  )}
+</div>
 
-                  <button
-                    type="submit"
-                    className="w-full bg-linear-to-r from-amber-600 via-amber-500 to-amber-600 text-stone-950 font-serif font-bold text-sm py-3.5 rounded-xl shadow-xl hover:from-amber-500 hover:to-amber-400 transition-all cursor-pointer flex items-center justify-center gap-2 mt-4"
-                  >
-                    <span>Proceed to Payment Gateway Page</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </form>
-              </div>
+{/* Registered Guest Info Display Box (Appears automatically above Guest details) */}
+{(() => {
+  const cleanNum = roomOrTableNo.replace(/[^\d]/g, '');
+  const matchedRoom = rooms.find((r) => r.roomNumber === cleanNum || `Room ${r.roomNumber}` === roomOrTableNo);
+  if (!matchedRoom) return null;
+
+  return (
+    <div className="bg-gradient-to-r from-amber-950/80 via-stone-900 to-amber-950/80 border border-amber-500/60 p-3.5 rounded-xl shadow-lg space-y-1.5 animate-in fade-in duration-200">
+      <div className="flex items-center justify-between border-b border-amber-500/20 pb-2">
+        <div className="flex items-center gap-2">
+          <Building2 className="w-4 h-4 text-amber-400" />
+          <span className="font-serif font-bold text-amber-200 text-xs">
+            Room #{matchedRoom.roomNumber} — {matchedRoom.suiteName}
+          </span>
+        </div>
+        <span className={`text-[10px] font-mono px-2 py-0.5 rounded border font-semibold ${
+          matchedRoom.status === 'Occupied'
+            ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+            : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+        }`}>
+          {matchedRoom.status}
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-0.5">
+        <div className="flex items-center gap-2">
+          <User className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+          <div>
+            <span className="text-[10px] text-stone-400 block">Registered Guest Name:</span>
+            <strong className="text-stone-100 font-serif">
+              {matchedRoom.guestName || 'No Guest Checked-In'}
+            </strong>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+          <div>
+            <span className="text-[10px] text-stone-400 block">Mobile Phone Number:</span>
+            <strong className="text-amber-300 font-mono">
+              {matchedRoom.guestPhone || 'N/A'}
+            </strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+})()}
+
 
               {/* Right Column: Selected Order Summary */}
               <div className="bg-stone-950 p-5 rounded-xl border border-stone-800 flex flex-col justify-between space-y-4">

@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { SUITES_DATA, Suite, CustomerRecord } from '../data/websiteData';
-import { Crown, Sparkles, CheckCircle2, X, Calendar, User, Phone, Mail, ShieldCheck, CreditCard, Banknote } from 'lucide-react';
+import { SUITES_DATA, Suite, CustomerRecord, RoomRecord } from '../data/websiteData';
+
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
   preselectedSuite?: Suite | null;
   searchParams?: { checkIn: string; checkOut: string; suite: string; guests: number } | null;
-  onBookingConfirmed?: (customer: CustomerRecord) => void;
+  rooms?: RoomRecord[];
+  onBookingConfirmed?: (customer: CustomerRecord, bookedRoomNumber?: string) => void;
 }
+import {
+  Crown,
+  X,
+  ShieldCheck,
+  CreditCard,
+  Banknote,
+  Building2,
+  BedDouble,
+} from "lucide-react";
+
+
 
 export const BookingModal: React.FC<BookingModalProps> = ({
   isOpen,
@@ -26,7 +38,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [guestsCount, setGuestsCount] = useState(2);
   const [specialRequests, setSpecialRequests] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'Online Payment (UPI/Card)' | 'Cash Payment'>('Online Payment (UPI/Card)');
-
+  const [selectedRoomNumber, setSelectedRoomNumber] = useState("");
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [voucherId, setVoucherId] = useState('');
 
@@ -45,6 +57,25 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   if (!isOpen) return null;
 
   const currentSuite = SUITES_DATA.find((s) => s.id === selectedSuiteId) || SUITES_DATA[0];
+  const totalRoomsCount = rooms?.length ?? 0;
+
+const availableRoomsList =
+  rooms?.filter((r) => r.status === "Available") ?? [];
+
+const occupiedRoomsList =
+  rooms?.filter((r) => r.status === "Occupied") ?? [];
+
+const reservedRoomsList =
+  rooms?.filter((r) => r.status === "Reserved") ?? [];
+
+const cleaningRoomsList =
+  rooms?.filter((r) => r.status === "Cleaning") ?? [];
+
+const roomsForSelectedSuite =
+  rooms?.filter((r) => r.suiteId === selectedSuiteId) ?? [];
+
+const availableRoomsForSuite =
+  roomsForSelectedSuite.filter((r) => r.status === "Available");
 
   // Calculate Nights & Total
   const d1 = new Date(checkIn);
@@ -157,7 +188,69 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+           {/* Hotel Live 100 Rooms Status Summary */}
+<div className="bg-stone-950 border border-amber-900/50 p-3.5 rounded-xl space-y-2">
+  <div className="flex items-center justify-between text-xs font-serif font-bold text-amber-200">
+    <div className="flex items-center gap-2">
+      <Building2 className="w-4 h-4 text-amber-400" />
+      <span>Hotel Room Inventory (100 Rooms Total)</span>
+    </div>
+    <span className="text-[11px] font-mono text-emerald-400 font-semibold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/80">
+      {availableRoomsList.length} Available
+    </span>
+  </div>
+  <div className="grid grid-cols-4 gap-2 text-center text-[11px] pt-1 border-t border-stone-800">
+    <div className="bg-stone-900/90 p-2 rounded-lg border border-stone-800">
+      <span className="block text-stone-400 text-[10px]">Total Rooms</span>
+      <strong className="text-amber-300 text-sm font-mono">{totalRoomsCount}</strong>
+    </div>
+    <div className="bg-emerald-950/40 p-2 rounded-lg border border-emerald-900/50">
+      <span className="block text-emerald-400 text-[10px]">🟢 Available</span>
+      <strong className="text-emerald-300 text-sm font-mono">{availableRoomsList.length}</strong>
+    </div>
+    <div className="bg-red-950/40 p-2 rounded-lg border border-red-900/50">
+      <span className="block text-red-400 text-[10px]">🔴 Occupied</span>
+      <strong className="text-red-300 text-sm font-mono">{occupiedRoomsList.length}</strong>
+    </div>
+    <div className="bg-amber-950/40 p-2 rounded-lg border border-amber-900/50">
+      <span className="block text-amber-400 text-[10px]">🧹 Cleaning/Reserved</span>
+      <strong className="text-amber-300 text-sm font-mono">{cleaningRoomsList.length + reservedRoomsList.length}</strong>
+    </div>
+  </div>
+</div>
+
+{/* Specific Available Room Selector */}
+<div>
+  <div className="flex justify-between items-center mb-1">
+    <label className="font-serif font-bold text-amber-300 flex items-center gap-1.5">
+      <BedDouble className="w-4 h-4 text-amber-400" /> Select Available Room Number *
+    </label>
+    <span className="text-[11px] text-stone-400">
+      Available for {currentSuite.name}: <strong className="text-emerald-400 font-mono">{availableRoomsForSuite.length} Rooms</strong>
+    </span>
+  </div>
+
+  <select
+    value={selectedRoomNumber}
+    onChange={(e) => setSelectedRoomNumber(e.target.value)}
+    required
+    className="w-full bg-stone-950 border border-amber-900/60 rounded-xl p-3 text-stone-100 outline-none focus:border-amber-500 cursor-pointer font-mono"
+  >
+    {roomsForSelectedSuite.map((r) => {
+      const isAvail = r.status === 'Available';
+      return (
+        <option
+          key={r.id}
+          value={r.roomNumber}
+          disabled={!isAvail}
+          className={isAvail ? 'text-emerald-300 bg-stone-950 font-bold' : 'text-stone-500 bg-stone-900'}
+        >
+          Room #{r.roomNumber} ({r.floor}) — {isAvail ? '🟢 Available' : `🔴 Occupied / ${r.status}`}
+        </option>
+      );
+    })}
+  </select>
+</div>
 
               {/* Suite Selection */}
               <div>

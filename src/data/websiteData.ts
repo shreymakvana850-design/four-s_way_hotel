@@ -658,25 +658,87 @@ export const FOOD_MENU_DATA: MenuItem[] = [
   }
 ];
 
-export const INITIAL_ROOMS_DATA: RoomRecord[] = [
-  { id: '101', roomNumber: '101', suiteName: 'Maharaja Suite', floor: '1st Floor - West Wing', status: 'Occupied', guestName: 'Maharaval Digvijay Singh', guestPhone: '+91 98980 11223', checkInDate: '2026-07-25', checkOutDate: '2026-07-28', tariffPerNight: 28000, paymentStatus: 'Paid (Online)' },
-  { id: '102', roomNumber: '102', suiteName: 'Maharaja Suite', floor: '1st Floor - East Wing', status: 'Available', tariffPerNight: 28000 },
-  { id: '201', roomNumber: '201', suiteName: 'Maharani Suite', floor: '2nd Floor - Heritage Wing', status: 'Occupied', guestName: 'Rohan & Sanya Kapadia', guestPhone: '+91 99090 44556', checkInDate: '2026-07-24', checkOutDate: '2026-07-27', tariffPerNight: 22000, paymentStatus: 'Pay at Desk (Cash)' },
-  { id: '202', roomNumber: '202', suiteName: 'Maharani Suite', floor: '2nd Floor - Heritage Wing', status: 'Cleaning', tariffPerNight: 22000 },
-  { id: '301', roomNumber: '301', suiteName: 'Suryavanshi Suite', floor: '3rd Floor - Hilltop Terrace', status: 'Reserved', guestName: 'Vikramaditya Singhania', guestPhone: '+91 98765 43210', checkInDate: '2026-08-01', checkOutDate: '2026-08-04', tariffPerNight: 18000, paymentStatus: 'Paid (Online)' },
-  { id: '302', roomNumber: '302', suiteName: 'Suryavanshi Suite', floor: '3rd Floor - Hilltop Terrace', status: 'Available', tariffPerNight: 18000 },
-  { id: '401', roomNumber: '401', suiteName: 'Rajvanshi Suite', floor: '4th Floor - Courtyard View', status: 'Available', tariffPerNight: 15000 },
-  { id: '402', roomNumber: '402', suiteName: 'Peacock Suite', floor: '4th Floor - Garden Wing', status: 'Occupied', guestName: 'Priya & Rahul Sharma', guestPhone: '+91 97234 56789', checkInDate: '2026-07-26', checkOutDate: '2026-07-29', tariffPerNight: 13500, paymentStatus: 'Paid (Online)' },
-  { id: '501', roomNumber: '501', suiteName: 'Ranivas Deluxe Suite', floor: 'Ground Floor - Ranivas Court', status: 'Available', tariffPerNight: 12000 }
-];
+const generate100Rooms = (): RoomRecord[] => {
+  const roomsList: RoomRecord[] = [];
+  const occupiedNumbers = [101, 105, 112, 118, 201, 208, 214, 219, 303, 310, 317, 402, 409, 415, 504, 511, 518];
+  const cleaningNumbers = [104, 202, 305, 410, 508];
+  const reservedNumbers = [301, 405];
+  const maintenanceNumbers = [119, 520];
 
-export const INITIAL_CUSTOMERS_DATA: CustomerRecord[] = [
-  { id: 'cust-1', name: 'Maharaval Digvijay Singh', phone: '+91 98980 11223', email: 'digvijay@palace.in', bookingType: 'Room Stay', details: 'Maharaja Suite (Room 101) for 3 Nights', amount: 84000, paymentMethod: 'Online Payment (UPI/Card)', paymentStatus: 'Paid', date: '2026-07-25' },
-  { id: 'cust-2', name: 'Rohan & Sanya Kapadia', phone: '+91 99090 44556', email: 'rohan.kapadia@gmail.com', bookingType: 'Room Stay', details: 'Maharani Suite (Room 201) for 3 Nights', amount: 66000, paymentMethod: 'Cash Payment', paymentStatus: 'Pending', date: '2026-07-24' },
-  { id: 'cust-3', name: 'Dr. K. P. Jadeja', phone: '+91 98250 88990', email: 'jadeja.kp@gmail.com', bookingType: 'Wedding Venue', details: 'Suryavanshi Lawns Destination Wedding (1200 Guests)', amount: 450000, paymentMethod: 'Online Payment (UPI/Card)', paymentStatus: 'Paid', date: '2026-07-20' },
-  { id: 'cust-4', name: 'Ananya & Vikram Shah', phone: '+91 98112 33445', email: 'v.shah@hotmail.com', bookingType: 'Table Reservation', details: 'Sheesh Mahal Candlelight Dinner (4 Guests)', amount: 4800, paymentMethod: 'Cash Payment', paymentStatus: 'Paid', date: '2026-07-25' },
-  { id: 'cust-5', name: 'Sanjay Patel', phone: '+91 94260 77112', email: 'spatel@techsol.com', bookingType: 'Food Order', details: 'Royal Kathiyawadi Thali & Paneer Tikka (Room 101)', amount: 1250, paymentMethod: 'Online Payment (UPI/Card)', paymentStatus: 'Paid', date: '2026-07-26' }
-];
+  const guests = [
+    { name: 'Maharaval Digvijay Singh', phone: '+91 98980 11223' },
+    { name: 'Rohan & Sanya Kapadia', phone: '+91 99090 44556' },
+    { name: 'Vikramaditya Singhania', phone: '+91 98765 43210' },
+    { name: 'Priya & Rahul Sharma', phone: '+91 97234 56789' },
+    { name: 'Ananya & Karan Patel', phone: '+91 98234 11223' },
+    { name: 'Dr. Sameer Roy', phone: '+91 98111 88990' },
+    { name: 'Sunil & Kavita Mehra', phone: '+91 99887 76655' },
+    { name: 'Harshvardhan Rana', phone: '+91 97654 32109' },
+  ];
+
+  for (let floor = 1; floor <= 5; floor++) {
+    for (let r = 1; r <= 20; r++) {
+      const roomNum = floor * 100 + r;
+      const numStr = roomNum.toString();
+      let suiteName = 'Ranivas Deluxe Suite';
+      let tariff = 12000;
+
+      if (floor === 1) {
+        if (r <= 8) { suiteName = 'Maharaja Suite'; tariff = 28000; }
+        else { suiteName = 'Maharani Suite'; tariff = 22000; }
+      } else if (floor === 2) {
+        if (r <= 8) { suiteName = 'Maharani Suite'; tariff = 22000; }
+        else { suiteName = 'Suryavanshi Suite'; tariff = 18000; }
+      } else if (floor === 3) {
+        if (r <= 10) { suiteName = 'Suryavanshi Suite'; tariff = 18000; }
+        else { suiteName = 'Rajvanshi Suite'; tariff = 15000; }
+      } else if (floor === 4) {
+        if (r <= 10) { suiteName = 'Rajvanshi Suite'; tariff = 15000; }
+        else { suiteName = 'Peacock Suite'; tariff = 13500; }
+      } else {
+        suiteName = 'Ranivas Deluxe Suite'; tariff = 12000;
+      }
+
+      let status: RoomRecord['status'] = 'Available';
+      let guestName: string | undefined = undefined;
+      let guestPhone: string | undefined = undefined;
+      let paymentStatus: RoomRecord['paymentStatus'] = undefined;
+
+      if (occupiedNumbers.includes(roomNum)) {
+        status = 'Occupied';
+        const g = guests[roomNum % guests.length];
+        guestName = g.name;
+        guestPhone = g.phone;
+        paymentStatus = 'Paid (Online)';
+      } else if (cleaningNumbers.includes(roomNum)) {
+        status = 'Cleaning';
+      } else if (reservedNumbers.includes(roomNum)) {
+        status = 'Reserved';
+        guestName = 'VIP Guest';
+        paymentStatus = 'Paid (Online)';
+      } else if (maintenanceNumbers.includes(roomNum)) {
+        status = 'Maintenance';
+      }
+
+      roomsList.push({
+        id: numStr,
+        roomNumber: numStr,
+        suiteName,
+        floor: `${floor}${floor === 1 ? 'st' : floor === 2 ? 'nd' : floor === 3 ? 'rd' : 'th'} Floor`,
+        status,
+        guestName,
+        guestPhone,
+        tariffPerNight: tariff,
+        paymentStatus,
+        checkInDate: status === 'Occupied' ? '2026-08-01' : undefined,
+        checkOutDate: status === 'Occupied' ? '2026-08-04' : undefined,
+      });
+    }
+  }
+  return roomsList;
+};
+
+export const INITIAL_ROOMS_DATA: RoomRecord[] = generate100Rooms();
 
 export const SUITES_DATA: Suite[] = [
   {
